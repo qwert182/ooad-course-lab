@@ -48,6 +48,12 @@
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c">
       <Filter>src\utils\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Element.h">
+      <Filter>src\db</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

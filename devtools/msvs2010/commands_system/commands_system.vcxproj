@@ -11,12 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\src\commands_system\db\Element.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h" />
