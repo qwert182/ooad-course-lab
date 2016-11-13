@@ -95,5 +95,8 @@
     <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h">
       <Filter>src\db\imp</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

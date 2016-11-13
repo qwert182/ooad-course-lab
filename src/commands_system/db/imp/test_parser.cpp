@@ -56,9 +56,9 @@ TEST(CanParserReadTableWith5Rows7Columns){
 		for(size_t i=0; i<a.size(); i++)
 			assertTrue(a[i].size() == 5); // קטסכמ סעמבצמג = 5
 
-		assertEqual((string) "int", (string) a[0][0]);
-		assertEqual((string) "3", (string) a[5][0]);
-		assertEqual((string) "-", (string) a[2][2]);
-		assertEqual((string) "usertypes.txt", (string) a[2][4]);
+		assertEquals((string) "int", (string) a[0][0]);
+		assertEquals((string) "3", (string) a[5][0]);
+		assertEquals((string) "-", (string) a[2][2]);
+		assertEquals((string) "usertypes.txt", (string) a[2][4]);
 	}
 } TEST_END;

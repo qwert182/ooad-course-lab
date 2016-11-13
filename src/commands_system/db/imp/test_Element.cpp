@@ -21,7 +21,7 @@ TEST(CanCreateIntThenGetInt) {
 	void test() {
 	  Element el = 0;
 	  int i = el;
-		assertEqual(0, i);
+		assertEquals(0, i);
 	}
 } TEST_END;
 
@@ -37,7 +37,7 @@ TEST(canCreateStringThenGetString) {
 	void test() {
 	  Element el = "string";
 	  string s = el;
-		assertEqual(string("string"), s);
+		assertEquals(string("string"), s);
 	}
 } TEST_END;
 
@@ -63,9 +63,9 @@ TEST(CanPushbackInVectorDifferentTypeElements) {
 		v.push_back("2 string");
 		v.push_back(3);
 
-		assertEqual(1, int(v[0]));
-		assertEqual(string("2 string"), string(v[1]));
-		assertEqual(3, int(v[2]));
+		assertEquals(1, int(v[0]));
+		assertEquals(string("2 string"), string(v[1]));
+		assertEquals(3, int(v[2]));
 	}
 } TEST_END;
 

@@ -9,8 +9,8 @@ private:
 public:
 	virtual int getRowCount() const;
 	virtual int getColCount() const;
-	virtual const class Element & get(int row, int col) const;
+	virtual const Element & get(int row, int col) const;
 
-	Table(const std::vector<std::vector<Element>> &content);
+	Table(const std::vector<std::vector<std::string>> &parsed_table);
 	// think about ~
 };
