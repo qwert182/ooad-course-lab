@@ -28,10 +28,10 @@
     <Filter Include="src\http_view\imp">
       <UniqueIdentifier>{69c3fad2-1db3-4bd3-b835-980840d3fb7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\presentor">
+    <Filter Include="src\presenter">
       <UniqueIdentifier>{15870036-e410-4fc3-9fa8-a129db154e84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\presentor\imp">
+    <Filter Include="src\presenter\imp">
       <UniqueIdentifier>{7209981e-c1eb-4ee1-9883-125a04d2097c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

@@ -8,8 +8,8 @@
 	                    ./http_view/imp
 	                    ./model
 	                    ./model/imp
-	                    ./presentor
-	                    ./presentor/imp
+	                    ./presenter
+	                    ./presenter/imp
 	                    ./utils - всякая всячина (*.h тестирования, assert*, Exception, ...)
 	                    ./utils/imp - реализация этого чуда (как написать тест см. ниже)
 	
