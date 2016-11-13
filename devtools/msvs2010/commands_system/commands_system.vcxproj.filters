@@ -22,17 +22,17 @@
     <Filter Include="src\model\imp">
       <UniqueIdentifier>{72ac20d1-7c05-469b-b4e4-8535bc0308db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\http_view">
-      <UniqueIdentifier>{470c86c4-9402-45f6-8c3a-686d6dc2b860}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\http_view\imp">
-      <UniqueIdentifier>{69c3fad2-1db3-4bd3-b835-980840d3fb7e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\presenter">
       <UniqueIdentifier>{15870036-e410-4fc3-9fa8-a129db154e84}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\presenter\imp">
       <UniqueIdentifier>{7209981e-c1eb-4ee1-9883-125a04d2097c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\view">
+      <UniqueIdentifier>{470c86c4-9402-45f6-8c3a-686d6dc2b860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\view\imp">
+      <UniqueIdentifier>{69c3fad2-1db3-4bd3-b835-980840d3fb7e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

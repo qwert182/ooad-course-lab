@@ -4,8 +4,8 @@
 	    ./commands_system - именно этот проект
 	                    ./db - для компонента База данных (здесь только файлы *.h)
 	                    ./db/imp - для её реализации (*.cpp), далее аналогично
-	                    ./http_view
-	                    ./http_view/imp
+	                    ./view
+	                    ./view/imp
 	                    ./model
 	                    ./model/imp
 	                    ./presenter
