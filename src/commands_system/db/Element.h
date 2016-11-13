@@ -39,18 +39,7 @@ public:
 	operator std::string() const;
 	~Element();
 
-	friend bool operator ==(const Element &a, const Element &b);
 };
-
-
-
-bool operator ==(const Element &a, const Element &b);
-
-// needed because of operator ==(int, int)
-bool operator ==(const Element &a, int i);
-bool operator ==(int i, const Element &a);
-
-
 
 
 //Назначение:

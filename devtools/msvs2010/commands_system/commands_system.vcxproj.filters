@@ -54,6 +54,18 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
       <Filter>src\db\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\parser.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Table.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -73,6 +85,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\Element.h">
       <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\ITable.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h">
+      <Filter>src\db\imp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
