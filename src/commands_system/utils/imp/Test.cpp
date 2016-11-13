@@ -84,6 +84,7 @@ static void check_at_end(size_t tests_ok) {
 		  string line;
 			std::getline(std::cin, line);
 		}
+		_CrtSetDbgFlag((_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF)  &  ~_CRTDBG_LEAK_CHECK_DF);
 		exit(1);
 	}
 
@@ -98,10 +99,21 @@ static void check_at_end(size_t tests_ok) {
 
 
 
-class MemoryLeakException : public Exception {
+class TestMemoryLeakException : public Exception {
+private:
+	static const char message[];
 public:
-	MemoryLeakException() : Exception(nullptr) {}
+	TestMemoryLeakException() : Exception(message) {}
 };
+
+const char TestMemoryLeakException::message[] = "\n"
+	"\n"
+	"\tmemory leak detected after test had passed\n"
+	"\n"
+	"\tpossible reasons:\n"
+	"\t\tno delete after new\n"
+	"\t\tno free() after malloc()\n"
+	"\t\tglobal variable used\n";
 
 
 
@@ -132,7 +144,7 @@ void Test::All_inner(void *locals) {
 					part = 2; test->after();
 					_CrtMemCheckpoint(&s2);
 					if (_CrtMemDifference( &s3, &s1, &s2))
-						throw MemoryLeakException();
+						throw TestMemoryLeakException();
 					++tests_ok;
 				}
 			}
