@@ -3,7 +3,7 @@
 #include <vector>
 
 
-class Table {
+class Table : public ITable {
 private:
 	std::vector<std::vector<Element>> content; //содержимое таблицы
 public:
@@ -11,6 +11,6 @@ public:
 	virtual int getColCount() const;
 	virtual const Element & get(int row, int col) const;
 
-	Table(const std::vector<std::vector<std::string>> &parsed_table);
-	// think about ~
+	Table(const std::vector<std::vector<Element>> &parsed_table);
+	virtual ~Table() {}
 };

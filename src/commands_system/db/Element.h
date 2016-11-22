@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../utils/Exception.h"
 #include <string>
 
 
@@ -9,10 +8,6 @@
 //»спользование:
 //	ћожет €вл€тьс€ строкой либо целым числом.
 //	ѕри выполнении операций в случае несоответстви€ типов бросает WrongTypeException.
-//ƒоделать:
-//	=(const &)
-//	=(&&)
-//	const & != const &
 class Element {
 private:
 	// virtual function table
@@ -24,9 +19,9 @@ protected:
 		char *str;
 	} data;
 
-	Element() {}
 
 public:
+	Element();
 	Element(int integer);
 	Element(const char *string);
 	Element(const std::string &string);
@@ -39,24 +34,60 @@ public:
 	operator std::string() const;
 	~Element();
 
+	Element & operator =(const Element &);
+	Element & operator =(Element &&);
+
+	bool equals(const Element &) const;
+
+private:
+	// не используютс€:
+	void operator +=(const Element &);
+	void operator -=(const Element &);
+	void operator *=(const Element &);
+	void operator /=(const Element &);
+	void operator %=(const Element &);
+	void operator &=(const Element &);
+	void operator |=(const Element &);
+	void operator ^=(const Element &);
+	void operator <<=(int);
+	void operator >>=(int);
 };
 
 
-//Ќазначение:
-//	Ѕросаетс€ при несоответствии типов данных в методах класса Element:
-//	- приведение к целому: operator int;
-//	- приведение к строке: operator string;
-//	- сравнение: operator ==.
-//»спользование:
-//	Element e = 100;
-//	try {
-//		int i = e; // OK
-//		string s = e; // throw WrongTypeException
-//	} catch (WrongTypeException e) {
-//		std::cerr << e.what(); // "Element doesn't contain <string>"
-//	}
-class WrongTypeException : public Exception {
-public:
-	WrongTypeException(const char *what) : Exception(what) {}
-};
+//¬ случае несовпадени€ типов бросает WrongTypeException
+bool operator ==(const Element &, const Element &);
+
+
+
+// не используютс€:
+void operator !=(const Element &, const Element &);
+void operator >=(const Element &, const Element &);
+void operator >(const Element &, const Element &);
+void operator <=(const Element &, const Element &);
+void operator <(const Element &, const Element &);
+
+void operator +(const Element &);
+void operator -(const Element &);
+void operator +(const Element &, const Element &);
+void operator -(const Element &, const Element &);
+
+void operator *(const Element &, const Element &);
+void operator /(const Element &, const Element &);
+void operator %(const Element &, const Element &);
+
+void operator ~(const Element &);
+void operator ^(const Element &, const Element &);
+void operator &(const Element &, const Element &);
+void operator |(const Element &, const Element &);
+void operator <<(const Element &, int);
+void operator >>(const Element &, int);
+
+void operator !(const Element &);
+void operator &&(const Element &, const Element &);
+void operator ||(const Element &, const Element &);
+
+void operator ++(const Element &);
+void operator --(const Element &);
+void operator ++(const Element &, int);
+void operator --(const Element &, int);
 

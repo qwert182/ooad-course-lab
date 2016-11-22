@@ -2,6 +2,7 @@
 
 class IQuery {
 public:
-	virtual class ITable & perform(const class DataBase &db) = 0;
+	virtual class ITable & perform(class DataBase &db) const = 0;
+	virtual bool filled() const = 0;
 };
 

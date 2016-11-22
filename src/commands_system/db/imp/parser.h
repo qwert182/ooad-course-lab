@@ -1,10 +1,14 @@
 #include <string>
 #include <vector>
+#include <fstream>
+#include "../Element.h"
 #include "../../utils/Exception.h"
 
-std::vector <std::vector <std::string> > parse(std::string file_name);
-
-class ParseFailedException : public Exception {
-public:
-	ParseFailedException(const char *what) : Exception(what) {}
+struct TableWithHeader {
+	std::vector<std::vector<Element>> content;
+	std::vector<std::string> hat;
 };
+
+TableWithHeader parse(std::istream &file);
+
+

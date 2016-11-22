@@ -1,0 +1,7 @@
+int	string			string		string		int
+id	name			login		password	type_id
+key	-			-		-		usertypes.txt
+1	Соловьев\x20Дмитрий	solovev		root		1
+2	Грошева\x20Людмила	grosheva	123		2
+3	Рябинкин\x20Евгений	ryabinkin	jackson		2
+4	Волков\x20Денис		volkov		denwolf		3

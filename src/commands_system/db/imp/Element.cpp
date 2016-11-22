@@ -1,4 +1,5 @@
 #include "../Element.h"
+#include "../WrongTypeException.h"
 
 #include "../../utils/strnew.h"
 #include <malloc.h>
@@ -29,6 +30,10 @@ public: // virtual:
 	void move_from(Element &&other) {
 		copy_from(other);
 	}
+
+	bool equals(const Element &other) const {
+		return data.integer == (int) other;
+	}
 };
 
 
@@ -48,14 +53,17 @@ public: // virtual:
 	}
 
 	void copy_from(const Element &other) {
-	  const ElementString &other_str = static_cast<const ElementString &>(other);
-		data.str = strnew(other_str.data.str);
+		data.str = strnew(static_cast<const ElementString &>(other).data.str);
 	}
 
 	void move_from(Element &&other) {
 	  ElementString &other_str = static_cast<ElementString &>(other);
 		data.str = other_str.data.str;
 		other_str.data.str = nullptr;
+	}
+
+	bool equals(const Element &other) const {
+		return data.str == (string) other;
 	}
 };
 
@@ -69,6 +77,7 @@ struct _Element_vft {
 	void (Element::* destroy)(void);
 	void (Element::* copy_from)(const Element &);
 	void (Element::* move_from)(Element &&);
+	bool (Element::* equals)(const Element &other) const;
 };
 
 
@@ -79,7 +88,8 @@ static _Element_vft int_vft = {
 	static_cast< string (Element::*)(void) const             >      (&ElementInt::operator string),
 	static_cast<   void (Element::*)(void)                   >      (&ElementInt::destroy),
 	static_cast<   void (Element::*)(const Element &)        >      (&ElementInt::copy_from),
-	static_cast<   void (Element::*)(Element &&)             >      (&ElementInt::move_from)
+	static_cast<   void (Element::*)(Element &&)             >      (&ElementInt::move_from),
+	static_cast<   bool (Element::*)(const Element &) const  >      (&ElementInt::equals)
 };
 
 // virtual function table definition for ElementString
@@ -88,11 +98,42 @@ static _Element_vft string_vft = {
 	static_cast< string (Element::*)(void) const             >      (&ElementString::operator string),
 	static_cast<   void (Element::*)(void)                   >      (&ElementString::destroy),
 	static_cast<   void (Element::*)(const Element &)        >      (&ElementString::copy_from),
-	static_cast<   void (Element::*)(Element &&)             >      (&ElementString::move_from)
+	static_cast<   void (Element::*)(Element &&)             >      (&ElementString::move_from),
+	static_cast<   bool (Element::*)(const Element &) const  >      (&ElementString::equals)
 };
 
 
 
+
+
+
+
+
+
+Element::Element() {
+	__vft = nullptr;
+}
+
+Element::Element(const Element &el) {
+	if ((__vft = el.__vft) == nullptr)
+		throw WrongTypeException("Can not copy empty Element");
+	(this->*__vft->copy_from)(el);
+}
+Element::Element(Element &&el) {
+	if ((__vft = el.__vft) == nullptr)
+		throw WrongTypeException("Can not copy empty Element");
+	(this->*__vft->move_from)(std::move(el));
+}
+Element & Element::operator =(const Element & other) {
+	this->Element::~Element();
+	this->Element::Element(other);
+	return *this;
+}
+Element & Element::operator =(Element && other) {
+	this->Element::~Element();
+	this->Element::Element(std::move(other));
+	return *this;
+}
 
 
 
@@ -113,34 +154,44 @@ Element::Element(const std::string &string) {
 
 
 
-
-
-Element::Element(const Element &el) {
-	__vft = el.__vft;
-	(this->*__vft->copy_from)(el);
+Element::~Element() {
+	if (__vft != nullptr)
+		(this->*__vft->destroy)();
 }
 
-Element::Element(Element &&el) {
-	__vft = el.__vft;
-	(this->*__vft->move_from)(std::move(el));
-}
+
+
 
 
 
 
 
 Element::operator int() const {
+	if (__vft == nullptr)
+		throw WrongTypeException("Element hasn't been initialized");
+
 	return (this->*__vft->operator_int)();
 }
 
 Element::operator std::string() const {
+	if (__vft == nullptr)
+		throw WrongTypeException("Element hasn't been initialized");
+
 	return (this->*__vft->operator_string)();
 }
 
+bool Element::equals(const Element &other) const {
+	if (__vft == nullptr)
+		throw WrongTypeException("can't compare empty Element");
 
-Element::~Element() {
-	(this->*__vft->destroy)();
+	return (this->*__vft->equals)(other);
 }
 
 
+
+
+
+bool operator ==(const Element &a, const Element &b) {
+	return a.equals(b);
+}
 

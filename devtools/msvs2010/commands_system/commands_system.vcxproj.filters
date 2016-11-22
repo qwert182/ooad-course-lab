@@ -34,6 +34,17 @@
     <Filter Include="src\view\imp">
       <UniqueIdentifier>{69c3fad2-1db3-4bd3-b835-980840d3fb7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\db\imp\%2a.h">
+      <UniqueIdentifier>{7833821f-e1d0-4472-94ac-10666aa2bfac}</UniqueIdentifier>
+      <Extensions>*.h</Extensions>
+    </Filter>
+    <Filter Include="src\db\imp\%2a.cpp">
+      <UniqueIdentifier>{4fba0b25-be6e-4dff-8d52-8fa40b59cb1a}</UniqueIdentifier>
+      <Extensions>*.cpp</Extensions>
+    </Filter>
+    <Filter Include="src\db\imp\test_%2a.cpp">
+      <UniqueIdentifier>{e1e54213-6e84-468c-907c-884f24886ff2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\commands_system\main.cpp">
@@ -48,23 +59,41 @@
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c">
       <Filter>src\utils\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\DataBase.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp">
-      <Filter>src\db\imp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
-      <Filter>src\db\imp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp">
-      <Filter>src\db\imp</Filter>
+      <Filter>src\db\imp\%2a.cpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\parser.cpp">
-      <Filter>src\db\imp</Filter>
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Select.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\Table.cpp">
-      <Filter>src\db\imp</Filter>
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Insert.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Delete.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp">
-      <Filter>src\db\imp</Filter>
+      <Filter>src\db\imp\test_%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
+      <Filter>src\db\imp\test_%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp">
+      <Filter>src\db\imp\test_%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_DataBase.cpp">
+      <Filter>src\db\imp\test_%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp">
+      <Filter>src\db\imp\test_%2a.cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,17 +115,44 @@
     <ClInclude Include="..\..\..\src\commands_system\db\Element.h">
       <Filter>src\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h">
-      <Filter>src\db\imp</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\ITable.h">
       <Filter>src\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h">
-      <Filter>src\db\imp</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\IDataBase.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Insert.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Select.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\DataBase.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Delete.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\DataBaseException.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\WrongTypeException.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\ParseFailedException.h">
+      <Filter>src\db\imp\%2a.h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
