@@ -10,27 +10,10 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
-    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
-    <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
-    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
-    <ClCompile Include="..\..\..\src\commands_system\view\imp\HTTPView.cpp" />
-    <ClCompile Include="..\..\..\src\commands_system\view\imp\test_HTTPView.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h" />
-    <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h" />
-    <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h" />
-    <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h" />
-    <ClInclude Include="..\..\..\src\commands_system\utils\Test.h" />
-    <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPView.h" />
-    <ClInclude Include="..\..\..\src\commands_system\view\IView.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{82B8D190-480C-4451-85E8-AC7D69B94DFD}</ProjectGuid>
+    <ProjectGuid>{D3BF3BC6-1104-4400-A290-DD78B4473AC2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>commands_system</RootNamespace>
+    <RootNamespace>test_client_sockets</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -67,7 +50,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>COMPILE_WITH_TESTS;_SECURE_SCL;_CRT_SECURE_NO_WARNINGS;_CRTDBG_MAP_ALLOC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL;_CRT_SECURE_NO_WARNINGS;_CRTDBG_MAP_ALLOC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <SmallerTypeCheck>true</SmallerTypeCheck>
       <PrecompiledHeaderFile>
@@ -87,7 +70,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MinSpace</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PreprocessorDefinitions>COMPILE_WITH_TESTS;_SECURE_SCL;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SECURE_SCL;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
       <StringPooling>true</StringPooling>
       <BufferSecurityCheck>false</BufferSecurityCheck>
@@ -104,6 +87,9 @@
       </ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\test_client_sockets\main.c" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

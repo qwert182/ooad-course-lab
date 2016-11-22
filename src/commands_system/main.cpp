@@ -5,6 +5,11 @@
 
 #include "utils/Test.h"
 
+#include "view/imp/HTTPView.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 int main() {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF | _CRTDBG_LEAK_CHECK_DF);
@@ -17,6 +22,12 @@ int main() {
 	#endif
 
 
+	cout << "ctrl+c to stop" << endl;
+	{
+	  HTTPView view;
+		view.server();
+	}
+	cout << "stopped" << endl;
 
 	return 0;
 }
