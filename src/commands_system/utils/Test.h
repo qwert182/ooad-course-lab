@@ -47,11 +47,11 @@ protected:
 
 
 
-#define TEST(name) static class name : public Test
-#define TEST_from(name) static class name
-#define TEST_abstract(name) class name : public Test
-#define TEST_exception(name, exception) static class name : public ExceptionTest<exception>
-#define TEST_abstract_exception(name, exception) class name : public ExceptionTest<exception>
+#define TEST(name) static struct name : public Test
+#define TEST_from(name) static struct name
+#define TEST_abstract(name) struct name : public Test
+#define TEST_exception(name, exception) static struct name : public ExceptionTest<exception>
+#define TEST_abstract_exception(name, exception) struct name : public ExceptionTest<exception>
 
 #define __TEST_END(line) test_at_line_##line
 #define _TEST_END(line) __TEST_END(line)
