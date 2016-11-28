@@ -16,6 +16,36 @@ using std::vector;
 
 
 
+
+static
+void assertElementIsEmpty(const Element &e) {
+  const string err_expected = "Element hasn't been initialized";
+  string err_int, err_str;
+  int i = 123;
+  string s = "some string";
+
+	try {
+		i = e;
+	} catch (WrongTypeException e) {
+		err_int = e.what();
+	}
+	assertEquals(123, i);
+	assertEquals(err_expected, err_int);
+
+	try {
+		s = e;
+	} catch (WrongTypeException e) {
+		err_str = e.what();
+	}
+	assertEquals(string("some string"), s);
+	assertEquals(err_expected, err_str);
+}
+
+
+
+
+
+
 // creation
 
 TEST(CanCreateIntThenGetInt) {
@@ -92,6 +122,7 @@ TEST(CanCreateFromEmpty) {
 	void test() {
 	  Element empty;
 	  Element e = empty;
+		assertElementIsEmpty(e);
 	}
 } TEST_END;
 
@@ -100,28 +131,6 @@ TEST(CanCreateFromEmpty) {
 
 
 // move from Element
-static
-void assertElementIsEmpty(const Element &e) {
-  const string err_expected = "Element hasn't been initialized";
-  string err_int, err_str;
-  int i = 123;
-  string s = "some string";
-	try {
-		i = e;
-	} catch (WrongTypeException e) {
-		err_int = e.what();
-	}
-	assertEquals(123, i);
-	assertEquals(err_expected, err_int);
-
-	try {
-		s = e;
-	} catch (WrongTypeException e) {
-		err_str = e.what();
-	}
-	assertEquals(string("some string"), s);
-	assertEquals(err_expected, err_str);
-}
 
 TEST(CanMoveFromInt) {
 	void test() {
@@ -156,27 +165,77 @@ TEST(CanMoveFromEmpty) {
 
 // assignment
 
-TEST(CanAssignIntToEmpty) {
+TEST_abstract(WithAllTypes) {
+  vector<Element> *all;
+	void before() {
+		const Element _all[] = {Element(), "string", string("std::string"), 123};
+		all = new vector<Element>(_all, _all + sizeof _all/sizeof*_all);
+	}
+	void after() {
+		delete all;
+	}
+};
+
+
+
+
+TEST_from(CanAssignElementEmpty) : WithAllTypes {
 	void test() {
-	  Element e;
-		e = 1;
-		assertEquals(1, (int)e);
+	  Element empty;
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = empty;
+			assertElementIsEmpty(all->at(i));
+		}
 	}
 } TEST_END;
 
-TEST(CanAssignStringToEmpty) {
+TEST_from(CanAssignElementInt) : WithAllTypes {
 	void test() {
-	  Element e;
-		e = "string";
-		assertEquals((string)"string", (string)e);
+	  Element integer = 123;
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = integer;
+			assertEquals(123, (int) all->at(i));
+		}
 	}
 } TEST_END;
 
-TEST(CanAssignStdStringToEmpty) {
+
+TEST_from(CanAssignElementString) : WithAllTypes {
 	void test() {
-	  Element e;
-		e = string("string");
-		assertEquals((string)"string", (string)e);
+	  Element str = "string";
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = str;
+			assertEquals(string("string"), (string) all->at(i));
+		}
+	}
+} TEST_END;
+
+TEST_from(CanAssignInt) : WithAllTypes {
+	void test() {
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = 123;
+			assertEquals(123, (int) all->at(i));
+		}
+	}
+} TEST_END;
+
+
+TEST_from(CanAssignString) : WithAllTypes {
+	void test() {
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = "string";
+			assertEquals(string("string"), (string) all->at(i));
+		}
+	}
+} TEST_END;
+
+TEST_from(CanAssignStdString) : WithAllTypes {
+	void test() {
+	  const string str = "string";
+		for (size_t i = 0; i < all->size(); ++i) {
+			all->at(i) = str;
+			assertEquals(string("string"), (string) all->at(i));
+		}
 	}
 } TEST_END;
 
@@ -260,6 +319,13 @@ TEST_exception(CannotCompareEmptyWithString, WrongTypeException) {
 	void test() {
 	  Element a = "1", e;
 		e == a;
+	}
+} TEST_END;
+
+TEST_exception(CannotCompareEmptyWithEmpty, WrongTypeException) {
+	void test() {
+	  Element e1, e2;
+		e1 == e2;
 	}
 } TEST_END;
 
