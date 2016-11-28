@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\common.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\DataBase.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\Delete.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp" />
@@ -23,6 +24,7 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
@@ -33,10 +35,14 @@
     <ClInclude Include="..\..\..\src\commands_system\db\Delete.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Element.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\IDataBase.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\common.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\imp\DataBase.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\imp\ParseFailedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\TableWithHeader.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\writer.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Insert.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\ITable.h" />

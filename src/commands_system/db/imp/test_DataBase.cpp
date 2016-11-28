@@ -42,7 +42,7 @@ TEST_abstract (WithDB) {
 	  DataBase *_db = new DataBase();
 		db = _db;
 		db->open();
-		_db->__add_test();
+		_db->__add_table_test();
 	}
 	void after() {
 		db->close();
@@ -52,16 +52,135 @@ TEST_abstract (WithDB) {
 
 
 
-TEST_from(CanSelectFromDB) : WithDB {
+TEST_from(CanSelectAllColumns) : WithDB {
 	void test() {
-	  vector <string> a;
-	  Select s = Select(a).from("test").where("id", 1);
-	  const ITable &t = db->perform(s);
-		assertEquals(1, t.getRowCount());
-		assertEquals(5, t.getColCount());
-		//1	Соловьев\x20Дмитрий	solovev		root		1
-		//delete &t;
+	  static const char * const _cols[5] = {"id", "name", "login", "password", "type_id"};
+	  vector <string> all_columns(_cols, _cols + 5);
+	  Select select = Select(all_columns).from("test").where("id", 1);
+
+	  const ITable *t = db->perform(select);
+
+		assertEquals(1, t->getRowCount());
+		assertEquals(5, t->getColCount());
+
+		assertEquals(1, (int)t->get(0,0));
+		assertEquals((string)"Соловьев Дмитрий", (string)t->get(0,1));
+		assertEquals((string)"solovev", (string)t->get(0,2));
+		assertEquals((string)"root", (string)t->get(0,3));
+		assertEquals(1, (int)t->get(0,4));
+
+		delete t;
 	}
 }TEST_END;
+
+
+
+TEST_from(CanSelectSomeColumnsUsingWhere) : WithDB {
+	void test() {
+	  static const char * const _cols[3] = {"name", "login", "type_id"};
+	  vector <string> some_columns(_cols, _cols + 3);
+	  Select select = Select(some_columns).from("test").where("id", 4);
+
+	  const ITable *t = db->perform(select);
+
+		assertEquals(1, t->getRowCount());
+		assertEquals(3, t->getColCount());
+
+		assertEquals((string)"Волков Денис", (string)t->get(0,0));
+		assertEquals((string)"volkov", (string)t->get(0,1));
+		assertEquals(3, (int)t->get(0,2));
+
+		delete t;
+	}
+}TEST_END;
+
+
+
+TEST_from(CanSelectSomeColumnsNotUsingWhere) : WithDB {
+	void test() {
+	  static const char * const _cols[3] = {"name", "login", "type_id"};
+	  vector <string> some_columns(_cols, _cols + 3);
+	  Select select = Select(some_columns).from("test");
+
+	  const ITable *t = db->perform(select);
+
+		assertEquals(4, t->getRowCount());
+		assertEquals(3, t->getColCount());
+
+		assertEquals((string)"Волков Денис", (string)t->get(3,0));
+		assertEquals((string)"volkov", (string)t->get(3,1));
+		assertEquals(3, (int)t->get(3,2));
+
+		delete t;
+	}
+}TEST_END;
+
+
+
+
+TEST_from(CanPerformTwoSelects) : WithDB {
+	void test() {
+	  static const char * const _cols[3] = {"name", "login", "type_id"};
+	  vector <string> some_columns(_cols, _cols + 3);
+	  Select select = Select(some_columns).from("test").where("id", 4);
+	
+		delete db->perform(select);
+		delete db->perform(select);
+	}
+} TEST_END;
+
+
+
+
+
+TEST_from(CanDelete) : WithDB {
+	void test() {
+	  Delete del = Delete().from("test").where("id", 4);
+	  Select sel1 = Select(vector<string>(1, "id")).from("test").where("id", 1);
+	  Select sel2 = Select(vector<string>(1, "id")).from("test").where("id", 2);
+	  Select sel3 = Select(vector<string>(1, "id")).from("test").where("id", 3);
+	  Select sel4 = Select(vector<string>(1, "id")).from("test").where("id", 4);
+	  const ITable *t;
+
+		t = db->perform(del);
+		assertEquals((const ITable *)nullptr, t);
+		
+		t = db->perform(sel1);
+		assertEquals(1, t->getRowCount());
+		assertEquals(1, t->getColCount());
+		delete t;
+
+		t = db->perform(sel2);
+		assertEquals(1, t->getRowCount());
+		assertEquals(1, t->getColCount());
+		delete t;
+
+		t = db->perform(sel3);
+		assertEquals(1, t->getRowCount());
+		assertEquals(1, t->getColCount());
+		delete t;
+
+		t = db->perform(sel4);
+		assertEquals(0, t->getRowCount());
+		assertEquals(0, t->getColCount());
+		delete t;
+	}
+} TEST_END;
+
+
+
+
+TEST_from(CanInsert) : WithDB {
+	void test() {
+		vector<string> columns;
+		vector<Element> values;
+		Insert insert = Insert().into("test", columns).values(values);
+
+		const ITable *t = db->perform(insert);
+
+		delete t;
+	}
+} TEST_END;
+
 
 

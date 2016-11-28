@@ -5,46 +5,62 @@
 #include "../DataBaseException.h"
 
 
-#include <algorithm>
+#include "common.h"
 
-using namespace std;
+
+using std::vector;
+using std::string;
+
+
+
+
+
+vector <Element> Select::selectColumns(const vector<string> &hat, const vector <Element> &all_columns) const {
+	vector <Element> result;
+
+	for (size_t i = 0; i < this->columnNames.size(); ++i) {
+		size_t j = findColumnIndexByColumnName(hat, this->columnNames[i]);
+
+		result.push_back(all_columns[j]);
+	}
+	return result;
+}
+
 
 
 // выполнить запрос Select
 
-ITable & Select::perform(DataBase &db) const {
-  TableWithHeader t = parse(db.getTableFile(this->table));
+ITable * Select::perform(DataBase &db) const {
+	TableWithHeader t = parse(db.getTableFile(this->table));
 
-  auto found = find(t.hat.begin(), t.hat.end(), whereEqual.first);
-  size_t j;
-	if (found == t.hat.end())
-		throw DataBaseException("table doesn't contain column \"" + whereEqual.first + '"');
+	vector<vector<Element>> result;
+	if (this->filled_where) {
+		size_t j = findColumnIndexByColumnName(t.hat, this->whereEqual.first);
 
-	j = found - t.hat.begin();
+		for (size_t i = 0; i < t.content.size(); ++i) {
+			if (t.content[i][j] == this->whereEqual.second) {
+				result.push_back(selectColumns(t.hat, t.content[i]));
+			}
+		}
+	} else {
+		result.reserve(t.content.size());
+		for (size_t i = 0; i < t.content.size(); ++i) {
+			result.push_back(selectColumns(t.hat, t.content[i]));
+		}
+	}
 
-
-  vector<vector<Element>> selected_content;
-
-	for (size_t i = 0; i < t.content.size(); ++i)
-		if (t.content[i][j] == whereEqual.second)
-			selected_content.push_back(t.content[i]);
-
-	return *new Table(selected_content);
+	return new Table(result);
 };
-
-
-
-
 
 
 // для заполнения
 
 bool Select::filled() const {
-	return filled_from && filled_where;
+	return filled_from;
 }
 
-Select::Select(const vector<string> &columns) {
-	this->columns = columns;
+Select::Select(const vector<string> &columnNames) {
+	this->columnNames = columnNames;
 	filled_from = false;
 	filled_where = false;
 }
@@ -55,8 +71,9 @@ Select & Select::from(const string &table) {
 	return *this;
 }
 
-Select & Select::where(const string &column, const Element &equal) {
-	this->whereEqual = make_pair(column, equal);
+Select & Select::where(const string &columnName, const Element &equal) {
+	this->whereEqual = make_pair(columnName, equal);
 	filled_where = true;
 	return *this;
 }
+

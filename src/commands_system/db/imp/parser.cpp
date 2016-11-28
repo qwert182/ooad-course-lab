@@ -1,7 +1,5 @@
 #include "parser.h"
 #include "ParseFailedException.h"
-#include "../Element.h"
-#include "../../utils/InvalidParameterException.h"
 
 #include <sstream>
 
@@ -49,7 +47,7 @@ TableWithHeader parse_TableWithHeader(const vector<vector<string>> &parsed_table
 
 
 	if (parsed_table.size() < 3)
-		throw InvalidParameterException("Table must contain header");
+		throw ParseFailedException("Table must contain header");
 
 	content.resize(parsed_table.size() - 3);
 
@@ -62,6 +60,13 @@ TableWithHeader parse_TableWithHeader(const vector<vector<string>> &parsed_table
 			  istringstream convert(parsed_table[i][j]);
 			  int x;
 				convert >> x;
+
+				bool g = !convert.bad() && convert.eof();
+				size_t s = static_cast<size_t>(convert.tellg());
+				size_t l = parsed_table[i][j].length();
+				if (!g || s != l) {
+					throw ParseFailedException("can't convert \"" + parsed_table[i][j] + '"');
+				}
 				content[i-3].push_back(x);
 			} else if (parsed_table[0][j] == "string") {
 				content[i-3].push_back(parsed_table[i][j]);
@@ -73,8 +78,10 @@ TableWithHeader parse_TableWithHeader(const vector<vector<string>> &parsed_table
 	}
 
   TableWithHeader t;
-	t.content = content;
+	t.types = parsed_table[0];
 	t.hat = parsed_table[1];
+	t.links = parsed_table[2];
+	t.content = content;
 	return t;
 }
 
@@ -83,7 +90,7 @@ TableWithHeader parse_TableWithHeader(const vector<vector<string>> &parsed_table
 
 TableWithHeader parse(istream &file) {
 	if (!file.good())
-		throw ParseFailedException("file not opened");
+		throw ParseFailedException("file not opened for parse");
 
   string line;
   vector<vector<string>> a;
@@ -93,6 +100,9 @@ TableWithHeader parse(istream &file) {
 		getline(file, line);
 		a.push_back(split(line));
 	}
+
+	file.clear();                 // clear fail and eof bits
+	file.seekg(0, ios::beg); 
 
 	return parse_TableWithHeader(a);
 }

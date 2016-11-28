@@ -88,13 +88,51 @@ TEST(CanCreateFromString) {
 	}
 } TEST_END;
 
-TEST_exception(CannotCreateFromEmpty, WrongTypeException) {
+TEST(CanCreateFromEmpty) {
 	void test() {
 	  Element empty;
 	  Element e = empty;
 	}
 } TEST_END;
 
+
+
+
+
+// move from Element
+
+TEST(CanMoveFromInt) {
+	void test() {
+	  Element i = 123;
+	  Element e = i;
+		assertEquals((int)i, (int)e);
+	}
+} TEST_END;
+
+TEST(CanMoveFromString) {
+	void test() {
+	  Element s = "string";
+	  Element e = std::move(s);
+		assertEquals((string)"string", (string)e);
+	}
+} TEST_END;
+
+TEST(CanMoveFromEmpty) {
+	void test() {
+	  Element e_;
+	  Element e;// = std::move(e_);
+	  string err;
+		try {
+			//int i = 123;
+			//i = e;
+			throw WrongTypeException("lalala");
+			//assertEquals(123, (int) e);
+		} catch (WrongTypeException e) {
+			//err = e.what();
+		}
+		//assertEquals(string("Element hasn't been initialized"), err);
+	}
+} TEST_END;
 
 
 

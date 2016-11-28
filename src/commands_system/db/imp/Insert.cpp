@@ -2,13 +2,13 @@
 
 using namespace std;
 
-ITable & Insert::perform(DataBase &db) const {
-	return *(ITable*)nullptr;
+ITable * Insert::perform(DataBase &db) const {
+	return (ITable*)nullptr;
 }
 
-	bool Insert::filled() const {
-		return filled_into && filled_values;
-	}
+bool Insert::filled() const {
+	return filled_into && filled_values;
+}
 
 Insert::Insert() {
 
@@ -25,4 +25,5 @@ Insert & Insert::values(const vector<Element> &columnValues) {
 	this->columnValues = columnValues;
 	filled_values = true;
 	return *this;
-	}
+}
+

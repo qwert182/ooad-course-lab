@@ -95,6 +95,12 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp">
       <Filter>src\db\imp\test_%2a.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\common.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -152,6 +158,18 @@
       <Filter>src\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\imp\ParseFailedException.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\common.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\writer.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\TableWithHeader.h">
+      <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h">
       <Filter>src\db\imp\%2a.h</Filter>
     </ClInclude>
   </ItemGroup>

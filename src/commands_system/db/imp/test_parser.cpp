@@ -17,14 +17,16 @@ using std::ifstream;
 
 TEST(CanParse) {
 	void test() {
-		parse(ifstream("data/test.txt"));
+		ifstream f("data/test.txt");
+		parse(f);
 	}
 } TEST_END;
 
 
 TEST(CanParseUsers) {
 	void test() {
-	  TableWithHeader t = parse(ifstream("data/test.txt"));
+		ifstream f("data/test.txt");
+		TableWithHeader t = parse(f);
 		assertTrue(t.content.size()!=0);
 	}
 } TEST_END;
@@ -32,14 +34,16 @@ TEST(CanParseUsers) {
 
 TEST_exception(CannotParseNotExistingFile, ParseFailedException) {
 	void test() {
-		parse(ifstream("NotExistingFile"));
+		ifstream f("NotExistingFile");
+		parse(f);
 	}
 } TEST_END;
 
 
 TEST(CanParserReadTable__data_test_txt__With4Rows5Columns) {
 	void test(){
-	  TableWithHeader t = parse(ifstream("data/test.txt"));
+	  ifstream f("data/test.txt");
+	  TableWithHeader t = parse(f);
 	  vector<vector<Element>> &a = t.content;
 	  vector<string> &hat = t.hat;
 		// a - вся таблица

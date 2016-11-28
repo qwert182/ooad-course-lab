@@ -9,7 +9,7 @@
 
 class Delete : public IQuery {
 public:
-	virtual class ITable & perform(class DataBase &db) const;
+	virtual class ITable * perform(class DataBase &db) const;
 	virtual bool filled() const;
 
 private:

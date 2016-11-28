@@ -116,12 +116,12 @@ Element::Element() {
 
 Element::Element(const Element &el) {
 	if ((__vft = el.__vft) == nullptr)
-		throw WrongTypeException("Can not copy empty Element");
+		return;
 	(this->*__vft->copy_from)(el);
 }
 Element::Element(Element &&el) {
 	if ((__vft = el.__vft) == nullptr)
-		throw WrongTypeException("Can not copy empty Element");
+		return;
 	(this->*__vft->move_from)(std::move(el));
 }
 Element & Element::operator =(const Element & other) {

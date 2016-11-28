@@ -3,5 +3,5 @@
 #include <fstream>
 #include "TableWithHeader.h"
 
-TableWithHeader parse(std::istream &file);
+void write(const TableWithHeader &, std::ostream &file);
 

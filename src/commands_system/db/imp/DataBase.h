@@ -20,14 +20,15 @@ private:
 public:
 	virtual void open();
 	virtual void close();
-	virtual const class ITable & perform(const class IQuery &query);
+	virtual const class ITable * perform(const class IQuery &query);
 	virtual ~DataBase();
 
 #ifdef COMPILE_WITH_TESTS
-	void __add_test();
+	void __add_table_test();
 #endif
 
 	DataBase();
 	std::fstream & getTableFile(const std::string &name_of_table);
+	void clearTableFile(const std::string &name_of_table);
 };
 
