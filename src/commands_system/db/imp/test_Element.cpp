@@ -243,6 +243,46 @@ TEST_from(CanAssignStdString) : WithAllTypes {
 
 
 
+// move assignment
+
+TEST_from(CanMovingAssignFromInt) : WithAllTypes {
+	void test() {
+		for (size_t i = 0; i < all->size(); ++i) {{
+			  Element integer = 123;
+				all->at(i) = std::move(integer);
+				assertElementIsEmpty(integer);
+				assertEquals(123, (int) all->at(i));
+		}}
+	}
+} TEST_END;
+
+TEST_from(CanMovingAssignFromString) : WithAllTypes {
+	void test() {
+		for (size_t i = 0; i < all->size(); ++i) {{
+			  Element s = "string";
+				all->at(i) = std::move(s);
+				assertElementIsEmpty(s);
+				assertEquals((string)"string", (string) all->at(i));
+		}}
+	}
+} TEST_END;
+
+TEST_from(CanMovingAssignFromEmpty) : WithAllTypes {
+	void test() {
+		for (size_t i = 0; i < all->size(); ++i) {{
+		  Element empty;
+			all->at(i) = std::move(empty);
+			assertElementIsEmpty(empty);
+			assertElementIsEmpty(all->at(i));
+		}}
+	}
+} TEST_END;
+
+
+
+
+
+
 // compare
 
 TEST(CanCompareEqualsInts) {
