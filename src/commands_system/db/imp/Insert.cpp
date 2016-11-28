@@ -1,9 +1,21 @@
 #include "../Insert.h"
+#include "DataBase.h"
+#include "parser.h"
+#include "writer.h"
+#include "../DataBaseException.h"
 
 using namespace std;
 
 ITable * Insert::perform(DataBase &db) const {
-	return (ITable*)nullptr;
+	fstream &file = db.getTableFile(this->table);
+	TableWithHeader t = parse(file);
+
+	t.content.push_back(this->columnValues);
+
+	db.clearTableFile(this->table);
+	write(t, file);
+
+	return nullptr;
 }
 
 bool Insert::filled() const {
@@ -14,9 +26,9 @@ Insert::Insert() {
 
 }
 
-Insert & Insert::into(const string &table, const vector<string> &columns) {
+Insert & Insert::into(const string &table, const vector<string> &columnNames) {
 	this->table = table;
-	this->columns = columns;
+	this->columnNames = columnNames;
 	filled_into = true;
 	return *this;
 }

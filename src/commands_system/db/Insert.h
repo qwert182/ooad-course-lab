@@ -14,14 +14,14 @@ public:
 
 private:
 	std::string table;
-	std::vector<std::string> columns;
+	std::vector<std::string> columnNames;
 	std::vector<Element> columnValues;
 	bool filled_into;
 	bool filled_values;
 
 public:
 	Insert();
-	Insert & into(const std::string &table, const std::vector<std::string> &columns);
+	Insert & into(const std::string &table, const std::vector<std::string> &columnNames);
 	Insert & values(const std::vector<Element> &columnValues);
 };
 

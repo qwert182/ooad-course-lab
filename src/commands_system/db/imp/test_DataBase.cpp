@@ -172,13 +172,13 @@ TEST_from(CanDelete) : WithDB {
 
 TEST_from(CanInsert) : WithDB {
 	void test() {
-		vector<string> columns;
-		vector<Element> values;
+	  static const char * const _cols[] = {"id", "name", "login", "password", "type_id"};
+	  vector<string> columns(_cols, _cols + sizeof _cols/sizeof*_cols);
+	  const Element _vals[] = {10000, "Ћох", "debil", "mudak", 55555};
+	  vector<Element> values(_vals, _vals + sizeof _vals/sizeof*_vals);
 		Insert insert = Insert().into("test", columns).values(values);
 
-		const ITable *t = db->perform(insert);
-
-		delete t;
+		assertEquals((const ITable *)nullptr, db->perform(insert));
 	}
 } TEST_END;
 
