@@ -9,11 +9,10 @@
 //	ћожет €вл€тьс€ строкой либо целым числом.
 //	ѕри выполнении операций в случае несоответстви€ типов бросает WrongTypeException.
 class Element {
-private:
+protected:
 	// virtual function table
 	const struct _Element_vft *__vft;
 
-protected:
 	union {
 		int integer;
 		char *str;

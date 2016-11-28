@@ -28,7 +28,9 @@ public: // virtual:
 	}
 
 	void move_from(Element &&other) {
-		copy_from(other);
+	  ElementInt &other_int = static_cast<ElementInt &>(other);
+		data.integer = other_int.data.integer;
+		other_int.__vft = nullptr; // make other empty
 	}
 
 	bool equals(const Element &other) const {
@@ -60,6 +62,7 @@ public: // virtual:
 	  ElementString &other_str = static_cast<ElementString &>(other);
 		data.str = other_str.data.str;
 		other_str.data.str = nullptr;
+		other_str.__vft = nullptr; // make other empty
 	}
 
 	bool equals(const Element &other) const {
