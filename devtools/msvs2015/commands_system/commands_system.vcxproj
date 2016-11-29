@@ -19,11 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Project.h" />
+    <ClInclude Include="..\..\..\src\commands_system\projects\AllProjects.h" />
+    <ClInclude Include="..\..\..\src\commands_system\projects\IAllProjects.h" />
+    <ClInclude Include="..\..\..\src\commands_system\projects\IProject.h" />
+    <ClInclude Include="..\..\..\src\commands_system\projects\Project.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\Attachment.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\IAttachment.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\INote.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\ITask.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\Note.h" />
+    <ClInclude Include="..\..\..\src\commands_system\task\Task.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Project.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\projects\AllProjects.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\projects\Project.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\task\Attachment.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\task\Note.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\task\Task.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0F249C49-3378-4654-81D7-1C76824AA453}</ProjectGuid>

@@ -60,15 +60,54 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Project.h">
+    <ClInclude Include="..\..\..\src\commands_system\projects\AllProjects.h">
       <Filter>src\projects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\projects\IAllProjects.h">
+      <Filter>src\projects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\projects\IProject.h">
+      <Filter>src\projects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\projects\Project.h">
+      <Filter>src\projects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\Attachment.h">
+      <Filter>src\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\IAttachment.h">
+      <Filter>src\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\INote.h">
+      <Filter>src\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\ITask.h">
+      <Filter>src\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\Note.h">
+      <Filter>src\task</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\task\Task.h">
+      <Filter>src\task</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Project.cpp">
+    <ClCompile Include="..\..\..\src\commands_system\projects\AllProjects.cpp">
       <Filter>src\projects</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\..\src\commands_system\projects\Project.cpp">
+      <Filter>src\projects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\task\Attachment.cpp">
+      <Filter>src\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\task\Note.cpp">
+      <Filter>src\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\task\Task.cpp">
+      <Filter>src\task</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\main.cpp">
       <Filter>src\view</Filter>
     </ClCompile>
   </ItemGroup>
