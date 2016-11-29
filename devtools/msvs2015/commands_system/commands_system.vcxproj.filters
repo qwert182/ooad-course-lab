@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{60b7f88d-93f5-4bf1-a360-ee0209a7e523}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{477a1a39-e1c5-4dd5-b73a-2f49eb65053c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils\imp">
+      <UniqueIdentifier>{a4ffbecf-8b05-4af5-a0a6-edca2ee494dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\view">
+      <UniqueIdentifier>{9ec1ff7b-95f1-4a1d-a79c-c0b873a6a16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\view\imp">
+      <UniqueIdentifier>{62e054a4-01a3-4b97-8c1e-da96b4e70b32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\presenter">
+      <UniqueIdentifier>{f150b51a-35d2-4119-9aec-cfbf8130df36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\presenter\imp">
+      <UniqueIdentifier>{2b3c12e9-47f4-4104-b818-a41c4239de73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model">
+      <UniqueIdentifier>{702f5065-18d1-44d7-8f7c-fe78abefd091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model\imp">
+      <UniqueIdentifier>{587a39eb-0ac5-4424-b82c-31951baf0f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db">
+      <UniqueIdentifier>{b389001c-5e97-42a9-b125-8ce07d78003e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp">
+      <UniqueIdentifier>{e4f72498-d37a-45bf-8f72-c6e09276efb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="devtools">
+      <UniqueIdentifier>{706dfc7a-fe2a-48e6-9e78-9ce497b2ed69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="devtools\msvs2015">
+      <UniqueIdentifier>{58cdab4c-0e17-4083-9389-d174a3e7f9f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="devtools\msvs2015\commands_system">
+      <UniqueIdentifier>{ae43b668-5af6-4572-b1c6-6e2d51cbe776}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp\%2a.cpp">
+      <UniqueIdentifier>{40a6513c-a8ca-472b-aaf3-95b6b5c4c181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp\%2a.h">
+      <UniqueIdentifier>{67d3b7b4-8d6c-4d75-8860-eda867005062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp\%2a.c">
+      <UniqueIdentifier>{2650c7ba-5156-4933-b115-6806d3a7006e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\projects">
+      <UniqueIdentifier>{0d9e3c79-e97d-4102-87e7-1b64291fcb0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\task">
+      <UniqueIdentifier>{ae6f658c-d791-4996-80c1-90cbc1f9cf4b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Project.h">
+      <Filter>src\projects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Project.cpp">
+      <Filter>src\projects</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src\view</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
