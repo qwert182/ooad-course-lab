@@ -1,20 +1,23 @@
 #pragma once
 #include <string>
 #include <vector>
-using namespace std;
+
+
 class ITask
 {
 public:
-	virtual string getName() const = 0;
-	virtual void setName(string name) const = 0;
-	virtual string getTheme() const = 0;
-	virtual void setTheme(string theme) const = 0;
-	virtual string getDescription() const = 0;
-	virtual void setDescription(string description) const = 0;
+	virtual std::string getName() const = 0;
+	virtual void setName(const std::string &name) = 0;
+	
+	virtual std::string getTheme() const = 0;
+	virtual void setTheme(const std::string &theme) = 0;
+	
+	virtual std::string getDescription() const = 0;
+	virtual void setDescription(const std::string &description) = 0;
 
-	virtual vector<INote> getNotes() const = 0;
-	virtual void add(INote note) const = 0;
+	virtual std::vector<class INote *> getNotes() const = 0;
+	virtual void add(const class INote &note) = 0;
 
-	virtual vector<IAttachment> getAttachments() const = 0;
-	virtual void add(IAttachment attachments) const = 0;
+	virtual std::vector<class IAttachment *> getAttachments() const = 0;
+	virtual void add(const class IAttachment &attachments) = 0;
 };

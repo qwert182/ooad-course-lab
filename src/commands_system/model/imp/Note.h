@@ -1,13 +1,17 @@
 #pragma once
-#include<string>
-using namespace std;
-class Note
+#include <string>
+#include <vector>
+#include "../INote.h"
+
+class Note: public INote
 {
 private: int id;
+
 public: Note(int id);
-		Note(IUser writer, string text);
-		void add(IAttachment attachment);
-		virtual IUser getWriter() const;
-		virtual string getText() const;
-		virtual vector<IAttachment> getAttachments() const;
+		Note( IUser const &writer, std::string const &text);
+		void add(IAttachment const &attachment);
+		
+		virtual class IUser *getWriter() const;
+		virtual std::string getText() const;
+		virtual std::vector<class IAttachment *> getAttachments() const;
 };

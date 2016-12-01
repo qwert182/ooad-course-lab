@@ -1,44 +1,33 @@
 #include "Project.h"
 
-Project::Project(int id) 
-{
-	this->id = id;
-}
-Project::Project(string name, string description) 
-{
-	setName(name);
-	setDescription(description);
-}
+using namespace std;
+Project::Project(int id) {}
+Project::Project(string name, string description) {}
 
 string Project::getName() const 
 {
-
+	string name;
+	return name;
 }
-void Project::setName(string name) const 
-{
+void Project::setName(const std::string &name){}
 
-}
 string Project::getDescription() const 
 {
-
+	string description;
+	return description;
 }
-void Project::setDescription(string description) const 
+void Project::setDescription(const std::string &description) {}
+
+vector<class IUser *>  Project::getWorkers() const 
 {
-
+	vector< class IUser *> result;
+	return result;
 }
-vector<IUser> Project::getWorkers() const
+void Project::add(const class IUser &worker) {}
+
+vector<class ITask *> Project::getTasks() const 
 {
-
+	vector<class ITask *> result;
+	return result;
 }
-void Project::add(IUser worker) const
-{
-
-}
-vector<ITask> Project::getTasks() const 
-{
-
-}
-void Project::add(ITask task) const
-{
-
-}
+void Project::add(const class ITask &task){}

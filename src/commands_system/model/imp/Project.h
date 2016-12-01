@@ -2,20 +2,24 @@
 
 #include <string>
 #include <vector>
-using namespace std;
-class Project
+#include "../IProject.h"
+
+class Project :public IProject
 {
 private: int id;
 
 public: Project(int id);
-		Project(string name, string description);
+		Project(std::string name, std::string description);
 
-		virtual string getName() const;
-		virtual void setName(string name) const;
-		virtual string getDescription() const;
-		virtual void setDescription(string description) const;
-		virtual vector<IUser> getWorkers() const;
-		virtual void add(IUser worker) const;
-		virtual vector<ITask> getTasks() const;
-		virtual void add(ITask task) const;
+		virtual std::string getName() const;
+		virtual void setName(const std::string &name);
+
+		virtual std::string getDescription() const;
+		virtual void setDescription(const std::string &description);
+
+		virtual std::vector<class IUser *> getWorkers() const;
+		virtual void add(const class IUser &worker);
+
+		virtual std::vector<class ITask *> getTasks() const;
+		virtual void add(const class ITask &task);
 };

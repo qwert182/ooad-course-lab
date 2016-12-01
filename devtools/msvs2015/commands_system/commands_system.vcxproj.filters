@@ -81,6 +81,18 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp">
       <Filter>src\model\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\db\DataBaseException.h">

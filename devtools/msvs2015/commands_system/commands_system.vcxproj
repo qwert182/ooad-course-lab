@@ -35,6 +35,10 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />

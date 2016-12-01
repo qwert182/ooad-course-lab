@@ -2,16 +2,19 @@
 
 #include <string>
 #include <vector>
-using namespace std;
+
 
 class IProject
 {
-public: virtual string getName() const = 0;
-		virtual void setName(string name) const = 0;
-		virtual string getDescription() const = 0;
-		virtual void setDescription(string description) const = 0;
-		virtual vector<IUser> getWorkers() const = 0;
-		virtual void add(IUser worker) const = 0;
-		virtual vector<ITask> getTasks() const = 0;
-		virtual void add(ITask task) const = 0;
+public: virtual std::string getName() const = 0;
+		virtual void setName(const std::string &name)  = 0;
+
+		virtual std::string getDescription() const = 0;
+		virtual void setDescription(const std::string &description)  = 0;
+		
+		virtual std::vector<class IUser *> getWorkers() const = 0;
+		virtual void add(const class IUser &worker)  = 0;
+		
+		virtual std::vector<class ITask *> getTasks() const = 0;
+		virtual void add(const class ITask &task) = 0;
 };

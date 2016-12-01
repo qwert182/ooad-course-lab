@@ -1,23 +1,28 @@
 #pragma once
 #include <string>
-using namespace std;
-class Task
+#include <vector>
+#include "../ITask.h"
+
+class Task: public ITask
 {
 private: int id;
+
 public:
 	Task(int id);
-	Task(string name, string description, string theme);
+	Task(std::string name, std::string description, std::string theme);
 
-	virtual string getName() const;
-	virtual void setName(string name) const;
-	virtual string getTheme() const;
-	virtual void setTheme(string theme) const;
-	virtual string getDescription() const;
-	virtual void setDescription(string description) const;
+	virtual std::string getName() const;
+	virtual void setName(const std::string &name);
 
-	virtual vector<INote> getNotes() const;
-	virtual void add(INote note) const;
+	virtual std::string getTheme() const;
+	virtual void setTheme(const std::string &theme);
 
-	virtual vector<IAttachment> getAttachments() const;
-	virtual void add(IAttachment attachments) const;
+	virtual std::string getDescription() const;
+	virtual void setDescription(const std::string &description);
+
+	virtual std::vector<class INote *> getNotes() const;
+	virtual void add(const class INote &note);
+
+	virtual std::vector<class IAttachment *> getAttachments() const;
+	virtual void add(const class IAttachment &attachments);
 };
