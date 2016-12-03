@@ -10,13 +10,13 @@ private:
 	class IAllProjects *projects;
 
 public:
-	virtual std::string & getName() const;
+	virtual const std::string & getName() const;
 	virtual void setName(const std::string name);
 
-	virtual std::string & getLogin() const;
+	virtual const std::string & getLogin() const;
 	virtual void setLogin(const std::string login);
 
-	virtual std::string & getPassword() const;
+	virtual const std::string & getPassword() const;
 	virtual void setPassword(const std::string password);
 
 	virtual class IUserType * getType() const;

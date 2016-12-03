@@ -5,13 +5,13 @@
 
 class IUser {
 public:
-	virtual std::string & getName() const = 0;
+	virtual const std::string & getName() const = 0;
 	virtual void setName(const std::string name) = 0;
 
-	virtual std::string & getLogin() const = 0;
+	virtual const std::string & getLogin() const = 0;
 	virtual void setLogin(const std::string login) = 0;
 
-	virtual std::string & getPassword() const = 0;
+	virtual const std::string & getPassword() const = 0;
 	virtual void setPassword(const std::string password) = 0;
 
 	virtual class IUserType * getType() const = 0;
