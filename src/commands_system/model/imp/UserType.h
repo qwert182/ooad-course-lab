@@ -14,7 +14,7 @@ public:
 	virtual bool isAdmin() const;
 
 	UserType(int id);
-	UserType(std::string name, int type);
+	UserType(const std::string &name, int type);
 	virtual ~UserType() {}
 };
 
