@@ -62,9 +62,7 @@ TableWithHeader parse_TableWithHeader(const vector<vector<string>> &parsed_table
 				convert >> x;
 
 				bool g = !convert.bad() && convert.eof();
-				size_t s = static_cast<size_t>(convert.tellg());
-				size_t l = parsed_table[i][j].length();
-				if (!g || s != l) {
+				if (!g) {
 					throw ParseFailedException("can't convert \"" + parsed_table[i][j] + '"');
 				}
 				content[i-3].push_back(x);

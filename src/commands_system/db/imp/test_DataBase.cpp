@@ -52,7 +52,7 @@ TEST_abstract (WithDB) {
 
 
 
-TEST_from(CanSelectAllColumns) : WithDB {
+TEST_from(CanSelectAllColumns, WithDB) {
 	void test() {
 	  static const char * const _cols[5] = {"id", "name", "login", "password", "type_id"};
 	  vector <string> all_columns(_cols, _cols + 5);
@@ -75,7 +75,7 @@ TEST_from(CanSelectAllColumns) : WithDB {
 
 
 
-TEST_from(CanSelectSomeColumnsUsingWhere) : WithDB {
+TEST_from(CanSelectSomeColumnsUsingWhere, WithDB) {
 	void test() {
 	  static const char * const _cols[3] = {"name", "login", "type_id"};
 	  vector <string> some_columns(_cols, _cols + 3);
@@ -96,7 +96,7 @@ TEST_from(CanSelectSomeColumnsUsingWhere) : WithDB {
 
 
 
-TEST_from(CanSelectSomeColumnsNotUsingWhere) : WithDB {
+TEST_from(CanSelectSomeColumnsNotUsingWhere, WithDB) {
 	void test() {
 	  static const char * const _cols[3] = {"name", "login", "type_id"};
 	  vector <string> some_columns(_cols, _cols + 3);
@@ -118,7 +118,7 @@ TEST_from(CanSelectSomeColumnsNotUsingWhere) : WithDB {
 
 
 
-TEST_from(CanPerformTwoSelects) : WithDB {
+TEST_from(CanPerformTwoSelects, WithDB) {
 	void test() {
 	  static const char * const _cols[3] = {"name", "login", "type_id"};
 	  vector <string> some_columns(_cols, _cols + 3);
@@ -133,7 +133,7 @@ TEST_from(CanPerformTwoSelects) : WithDB {
 
 
 
-TEST_from(CanDelete) : WithDB {
+TEST_from(CanDelete, WithDB) {
 	void test() {
 	  Delete del = Delete().from("test").where("id", 4);
 	  Select sel1 = Select(vector<string>(1, "id")).from("test").where("id", 1);
@@ -170,7 +170,7 @@ TEST_from(CanDelete) : WithDB {
 
 
 
-TEST_from(CanInsert) : WithDB {
+TEST_from(CanInsert, WithDB) {
 	void test() {
 	  static const char * const _cols[] = {"id", "name", "login", "password", "type_id"};
 	  vector<string> columns(_cols, _cols + sizeof _cols/sizeof*_cols);

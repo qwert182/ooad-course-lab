@@ -179,7 +179,7 @@ TEST_abstract(WithAllTypes) {
 
 
 
-TEST_from(CanAssignElementEmpty) : WithAllTypes {
+TEST_from(CanAssignElementEmpty, WithAllTypes) {
 	void test() {
 	  Element empty;
 		for (size_t i = 0; i < all->size(); ++i) {
@@ -189,7 +189,7 @@ TEST_from(CanAssignElementEmpty) : WithAllTypes {
 	}
 } TEST_END;
 
-TEST_from(CanAssignElementInt) : WithAllTypes {
+TEST_from(CanAssignElementInt, WithAllTypes) {
 	void test() {
 	  Element integer = 123;
 		for (size_t i = 0; i < all->size(); ++i) {
@@ -200,7 +200,7 @@ TEST_from(CanAssignElementInt) : WithAllTypes {
 } TEST_END;
 
 
-TEST_from(CanAssignElementString) : WithAllTypes {
+TEST_from(CanAssignElementString, WithAllTypes) {
 	void test() {
 	  Element str = "string";
 		for (size_t i = 0; i < all->size(); ++i) {
@@ -210,7 +210,7 @@ TEST_from(CanAssignElementString) : WithAllTypes {
 	}
 } TEST_END;
 
-TEST_from(CanAssignInt) : WithAllTypes {
+TEST_from(CanAssignInt, WithAllTypes) {
 	void test() {
 		for (size_t i = 0; i < all->size(); ++i) {
 			all->at(i) = 123;
@@ -220,7 +220,7 @@ TEST_from(CanAssignInt) : WithAllTypes {
 } TEST_END;
 
 
-TEST_from(CanAssignString) : WithAllTypes {
+TEST_from(CanAssignString, WithAllTypes) {
 	void test() {
 		for (size_t i = 0; i < all->size(); ++i) {
 			all->at(i) = "string";
@@ -229,7 +229,7 @@ TEST_from(CanAssignString) : WithAllTypes {
 	}
 } TEST_END;
 
-TEST_from(CanAssignStdString) : WithAllTypes {
+TEST_from(CanAssignStdString, WithAllTypes) {
 	void test() {
 	  const string str = "string";
 		for (size_t i = 0; i < all->size(); ++i) {
@@ -245,7 +245,7 @@ TEST_from(CanAssignStdString) : WithAllTypes {
 
 // move assignment
 
-TEST_from(CanMovingAssignFromInt) : WithAllTypes {
+TEST_from(CanMovingAssignFromInt, WithAllTypes) {
 	void test() {
 		for (size_t i = 0; i < all->size(); ++i) {{
 			  Element integer = 123;
@@ -256,7 +256,7 @@ TEST_from(CanMovingAssignFromInt) : WithAllTypes {
 	}
 } TEST_END;
 
-TEST_from(CanMovingAssignFromString) : WithAllTypes {
+TEST_from(CanMovingAssignFromString, WithAllTypes) {
 	void test() {
 		for (size_t i = 0; i < all->size(); ++i) {{
 			  Element s = "string";
@@ -267,7 +267,7 @@ TEST_from(CanMovingAssignFromString) : WithAllTypes {
 	}
 } TEST_END;
 
-TEST_from(CanMovingAssignFromEmpty) : WithAllTypes {
+TEST_from(CanMovingAssignFromEmpty, WithAllTypes) {
 	void test() {
 		for (size_t i = 0; i < all->size(); ++i) {{
 		  Element empty;
