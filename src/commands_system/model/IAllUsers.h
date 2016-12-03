@@ -8,7 +8,7 @@ public:
 	virtual std::vector<class IUser *> getUsers() const = 0;
 	virtual void add(const class IUser &user) = 0;
 	virtual void remove(const class IUser &user) = 0;
-	virtual class IUser * logIn(const class IUser &user) = 0;
-	virtual void signUp() = 0;
+	virtual class IUser * logIn(const std::string &login, const std::string &password) = 0;
+	virtual class IUser * signUp(const class RegForm &regForm) = 0;
 };
 
