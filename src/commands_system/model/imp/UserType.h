@@ -9,7 +9,7 @@ private:
 
 public:
 	virtual std::string getName() const;
-	virtual void setName(const std::string &name) const;
+	virtual void setName(const std::string &name);
 	virtual bool isManager() const;
 	virtual bool isAdmin() const;
 
