@@ -10,11 +10,11 @@ private:
 public:
 	virtual class IUser * getSender() const;
 	virtual class IUser * getReceiver() const;
-	virtual const std::string & getSubject() const;
-	virtual const std::string & getText() const;
+	virtual std::string getSubject() const;
+	virtual std::string getText() const;
 
 	Message(const int id);
-	Message(const class IUser & sender, std::string s, std::string t);
+	Message(const class IUser & sender, const std::string &s, const std::string &t);
 	virtual ~Message() {}
 };
 

@@ -10,14 +10,14 @@ private:
 	class IAllProjects *projects;
 
 public:
-	virtual const std::string & getName() const;
-	virtual void setName(const std::string name);
+	virtual std::string getName() const;
+	virtual void setName(const std::string &name);
 
-	virtual const std::string & getLogin() const;
-	virtual void setLogin(const std::string login);
+	virtual std::string getLogin() const;
+	virtual void setLogin(const std::string &login);
 
-	virtual const std::string & getPassword() const;
-	virtual void setPassword(const std::string password);
+	virtual std::string getPassword() const;
+	virtual void setPassword(const std::string &password);
 
 	virtual class IUserType * getType() const;
 	virtual void setType(const class IUserType &userType);
@@ -28,8 +28,8 @@ public:
 	virtual void logOut();
 
 	User(int id, const class IMail &m, const class IAllProject &p);
-	User(std::string n, std::string l, std::string p);
-	User(std::string n, std::string l, std::string p, const class IUserType &type);
+	User(const std::string &n, const std::string &l, const std::string &p);
+	User(const std::string &n, const std::string &l, const std::string &p, const class IUserType &type);
 
 	virtual ~User() {}
 };
