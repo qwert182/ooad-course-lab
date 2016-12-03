@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\common.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\DataBase.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Delete.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Insert.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\parser.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Select.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Table.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_DataBase.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\commands_system\db\DataBaseException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\Delete.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\Element.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\IDataBase.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\common.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\DataBase.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\ParseFailedException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\TableWithHeader.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\writer.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\Insert.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\ITable.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\Select.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\WrongTypeException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllProjects.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllUsers.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\IAttachment.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\AllProjects.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Attachment.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Note.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Project.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Task.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\INote.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\IProject.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\ITask.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\IUser.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\Test.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0F249C49-3378-4654-81D7-1C76824AA453}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>commands_system</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>COMPILE_WITH_TESTS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>COMPILE_WITH_TESTS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>COMPILE_WITH_TESTS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>COMPILE_WITH_TESTS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

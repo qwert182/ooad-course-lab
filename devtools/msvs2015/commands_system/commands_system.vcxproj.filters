@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{0fbc3b5f-f185-4504-99d1-6b0d8778059e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db">
+      <UniqueIdentifier>{b974ea18-4b45-4df9-8013-99ca14c3d53a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp">
+      <UniqueIdentifier>{a60718fe-875c-4382-96ad-1c42b7d0939b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{b2e60244-cffc-47b5-b114-c8302bceb6ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils\imp">
+      <UniqueIdentifier>{798e5f15-f265-408a-9502-502f07c659ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model">
+      <UniqueIdentifier>{72d5a613-92ec-4fc5-bf9d-689e779a2541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model\imp">
+      <UniqueIdentifier>{9cd9498e-2f94-4a83-af13-8df6f6617a2c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\src\commands_system\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\common.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\DataBase.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Delete.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Element.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Insert.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\parser.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Select.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Table.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_DataBase.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp">
+      <Filter>src\db\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp">
+      <Filter>src\utils\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c">
+      <Filter>src\utils\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp">
+      <Filter>src\utils\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp">
+      <Filter>src\model\imp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\src\commands_system\db\DataBaseException.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Delete.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Element.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\IDataBase.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Insert.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\ITable.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Select.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\WrongTypeException.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\common.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\DataBase.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\ParseFailedException.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\parser.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\Table.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\TableWithHeader.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\imp\writer.h">
+      <Filter>src\db\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllProjects.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllUsers.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAttachment.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\INote.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IProject.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\ITask.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\AllProjects.h">
+      <Filter>src\model\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Attachment.h">
+      <Filter>src\model\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Note.h">
+      <Filter>src\model\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Project.h">
+      <Filter>src\model\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Task.h">
+      <Filter>src\model\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IUser.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

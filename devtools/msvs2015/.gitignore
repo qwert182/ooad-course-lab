@@ -1,0 +1,18 @@
+﻿# ignore all files and directories in /
+/*
+
+# do not ignore all subdirectories of /
+!/*/
+
+# ignore all files and directories in subdirectories of /
+/*/*
+
+# do not ignore solutions and projects
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+
+# and .gitignore
+!.gitignore
+
+# result - only solutions, projects and .gitignore in / and /*/
