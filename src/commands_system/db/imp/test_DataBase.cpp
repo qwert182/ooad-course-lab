@@ -5,6 +5,7 @@
 #include "../../utils/Assertions.h"
 #include "DataBase.h"
 #include "../ITable.h"
+#include "../DataBaseException.h"
 
 using namespace std;
 
@@ -170,11 +171,24 @@ TEST_from(CanDelete, WithDB) {
 
 
 
-TEST_from(CanInsert, WithDB) {
+TEST_exception_from(CannotInsertWithID, DataBaseException, WithDB) {
 	void test() {
 	  static const char * const _cols[] = {"id", "name", "login", "password", "type_id"};
 	  vector<string> columns(_cols, _cols + sizeof _cols/sizeof*_cols);
-	  const Element _vals[] = {10000, "Ëîõ", "debil", "mudak", 55555};
+	  const Element _vals[] = {10000, "Brad Pitt", "braddy", "mudak", 55555};
+	  vector<Element> values(_vals, _vals + sizeof _vals/sizeof*_vals);
+		Insert insert = Insert().into("test", columns).values(values);
+
+		db->perform(insert);
+	}
+} TEST_END;
+
+
+TEST_from(CanInsert, WithDB) {
+	void test() {
+	  static const char * const _cols[] = {"name", "login", "password", "type_id"};
+	  vector<string> columns(_cols, _cols + sizeof _cols/sizeof*_cols);
+	  const Element _vals[] = {"Brad Pitt", "braddy", "mudak", 55555};
 	  vector<Element> values(_vals, _vals + sizeof _vals/sizeof*_vals);
 		Insert insert = Insert().into("test", columns).values(values);
 
@@ -182,5 +196,17 @@ TEST_from(CanInsert, WithDB) {
 	}
 } TEST_END;
 
+
+TEST_exception_from(CannotInsertPartial, DataBaseException, WithDB) {
+	void test() {
+	  static const char * const _cols[] = {"name", "login", "type_id"};
+	  vector<string> columns(_cols, _cols + sizeof _cols/sizeof*_cols);
+	  const Element _vals[] = {"Brad Pitt", "braddy", 55555};
+	  vector<Element> values(_vals, _vals + sizeof _vals/sizeof*_vals);
+		Insert insert = Insert().into("test", columns).values(values);
+
+		assertEquals((const ITable *)nullptr, db->perform(insert));
+	}
+} TEST_END;
 
 
