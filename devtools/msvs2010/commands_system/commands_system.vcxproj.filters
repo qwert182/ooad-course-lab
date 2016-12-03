@@ -45,6 +45,12 @@
     <Filter Include="src\db\imp\test_%2a.cpp">
       <UniqueIdentifier>{e1e54213-6e84-468c-907c-884f24886ff2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\model\imp\%2a.h">
+      <UniqueIdentifier>{77c3e3bb-20ef-47e0-b104-acdf809d43bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model\imp\%2a.cpp">
+      <UniqueIdentifier>{89da80c7-95b4-46a6-9c65-481a3eda3489}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\commands_system\main.cpp">
@@ -100,6 +106,39 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp">
       <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\UserType.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\AllUsers.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\CompileCheck.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Mail.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Message.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp">
+      <Filter>src\model\imp\%2a.cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +210,69 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h">
       <Filter>src\db\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllProjects.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAllUsers.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IAttachment.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IMail.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IMessage.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\INote.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IProject.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\ITask.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IUser.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\IUserType.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\RegForm.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\UserType.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\User.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Task.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Project.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Note.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Message.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Mail.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\Attachment.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\AllUsers.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\AllProjects.h">
+      <Filter>src\model\imp\%2a.h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
