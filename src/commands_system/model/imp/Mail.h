@@ -6,7 +6,7 @@
 
 class Mail : public IMail {	
 private:
-	IUser user;
+	IUser *user;
 
 public:
 	virtual void send(const class IMessage &message) const;

@@ -6,7 +6,7 @@
 class User : public IUser {
 private:
 	int id;
-	class IMail mail;
+	class IMail *mail;
 };
 
 
