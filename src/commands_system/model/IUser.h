@@ -21,6 +21,8 @@ public:
 	virtual class IAllProjects * getProjects() const = 0;
 
 	virtual void logOut() = 0;
+
+	virtual ~IUser() {}
 };
 
 

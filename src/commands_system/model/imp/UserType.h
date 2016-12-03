@@ -15,6 +15,7 @@ public:
 
 	UserType(int id);
 	UserType(std::string name, int type);
+	virtual ~UserType() {}
 };
 
 

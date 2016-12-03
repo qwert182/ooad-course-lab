@@ -7,6 +7,9 @@ class User : public IUser {
 private:
 	int id;
 	class IMail *mail;
+
+public:
+	virtual ~User() {}
 };
 
 

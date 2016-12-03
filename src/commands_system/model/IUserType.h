@@ -9,6 +9,8 @@ public:
 	virtual const void getName(std::string name) const = 0;
 	virtual bool isManager() const = 0;
 	virtual bool isAdmin() const = 0;
+
+	virtual ~IUserType() {}
 };
 
 
