@@ -47,12 +47,13 @@ protected:
 
 
 
-#define TEST(name) static struct name : public Test
-#define TEST_from(name, from) static struct name : public from
-#define TEST_abstract(name) struct name : public Test
-#define TEST_exception(name, exception) static struct name : public ExceptionTest<exception, Test>
-#define TEST_abstract_exception(name, exception) struct name : public ExceptionTest<exception, Test>
-#define TEST_exception_from(name, exception, from) static struct name : public ExceptionTest<exception, from>
+#define TEST(name)                                   static struct name : public Test
+#define TEST_from(name, from)                        static struct name : public from
+#define TEST_abstract(name)                                 struct name : public Test
+#define TEST_abstract_from(name, from)                      struct name : public from
+#define TEST_exception(name, exception)              static struct name : public ExceptionTest<exception, Test>
+#define TEST_abstract_exception(name, exception)            struct name : public ExceptionTest<exception, Test>
+#define TEST_exception_from(name, exception, from)   static struct name : public ExceptionTest<exception, from>
 #define TEST_abstract_exception_from(name, exception, from) struct name : public ExceptionTest<exception, from>
 
 #define __TEST_END(line) test_at_line_##line
@@ -66,10 +67,14 @@ protected:
 
 
 
-#define TEST(name) class name
-#define TEST_from(name) class name
-#define TEST_abstract(name) class name
-#define TEST_exception(name, exception) class name
+#define TEST(name)                                          struct name
+#define TEST_from(name, from)                               struct name
+#define TEST_abstract(name)                                 struct name
+#define TEST_abstract_from(name, from)                      struct name
+#define TEST_exception(name, exception)                     struct name
+#define TEST_abstract_exception(name, exception)            struct name
+#define TEST_exception_from(name, exception, from)          struct name
+#define TEST_abstract_exception_from(name, exception, from) struct name
 
 #define TEST_END
 

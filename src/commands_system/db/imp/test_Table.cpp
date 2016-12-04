@@ -1,3 +1,5 @@
+#ifdef COMPILE_WITH_TESTS
+
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
 #include "Table.h"
@@ -14,4 +16,7 @@ TEST(CanCreateTableWithEmptyContent) {
 		assertEquals(0, t.getColCount());
 	}
 } TEST_END;
+
+
+#endif
 

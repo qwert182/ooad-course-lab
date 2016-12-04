@@ -1,3 +1,5 @@
+#ifdef COMPILE_WITH_TESTS
+
 #include "../Select.h"
 #include "../Insert.h"
 #include "../Delete.h"
@@ -209,4 +211,6 @@ TEST_exception_from(CannotInsertPartial, DataBaseException, WithDB) {
 	}
 } TEST_END;
 
+
+#endif
 

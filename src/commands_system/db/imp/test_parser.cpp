@@ -1,3 +1,5 @@
+#ifdef COMPILE_WITH_TESTS
+
 #include "parser.h"
 #include "ParseFailedException.h"
 #include "../Element.h"
@@ -71,4 +73,7 @@ TEST(CanParserReadTable__data_test_txt__With4Rows5Columns) {
 		assertEquals(string("type_id"), hat[4]);
 	}
 } TEST_END;
+
+
+#endif
 

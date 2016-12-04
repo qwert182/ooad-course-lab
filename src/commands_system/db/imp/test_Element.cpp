@@ -1,3 +1,5 @@
+#ifdef COMPILE_WITH_TESTS
+
 #include "../Element.h"
 #include "../WrongTypeException.h"
 
@@ -398,4 +400,8 @@ TEST(CanCreateVectorFromArray) {
 		assertEquals(string("three"), (string) v[2]);
 	}
 } TEST_END;
+
+
+
+#endif
 

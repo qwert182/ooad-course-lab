@@ -1,3 +1,5 @@
+#ifdef COMPILE_WITH_TESTS
+
 #include "../Select.h"
 #include "../Insert.h"
 #include "../Delete.h"
@@ -30,4 +32,7 @@ TEST(CanCreateDelete) {
 		assertTrue(q.filled());
 	}
 }TEST_END;
+
+
+#endif
 
