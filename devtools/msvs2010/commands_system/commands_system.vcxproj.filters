@@ -42,14 +42,17 @@
       <UniqueIdentifier>{4fba0b25-be6e-4dff-8d52-8fa40b59cb1a}</UniqueIdentifier>
       <Extensions>*.cpp</Extensions>
     </Filter>
-    <Filter Include="src\db\imp\test_%2a.cpp">
-      <UniqueIdentifier>{e1e54213-6e84-468c-907c-884f24886ff2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\model\imp\%2a.h">
       <UniqueIdentifier>{77c3e3bb-20ef-47e0-b104-acdf809d43bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\model\imp\%2a.cpp">
       <UniqueIdentifier>{89da80c7-95b4-46a6-9c65-481a3eda3489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\model\imp\test_%2a">
+      <UniqueIdentifier>{9e44770e-30a1-4719-9442-6f9b8accef6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\db\imp\test_%2a">
+      <UniqueIdentifier>{e1e54213-6e84-468c-907c-884f24886ff2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,19 +90,19 @@
       <Filter>src\db\imp\%2a.cpp</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp">
-      <Filter>src\db\imp\test_%2a.cpp</Filter>
+      <Filter>src\db\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Element.cpp">
-      <Filter>src\db\imp\test_%2a.cpp</Filter>
+      <Filter>src\db\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp">
-      <Filter>src\db\imp\test_%2a.cpp</Filter>
+      <Filter>src\db\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_DataBase.cpp">
-      <Filter>src\db\imp\test_%2a.cpp</Filter>
+      <Filter>src\db\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp">
-      <Filter>src\db\imp\test_%2a.cpp</Filter>
+      <Filter>src\db\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\db\imp\common.cpp">
       <Filter>src\db\imp\%2a.cpp</Filter>
@@ -139,6 +142,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp">
       <Filter>src\model\imp\%2a.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_User.cpp">
+      <Filter>src\model\imp\test_%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp">
+      <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +282,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\model\imp\AllProjects.h">
       <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\dataBase.h">
+      <Filter>src\model\imp\%2a.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.h">
+      <Filter>src\model\imp\test_%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\instance.h">
+      <Filter>src\db</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

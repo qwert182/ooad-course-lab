@@ -35,6 +35,8 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_User.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\UserType.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
@@ -55,6 +57,7 @@
     <ClInclude Include="..\..\..\src\commands_system\db\imp\WriteFailedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\imp\writer.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Insert.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\instance.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\ITable.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Select.h" />
@@ -67,11 +70,13 @@
     <ClInclude Include="..\..\..\src\commands_system\model\imp\AllProjects.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\AllUsers.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Attachment.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\dataBase.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Mail.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Message.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Note.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Project.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\Task.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\User.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\imp\UserType.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\INote.h" />

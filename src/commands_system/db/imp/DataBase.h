@@ -8,6 +8,9 @@
 #ifdef COMPILE_WITH_TESTS
 	struct _TestOnly {int x;};
 	#define TESTONLY (_TestOnly*)nullptr
+
+	struct _TestFull {int x;};
+	#define TESTFULL (_TestFull*)nullptr
 #endif
 
 
@@ -31,7 +34,6 @@ public:
 	virtual ~DataBase();
 
 	static void CreateInstance();
-	static void DeleteInstance();
 
 	DataBase();
 	std::fstream & getTableFile(const std::string &name_of_table);
@@ -41,9 +43,11 @@ public:
 
 #ifdef COMPILE_WITH_TESTS
   bool testOnly;
+  bool testFull;
 	void __insert_test();
 	static void CreateTestInstance();
 	DataBase(_TestOnly *);
+	DataBase(_TestFull *);
 #endif
 };
 

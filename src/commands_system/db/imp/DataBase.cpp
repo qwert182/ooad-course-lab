@@ -34,6 +34,14 @@ static const char * const db_files[] = {
 		}
 	}
 
+	static void __delete_backup() {
+		for (int i = 0; i < sizeof db_files/sizeof*db_files; ++i) {
+			string to = "data_test/" + string(db_files[i]) + ".txt";
+			if (_unlink(to.c_str()))
+				throw DataBaseException("can't delete \"" + to + '"');
+		}
+	}
+
 
 	void DataBase::__insert_test() {
 		__copy_backup_test();
@@ -46,7 +54,7 @@ static const char * const db_files[] = {
 
 string DataBase::getDataDir() const {
 #ifdef COMPILE_WITH_TESTS
-	if (testOnly)
+	if (testOnly || testFull)
 		return "data_test/";
 	else
 #endif
@@ -92,6 +100,8 @@ void DataBase::delete_files() {
 		delete iter->second;
 	files.clear();
 #ifdef COMPILE_WITH_TESTS
+	if (testFull)
+		__delete_backup();
 	if (testOnly)
 		__delete_backup_test();
 #endif
@@ -104,12 +114,13 @@ void DataBase::delete_files() {
 
 DataBase::DataBase() : opened(false)
 #ifdef COMPILE_WITH_TESTS
-	, testOnly(false)
+	, testOnly(false), testFull(false)
 #endif
 {}
 
 #ifdef COMPILE_WITH_TESTS
-	DataBase::DataBase(_TestOnly *) : opened(false), testOnly(true) {}
+	DataBase::DataBase(_TestOnly *) : opened(false), testOnly(true), testFull(false) {}
+	DataBase::DataBase(_TestFull *) : opened(false), testOnly(false), testFull(true) {}
 #endif
 
 
@@ -124,6 +135,9 @@ void DataBase::open() {
 		throw DataBaseException("already opened");
 
 #ifdef COMPILE_WITH_TESTS
+	if (testFull)
+		__copy_backup();
+
 	if (testOnly)
 		__insert_test();
 	else
@@ -153,5 +167,24 @@ const ITable * DataBase::perform(const IQuery &query) {
 		throw DataBaseException("query is not filled");
 
 	return query.perform(*this);
+}
+
+
+
+
+
+#include "../instance.h"
+
+
+IDataBase *dataBase;
+
+
+void DataBase::CreateTestInstance() {
+	dataBase = new DataBase(TESTFULL);
+}
+
+
+void DataBase::CreateInstance() {
+	dataBase = new DataBase();
 }
 
