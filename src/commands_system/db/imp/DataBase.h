@@ -37,6 +37,7 @@ public:
 	std::fstream & getTableFile(const std::string &name_of_table);
 	void clearTableFile(const std::string &name_of_table);
 
+	std::string getDataDir() const;
 
 #ifdef COMPILE_WITH_TESTS
   bool testOnly;

@@ -28,7 +28,7 @@ static const char * const db_files[] = {
 	static void __copy_backup() {
 		for (int i = 0; i < sizeof db_files/sizeof*db_files; ++i) {
 			string from = "data_backup/" + string(db_files[i]) + ".txt";
-			string to = "data/" + string(db_files[i]) + ".txt";
+			string to = "data_test/" + string(db_files[i]) + ".txt";
 			if (!__copy_file(from.c_str(), to.c_str()))
 				throw DataBaseException("can't copy \"" + from + "\" to \"" + to + '"');
 		}
@@ -43,9 +43,20 @@ static const char * const db_files[] = {
 
 
 
+
+string DataBase::getDataDir() const {
+#ifdef COMPILE_WITH_TESTS
+	if (testOnly)
+		return "data_test/";
+	else
+#endif
+		return "data/";
+}
+
+
 void DataBase::clearTableFile(const string &name_of_table) {
 	fstream & file = getTableFile(name_of_table);
-	string full_filename = "data/" + name_of_table + ".txt";
+	string full_filename = getDataDir() + name_of_table + ".txt";
 	file.close();
 	file.clear();
 	file.open(full_filename, ios::trunc | ios::in | ios::out);
@@ -55,7 +66,7 @@ void DataBase::clearTableFile(const string &name_of_table) {
 
 
 void DataBase::insert_to_files(const string &filename) {
-  string full_filename = "data/" + filename + ".txt";
+  string full_filename = getDataDir() + filename + ".txt";
   fstream *file = new fstream(full_filename);
 
 	if (!file->good())
@@ -111,7 +122,6 @@ DataBase::~DataBase() {
 void DataBase::open() {
 	if (opened)
 		throw DataBaseException("already opened");
-	opened = true;
 
 #ifdef COMPILE_WITH_TESTS
 	if (testOnly)
@@ -119,6 +129,8 @@ void DataBase::open() {
 	else
 #endif
 		insert_files();
+
+	opened = true;
 }
 
 

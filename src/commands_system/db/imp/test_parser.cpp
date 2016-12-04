@@ -30,7 +30,7 @@ TEST_abstract(WithTestBackup) {
 
 TEST_from(CanParse, WithTestBackup) {
 	void test() {
-		ifstream f("data/test.txt");
+		ifstream f("data_test/test.txt");
 		parse(f);
 	}
 } TEST_END;
@@ -38,7 +38,7 @@ TEST_from(CanParse, WithTestBackup) {
 
 TEST_from(CanParseTableWithHeader, WithTestBackup) {
 	void test() {
-		ifstream f("data/test.txt");
+		ifstream f("data_test/test.txt");
 		TableWithHeader t = parse(f);
 		assertTrue(t.content.size()!=0);
 	}
@@ -55,7 +55,7 @@ TEST_exception(CannotParseNotExistingFile, ParseFailedException) {
 
 TEST_from(CanParserReadTable__data_test_txt__With4Rows5Columns, WithTestBackup) {
 	void test(){
-	  ifstream f("data/test.txt");
+	  ifstream f("data_test/test.txt");
 	  TableWithHeader t = parse(f);
 	  vector<vector<Element>> &a = t.content;
 	  vector<string> &hat = t.hat;

@@ -27,13 +27,13 @@ size_t findColumnIndexByColumnName(const vector<string> &hat, const string &name
 
 #ifdef COMPILE_WITH_TESTS
 	void __copy_backup_test() {
-		if (!__copy_file("data_backup/test.txt", "data/test.txt"))
-			throw DataBaseException("can't copy \"data_backup/test.txt\" to \"data/test.txt\"");
+		if (!__copy_file("data_backup/test.txt", "data_test/test.txt"))
+			throw DataBaseException("can't copy \"data_backup/test.txt\" to \"data_test/test.txt\"");
 	}
 
 	void __delete_backup_test() {
-		if (_unlink("data/test.txt"))
-			throw DataBaseException("can't delete \"data/test.txt\"");
+		if (_unlink("data_test/test.txt"))
+			throw DataBaseException("can't delete \"data_test/test.txt\"");
 	}
 
 
