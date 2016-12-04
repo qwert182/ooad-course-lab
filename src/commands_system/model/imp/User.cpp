@@ -2,61 +2,82 @@
 
 #include "User.h"
 
-User::User(int id, const class IMail &m, const class IAllProject &p) {
+#include "../IMail.h"
+#include "../IAllProjects.h"
+
+
+#include "dataBase.h"
+
+#include <memory>
+
+
+
+using std::string;
+using std::vector;
+
+
+User::User(int id) {
+	this->id = id;
+}
+
+User::User(const string &n, const string &l, const string &p) {
 
 }
 
-User::User(const std::string &n, const std::string &l, const std::string &p) {
+User::User(const string &n, const string &l, const string &p, const IUserType &type) {
 
 }
 
-User::User(const std::string &n, const std::string &l, const std::string &p, const class IUserType &type) {
+
+string User::getName() const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("name").from("users").where("id", id)
+	);
+	return t->get(0, 0);
+}
+
+void User::setName(const string &name) {
 
 }
 
-std::string User::getName() const {
-	std::string result;
+string User::getLogin() const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("login").from("users").where("id", id)
+	);
+	return t->get(0, 0);
+}
+
+void User::setLogin(const string &login) {
+
+}
+
+string User::getPassword() const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("password").from("users").where("id", id)
+	);
+	return t->get(0, 0);
+}
+
+void User::setPassword(const string &password) {
+
+}
+
+IUserType * User::getType() const {
+	IUserType * result;
 	return result;
 }
 
-void User::setName(const std::string &name) {
+void User::setType(const IUserType &userType) {
 
 }
 
-std::string User::getLogin() const {
-	std::string result;
+IMail * User::getMail() const {
+	IMail * result;
 	return result;
 }
 
-void User::setLogin(const std::string &login) {
-
-}
-
-std::string User::getPassword() const {
-	std::string result;
-	return result;
-}
-
-void User::setPassword(const std::string &password) {
-
-}
-
-class IUserType * User::getType() const {
-	class IUserType * result;
-	return result;
-}
-
-void User::setType(const class IUserType &userType) {
-
-}
-
-class IMail * User::getMail() const {
-	class IMail * result;
-	return result;
-}
-
-class IAllProjects * User::getProjects() const {
-	class IAllProjects * result;
+IAllProjects * User::getProjects() const {
+	IAllProjects * result;
 	return result;
 }
 

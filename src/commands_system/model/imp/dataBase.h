@@ -7,8 +7,18 @@
 #include "../../db/DataBaseException.h"
 
 
+
+
 // возвращает при выполнении запроса таблицу
 #include "../../db/ITable.h"
+// дл€ удобства
+#include <memory>
+class ptrTable : public std::unique_ptr<const ITable> {
+public:
+	ptrTable(const ITable *p) : std::unique_ptr<const ITable>(p) {}
+};
+
+
 
 
 // таблица состоит из элементов (либо int, либо string)
@@ -20,10 +30,14 @@
 
 
 
+
 // запросы
 
 // пока хватит Select'а (дл€ get* функций)
 #include "../../db/Select.h"
+// дл€ удобства
+#define SELECT(columns) (Select(std::vector<std::string>((columns), &(columns)[sizeof(columns)/sizeof(*(columns))])))
+#define SELECT_ONLY(one_column) (Select(std::vector<std::string>(1, one_column)))
 
 
 
@@ -31,4 +45,5 @@
 
 
 // экземпл€р базы данных (выполн€ем запросы через него)
+#include "../../db/instance.h"
 

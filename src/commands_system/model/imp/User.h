@@ -6,8 +6,8 @@
 class User : public IUser {
 private:
 	int id;
-	class IMail *mail;
-	class IAllProjects *projects;
+	//class IMail *mail;
+	//class IAllProjects *projects;
 
 public:
 	virtual std::string getName() const;
@@ -27,7 +27,7 @@ public:
 
 	virtual void logOut();
 
-	User(int id, const class IMail &m, const class IAllProject &p);
+	User(int id);
 	User(const std::string &n, const std::string &l, const std::string &p);
 	User(const std::string &n, const std::string &l, const std::string &p, const class IUserType &type);
 
