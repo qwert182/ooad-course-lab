@@ -19,7 +19,7 @@ TEST (CanCreateDB) {
 
 TEST (CanCreateDBAsIDBPointer) {
 	void test() {
-	  DataBase _db;
+	  DataBase _db(TESTONLY);
 	  IDataBase *db = &_db;
 		db->open();
 		db->close();
@@ -30,7 +30,7 @@ TEST (CanCreateDBAsIDBPointer) {
 
 TEST (CanCreateDBAsIDB) {
 	void test() {
-	  DataBase _db;
+	  DataBase _db(TESTONLY);
 	  IDataBase &db = _db;
 		db.open();
 		db.close();
@@ -42,10 +42,9 @@ TEST (CanCreateDBAsIDB) {
 TEST_abstract (WithDB) {
   IDataBase *db;
 	void before() {
-	  DataBase *_db = new DataBase();
+	  DataBase *_db = new DataBase(TESTONLY);
 		db = _db;
 		db->open();
-		_db->__add_table_test();
 	}
 	void after() {
 		db->close();
@@ -210,6 +209,7 @@ TEST_exception_from(CannotInsertPartial, DataBaseException, WithDB) {
 		assertEquals((const ITable *)nullptr, db->perform(insert));
 	}
 } TEST_END;
+
 
 
 #endif

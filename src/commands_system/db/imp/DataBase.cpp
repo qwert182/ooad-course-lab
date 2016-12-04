@@ -1,6 +1,7 @@
 #include "DataBase.h"
 #include "../IQuery.h"
 #include "../DataBaseException.h"
+#include "common.h"
 
 #include <string>
 #include <utility>
@@ -12,32 +13,32 @@ using std::make_pair;
 using std::ios;
 
 
+static const char * const db_files[] = {
+	"attachments", "messages",
+	"notes", "project_workers",
+	"projects", "tasks",
+	"users", "usertypes"
+};
+
+
 
 
 #ifdef COMPILE_WITH_TESTS
-static bool copy_file(const char src[], const char dst[]) {
-	std::ifstream i(src, std::ios::binary);
-	if (!i.good()) return false;
-	i.seekg(0, std::ios::end);
-	size_t s = static_cast<size_t>(i.tellg());
-	i.seekg(0, std::ios::beg);
-	char * buf = static_cast<char *>(malloc(s));
-	i.read(buf, s);
-	i.close();
 
-	std::ofstream o(dst, std::ios::binary);
-	if (!o.good()) return false;
-	o.write(buf, s);
-	free(buf);
+	static void __copy_backup() {
+		for (int i = 0; i < sizeof db_files/sizeof*db_files; ++i) {
+			string from = "data_backup/" + string(db_files[i]) + ".txt";
+			string to = "data/" + string(db_files[i]) + ".txt";
+			if (!__copy_file(from.c_str(), to.c_str()))
+				throw DataBaseException("can't copy \"" + from + "\" to \"" + to + '"');
+		}
+	}
 
-	return true;
-}
 
-void DataBase::__add_table_test() {
-	if (!copy_file("data/test.bak", "data/test.txt"))
-		throw DataBaseException("can't __add_table_test()");
-	insert_to_files("test");
-}
+	void DataBase::__insert_test() {
+		__copy_backup_test();
+		insert_to_files("test");
+	}
 #endif
 
 
@@ -70,30 +71,19 @@ void DataBase::insert_to_files(const string &filename) {
 
 
 void DataBase::insert_files() {
-  static const char * const f[] = {
-	"attachments", "messages",
-	"notes", "project_workers",
-	"projects", "tasks",
-	"users", "usertypes"
-  };
-
-	for (int i = 0; i < sizeof f/sizeof*f; ++i)
-		insert_to_files(f[i]);
+	for (int i = 0; i < sizeof db_files/sizeof*db_files; ++i)
+		insert_to_files(db_files[i]);
 }
 
 
 void DataBase::delete_files() {
-#ifdef COMPILE_WITH_TESTS
-	if (files.find("test") != files.end()) {
-		files.at("test")->close();
-		if (!copy_file("data/test.bak", "data/test.txt"))
-			throw DataBaseException("can't __add_table_test()");
-	}
-#endif
-
 	for (auto iter = files.begin(); iter != files.end(); ++iter)
 		delete iter->second;
 	files.clear();
+#ifdef COMPILE_WITH_TESTS
+	if (testOnly)
+		__delete_backup_test();
+#endif
 }
 
 
@@ -101,7 +91,17 @@ void DataBase::delete_files() {
 
 
 
-DataBase::DataBase() : opened(false) {}
+DataBase::DataBase() : opened(false)
+#ifdef COMPILE_WITH_TESTS
+	, testOnly(false)
+#endif
+{}
+
+#ifdef COMPILE_WITH_TESTS
+	DataBase::DataBase(_TestOnly *) : opened(false), testOnly(true) {}
+#endif
+
+
 
 DataBase::~DataBase() {
 	if (opened) close();
@@ -112,7 +112,13 @@ void DataBase::open() {
 	if (opened)
 		throw DataBaseException("already opened");
 	opened = true;
-	insert_files();
+
+#ifdef COMPILE_WITH_TESTS
+	if (testOnly)
+		__insert_test();
+	else
+#endif
+		insert_files();
 }
 
 

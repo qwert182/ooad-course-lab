@@ -4,6 +4,13 @@
 #include <unordered_map>
 
 
+
+#ifdef COMPILE_WITH_TESTS
+	struct _TestOnly {int x;};
+	#define TESTONLY (_TestOnly*)nullptr
+#endif
+
+
 class DataBase: public IDataBase {
 private:
   std::unordered_map<std::string, std::fstream *> files;
@@ -23,12 +30,19 @@ public:
 	virtual const class ITable * perform(const class IQuery &query);
 	virtual ~DataBase();
 
-#ifdef COMPILE_WITH_TESTS
-	void __add_table_test();
-#endif
+	static void CreateInstance();
+	static void DeleteInstance();
 
 	DataBase();
 	std::fstream & getTableFile(const std::string &name_of_table);
 	void clearTableFile(const std::string &name_of_table);
+
+
+#ifdef COMPILE_WITH_TESTS
+  bool testOnly;
+	void __insert_test();
+	static void CreateTestInstance();
+	DataBase(_TestOnly *);
+#endif
 };
 

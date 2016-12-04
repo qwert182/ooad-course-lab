@@ -7,6 +7,8 @@
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
 
+#include "common.h"
+
 
 #include <vector>
 #include <string>
@@ -17,7 +19,16 @@ using std::string;
 using std::ifstream;
 
 
-TEST(CanParse) {
+TEST_abstract(WithTestBackup) {
+	void before() {
+		__copy_backup_test();
+	}
+	void after() {
+		__delete_backup_test();
+	}
+};
+
+TEST_from(CanParse, WithTestBackup) {
 	void test() {
 		ifstream f("data/test.txt");
 		parse(f);
@@ -25,7 +36,7 @@ TEST(CanParse) {
 } TEST_END;
 
 
-TEST(CanParseUsers) {
+TEST_from(CanParseTableWithHeader, WithTestBackup) {
 	void test() {
 		ifstream f("data/test.txt");
 		TableWithHeader t = parse(f);
@@ -42,7 +53,7 @@ TEST_exception(CannotParseNotExistingFile, ParseFailedException) {
 } TEST_END;
 
 
-TEST(CanParserReadTable__data_test_txt__With4Rows5Columns) {
+TEST_from(CanParserReadTable__data_test_txt__With4Rows5Columns, WithTestBackup) {
 	void test(){
 	  ifstream f("data/test.txt");
 	  TableWithHeader t = parse(f);
