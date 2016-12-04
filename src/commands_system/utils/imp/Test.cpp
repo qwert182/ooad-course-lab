@@ -63,7 +63,7 @@ static string format_typeid_name(const string &name) {
 
 static void show_failed_test(Test *test, size_t part) {
 	std::cerr <<
-		typeid(*test).name() << "." << parts[part] << "(): FATAL ERROR\n";
+		format_typeid_name(typeid(*test).name()) << "." << parts[part] << "(): FATAL ERROR\n";
 }
 
 
@@ -108,11 +108,12 @@ public:
 
 const char TestMemoryLeakException::message[] = "\n"
 	"\n"
-	"\tmemory leak detected after test had passed\n"
+	"\tmemory leak detected after test had passed (OBJECTS DUMP ABOVE)\n"
 	"\n"
 	"\tpossible reasons:\n"
 	"\t\tno delete after new\n"
 	"\t\tno free() after malloc()\n"
+	"\t\tclass has no virtual destructor\n"
 	"\t\tglobal variable used\n";
 
 
@@ -143,8 +144,13 @@ void Test::All_inner(void *locals) {
 					part = 1; test->do_test();
 					part = 2; test->after();
 					_CrtMemCheckpoint(&s2);
-					if (_CrtMemDifference( &s3, &s1, &s2))
+					if (_CrtMemDifference(&s3, &s1, &s2)) {
+					  int prev = _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+						_CrtMemDumpStatistics(&s3);
+						_CrtMemDumpAllObjectsSince(&s3);
+						_CrtSetReportMode(_CRT_WARN, prev);
 						throw TestMemoryLeakException();
+					}
 					++tests_ok;
 				}
 			}

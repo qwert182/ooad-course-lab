@@ -77,5 +77,8 @@
     <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPView.h">
       <Filter>src\view\imp</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
