@@ -2,9 +2,11 @@
 #include <stdlib.h>
 #include <crtdbg.h>
 #include <windows.h>
+#include <type_traits>
 
 
 #include "utils/Test.h"
+#include "utils/formatTypeidName.h"
 
 #include "view/imp/HTTPView.h"
 #include <iostream>
@@ -26,8 +28,15 @@ int main() {
 
 	cout << "ctrl+c to stop" << endl;
 	{
-	  HTTPView view;
-		view.server();
+	  HTTPView* view = nullptr;
+		try {
+			view = new HTTPView();
+			view->server();
+		} catch (const Exception &e) {
+			cout << "Exception: " << formatTypeidName(typeid(e).name()) << '\n';
+			cout << '\t' << e.what() << '\n';
+		}
+		delete view;
 	}
 	cout << "stopped" << endl;
 

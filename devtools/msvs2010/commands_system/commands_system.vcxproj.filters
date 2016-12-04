@@ -54,6 +54,9 @@
     <ClCompile Include="..\..\..\src\commands_system\view\imp\test_HTTPView.cpp">
       <Filter>src\view\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\formatTypeidName.cpp">
+      <Filter>src\utils\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -78,6 +81,9 @@
       <Filter>src\view\imp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\formatTypeidName.h">
       <Filter>src\utils</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\formatTypeidName.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\HTTPView.cpp" />
@@ -22,6 +23,7 @@
     <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\formatTypeidName.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h" />

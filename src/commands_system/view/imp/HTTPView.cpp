@@ -11,6 +11,9 @@
 
 #include <signal.h>
 
+#include <type_traits>
+#include "../../utils/formatTypeidName.h"
+
 
 #include "../../utils/Exception.h"
 
@@ -21,16 +24,32 @@ public:
 	SocketException(const char *what) : HTTPException(what) {}
 };
 
-class WrongFormatException : public HTTPException {
+class StatusHTTPException : public HTTPException {
+	int status;
 public:
-	WrongFormatException(const char *what) : HTTPException(what) {}
+	int getStatus() const {
+		return status;
+	}
+
+	StatusHTTPException(const char *what, int status) : HTTPException(what), status(status) {}
 };
 
-class NotFoundException : public HTTPException {
+class BadRequestException : public StatusHTTPException {
 public:
-	NotFoundException(const char *what) : HTTPException(what) {}
-	NotFoundException(const std::string &what) : HTTPException(what.c_str()) {}
+	BadRequestException(const char *what) : StatusHTTPException(what, 400) {}
 };
+
+class NotFoundException : public StatusHTTPException {
+public:
+	NotFoundException(const char *what) : StatusHTTPException(what, 404) {}
+	NotFoundException(const std::string &what) : StatusHTTPException(what.c_str(), 404) {}
+};
+
+class NotImplementedException : public StatusHTTPException {
+public:
+	NotImplementedException(const char *what) : StatusHTTPException(what, 501) {}
+};
+
 
 
 
@@ -45,7 +64,7 @@ static
 map<string, string> init_from_array() {
   map<string, string> m;
 	m.insert(make_pair("/", "html/index.htm"));
-	m.insert(make_pair("/style", "html/style.css"));
+	m.insert(make_pair("/main.css", "html/main.css"));
 	return m;
 }
 
@@ -184,30 +203,92 @@ string recvToString(SOCKET a) {
 	
 	if ((size = recv(a, buf, sizeof buf - 1, 0)) < 0)
 		throw SocketException("in recv");
+	if (size == 0)
+		throw SocketException("recv received 0 bytes");
 
 	buf[size] = '\0';
 
 	if (strlen(buf) != (size_t)size)
-		throw WrongFormatException("recvToString");
+		throw BadRequestException("recvToString");
 
 	return buf;
 }
 
 
+
+struct Request {
+	string
+		type,
+		path,
+		version;
+
+	void correct_path() {
+	  size_t ss;
+		if (path.length() == 0)
+			throw BadRequestException("HTTP request must contain Request-URI");
+		if ((ss = path.find("://")) != path.npos) {
+			size_t s;
+			if ((s = path.find('/', ss + 3)) != path.npos) {
+				path.erase(0, s);
+			} else {
+				path = '/';
+			}
+		}
+	}
+
+	void set_09(const string &line, size_t sp) {
+		version = "HTTP/0.9";
+		path = line.substr(sp + 1);
+		correct_path();
+	}
+
+	void set_10(const string &line, size_t sp_first, size_t sp_last) {
+		version = line.substr(sp_last + 1, line.find('\r') - sp_last - 1);
+		path = line.substr(sp_first + 1, sp_last - sp_first - 1);
+		correct_path();
+	}
+
+	// HTTP 0.9
+	Request(const string &line, int version, int sp_first, int sp_last) {
+		type = line.substr(0, sp_first);
+
+		if (version == 9  &&  type != "GET")
+			throw BadRequestException("HTTP/0.9 request must be GET");
+
+		if (version == 10  &&  type != "GET")
+			throw NotImplementedException("supported only GET");
+
+		if (version == 9) set_09(line, sp_first);
+		else if (version == 10) set_10(line, sp_first, sp_last);
+
+		if (path.find('/') != 0)
+			throw BadRequestException("HTTP request must contain absolute path");
+	}
+};
+
+
 static
-string receiveHTTPRequest(SOCKET a) {
-  string line, s, all;
+Request receiveRequest(SOCKET a) {
+  string s, all;
+  size_t sp_first, sp_last;
 
 	for (;;) {
 		s = recvToString(a);
 		all += s;
 
-	  size_t r = s.find_first_of('\r');
+	  size_t r = all.find("\r\n");
 		if (r != s.npos) {
-			line += s.substr(0, r);
-			break;
+		  string line = all.substr(0, r);
+			sp_first = line.find_first_of(' ') ;
+			sp_last = line.find_last_of(' ');
+			if (sp_first == line.npos)
+				throw BadRequestException("first line of HTTP request must contain space");
+			if (sp_first == sp_last) { // HTTP 0.9
+				return Request(line, 9, sp_first, sp_last);
+			} else { // HTTP 1.0+
+				break;
+			}
 		}
-		line += s;
 	}
 
   size_t end;
@@ -215,22 +296,15 @@ string receiveHTTPRequest(SOCKET a) {
 		all += recvToString(a);
 
 	if (end != all.length() - 4)
-		throw WrongFormatException("receiveHTTPRequest");
+		throw BadRequestException("receiveHTTPRequest");
 
-	return line;
+	return Request(all, 10, sp_first, sp_last);
 }
 
 
 
 
-struct Request {
-	string
-		type,
-		path;
-};
-
-
-
+/*
 static
 Request receiveRequest(SOCKET a) {
   Request r;
@@ -245,7 +319,7 @@ Request receiveRequest(SOCKET a) {
 	r.type = request.substr(0, sp);					// "GET"
 	return r;
 }
-
+*/
 
 
 
@@ -262,9 +336,19 @@ void send_file(SOCKET a, const string &filename) {
 
 	while ((f.read(buf, sizeof(buf)),  (size = (int)f.gcount()) != 0)) {
 		if (send(a, buf, size, 0) != size)
-			throw SocketException("in send");
+			throw SocketException("in send_file");
 	}
 }
+
+void send_response(SOCKET a, int code) {
+  char buf[100];
+  int size;
+	size = sprintf(buf, "HTTP/1.0 %d \r\n\r\n", code);
+	if (send(a, buf, size, 0) != size)
+		throw SocketException("in send_response");
+}
+
+
 
 #include <iostream>
 
@@ -279,36 +363,54 @@ void HTTPView::server() {
 
 
 	if (listen(s, 2))
-		throw SocketException("in listen");
+		throw SocketException("can't listen");
 
 	for (;;) {
-		addr_len = sizeof addr.a;
-		memset(&addr, 0, sizeof addr.a);
+		try {
+			addr_len = sizeof addr.a;
+			memset(&addr, 0, sizeof addr.a);
 
-		current_socket = s; // global variable
-		if ((a = accept(s, &addr.a, &addr_len)) == INVALID_SOCKET) {
-			if (has_control_c_pressed) // global variable
-				break;
-			throw SocketException("in accept");
-		}
-
-		cout << "accept" << endl;
-
-
-		Request request = receiveRequest(a);
-		cout << "request\n";
-		cout << "\t" << request.type <<"\n";
-		cout << "\t" << request.path << endl;
-
-		if (request.type == "GET") {
-			auto found = path_to_file.find(request.path);
-			if (found != path_to_file.end()) {
-				send_file(a, found->second);
-				cout << "sended\n";
-				cout << "\t\"" << found->second << '"' << endl;
+			current_socket = s; // global variable
+			if ((a = accept(s, &addr.a, &addr_len)) == INVALID_SOCKET) {
+				throw SocketException("in accept");
 			}
+
+			cout << "accept" << endl;
+
+
+			Request request = receiveRequest(a);
+			cout << "request\n";
+			cout << "\t\"" << request.type << "\"\n";
+			cout << "\t\"" << request.path << '\"' << endl;
+
+			if (request.type == "GET") {
+				auto found = path_to_file.find(request.path);
+				if (found != path_to_file.end()) {
+					send_response(a, 200);
+					send_file(a, found->second);
+					cout << "sended\n";
+					cout << "\t\"" << found->second << '\"' << endl;
+				} else {
+					send_response(a, 404);
+					cout << "\t" "resource not found" << endl;
+				}
+			}
+		} catch (const SocketException &e) {
+			if (has_control_c_pressed) { // global variable
+				closesocket(a);
+				break;
+			}
+			cout << "\t" "SocketException: " << e.what() << endl;
+		} catch (const StatusHTTPException &e) {
+			cout << "\t" "StatusHTTPException: " << formatTypeidName(typeid(e).name()) << ": \n";
+			cout << "\t" "status: " << e.getStatus() << '\n';
+			cout << "\t" "what: " << e.what() << endl;
+
+			send_response(a, e.getStatus());
+			cout << "sended response" << endl;
 		}
 
+		cout << "close\n";
 		if (closesocket(a))
 			throw SocketException("in closesocket");
 	}

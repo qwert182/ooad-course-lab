@@ -12,6 +12,7 @@
 
 #include "../Test.h"
 #include "../Exception.h"
+#include "../formatTypeidName.h"
 
 #include <stddef.h>
 #include <vector>
@@ -47,23 +48,9 @@ struct locals_t {
 
 
 
-
-static string format_typeid_name(const string &name) {
-  size_t i;
-	if ((i = name.find_first_of(' ')) != string::npos) {
-		return name.substr(i+1);
-	}
-	return name;
-}
-
-
-
-
-
-
 static void show_failed_test(Test *test, size_t part) {
 	std::cerr <<
-		format_typeid_name(typeid(*test).name()) << "." << parts[part] << "(): FATAL ERROR\n";
+		formatTypeidName(typeid(*test).name()) << "." << parts[part] << "(): FATAL ERROR\n";
 }
 
 
@@ -156,9 +143,9 @@ void Test::All_inner(void *locals) {
 			}
 		} catch (const Exception &e) {
 			std::cerr <<
-				format_typeid_name(typeid(*test).name()) <<
+				formatTypeidName(typeid(*test).name()) <<
 				"." << parts[part] << "(): " <<
-				format_typeid_name(typeid(e).name());
+				formatTypeidName(typeid(e).name());
 
 			if (e.what()) {
 				std::cerr << "{\"" << e.what() << "\"}";
