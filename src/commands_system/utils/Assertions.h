@@ -2,6 +2,7 @@
 
 #include "AssertionFailedException.h"
 #include <sstream>
+#include <string>
 
 
 template <typename T>
@@ -28,6 +29,24 @@ void assertNotEquals(const T &expected, const T &actual, const char *str) {
 		_assertThrowExceptionWithMessage(expected, actual, str);
 	}
 }
+
+
+
+
+void __inline assertEquals(const char expected[], const std::string &actual, const char *str) {
+	if (actual != expected) {
+		_assertThrowExceptionWithMessage(std::string(expected), actual, str);
+	}
+}
+
+void __inline assertNotEquals(const char expected[], const std::string &actual, const char *str) {
+	if (actual == expected) {
+		_assertThrowExceptionWithMessage(std::string(expected), actual, str);
+	}
+}
+
+
+
 
 void __inline assertTrue(bool condition, const char *str) {
 	if (!condition) {

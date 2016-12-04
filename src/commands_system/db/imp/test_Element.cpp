@@ -148,7 +148,7 @@ TEST(CanMoveFromString) {
 	  Element s = "string";
 	  Element e = std::move(s);
 		assertElementIsEmpty(s);
-		assertEquals((string)"string", (string)e);
+		assertEquals("string", (string)e);
 	}
 } TEST_END;
 
@@ -264,7 +264,7 @@ TEST_from(CanMovingAssignFromString, WithAllTypes) {
 			  Element s = "string";
 				all->at(i) = std::move(s);
 				assertElementIsEmpty(s);
-				assertEquals((string)"string", (string) all->at(i));
+				assertEquals("string", (string) all->at(i));
 		}}
 	}
 } TEST_END;

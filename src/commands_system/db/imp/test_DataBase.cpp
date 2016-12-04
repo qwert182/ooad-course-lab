@@ -66,9 +66,9 @@ TEST_from(CanSelectAllColumns, WithDB) {
 		assertEquals(5, t->getColCount());
 
 		assertEquals(1, (int)t->get(0,0));
-		assertEquals((string)"Соловьев Дмитрий", (string)t->get(0,1));
-		assertEquals((string)"solovev", (string)t->get(0,2));
-		assertEquals((string)"root", (string)t->get(0,3));
+		assertEquals("Соловьев Дмитрий", (string)t->get(0,1));
+		assertEquals("solovev", (string)t->get(0,2));
+		assertEquals("root", (string)t->get(0,3));
 		assertEquals(1, (int)t->get(0,4));
 
 		delete t;
@@ -88,8 +88,8 @@ TEST_from(CanSelectSomeColumnsUsingWhere, WithDB) {
 		assertEquals(1, t->getRowCount());
 		assertEquals(3, t->getColCount());
 
-		assertEquals((string)"Волков Денис", (string)t->get(0,0));
-		assertEquals((string)"volkov", (string)t->get(0,1));
+		assertEquals("Волков Денис", (string)t->get(0,0));
+		assertEquals("volkov", (string)t->get(0,1));
 		assertEquals(3, (int)t->get(0,2));
 
 		delete t;
@@ -109,8 +109,8 @@ TEST_from(CanSelectSomeColumnsNotUsingWhere, WithDB) {
 		assertEquals(4, t->getRowCount());
 		assertEquals(3, t->getColCount());
 
-		assertEquals((string)"Волков Денис", (string)t->get(3,0));
-		assertEquals((string)"volkov", (string)t->get(3,1));
+		assertEquals("Волков Денис", (string)t->get(3,0));
+		assertEquals("volkov", (string)t->get(3,1));
 		assertEquals(3, (int)t->get(3,2));
 
 		delete t;
