@@ -13,7 +13,7 @@ public:
 	virtual std::vector<class IMessage *> getInBox() const;
 	virtual std::vector<class IMessage *> getOutBox() const;
 
-	Mail(const IUser &user);
+	Mail(IUser *user);
 	virtual ~Mail() {}
 };
 

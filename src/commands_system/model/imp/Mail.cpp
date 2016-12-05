@@ -2,8 +2,8 @@
 
 #include "Mail.h"
 
-Mail::Mail(const IUser &user) {
-
+Mail::Mail(IUser *user) {
+	this->user = user;
 }
 
 void Mail::send(const class IMessage &message) const {

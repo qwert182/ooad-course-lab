@@ -3,7 +3,7 @@
 #include "Message.h"
 
 Message::Message(const int id) {
-
+	this->id = id;
 }
 
 Message::Message(const class IUser & sender, const std::string &s, const std::string &t) {

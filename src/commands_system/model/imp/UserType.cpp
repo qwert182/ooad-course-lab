@@ -3,7 +3,7 @@
 #include "UserType.h"
 
 UserType::UserType(int id) {
-
+	this->id = id;
 }
 
 UserType::UserType(const std::string &name, int type) {
