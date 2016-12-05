@@ -220,7 +220,8 @@ struct Request {
 	string
 		type,
 		path,
-		version;
+		version,
+		all;
 
 	void correct_path() {
 	  size_t ss;
@@ -263,6 +264,7 @@ struct Request {
 
 		if (path.find('/') != 0)
 			throw BadRequestException("HTTP request must contain absolute path");
+		all = line;
 	}
 };
 
@@ -382,6 +384,9 @@ void HTTPView::server() {
 			cout << "request\n";
 			cout << "\t\"" << request.type << "\"\n";
 			cout << "\t\"" << request.path << '\"' << endl;
+			cout << '{';
+			cout << request.all;
+			cout << '}' << endl;
 
 			if (request.type == "GET") {
 				auto found = path_to_file.find(request.path);
