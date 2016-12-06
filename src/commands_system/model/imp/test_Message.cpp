@@ -4,7 +4,7 @@
 #include "User.h"
 #include "Message.h"
 
-/*
+
 TEST_from(GetSenderTest, WithFullDB) {
 	void test() {
 		
@@ -16,7 +16,7 @@ TEST_from(GetSenderTest, WithFullDB) {
 		delete message;
 		delete result;
 	}
-} END_TEST;
+} TEST_END;
 
 TEST_from(GetReceiverTest, WithFullDB) {
 	void test() {
@@ -29,7 +29,7 @@ TEST_from(GetReceiverTest, WithFullDB) {
 		delete message;
 		delete result;
 	}
-} END_TEST;
+} TEST_END;
 
 TEST_from(GetSubjectTest, WithFullDB) {
 	void test() {
@@ -41,7 +41,7 @@ TEST_from(GetSubjectTest, WithFullDB) {
 				
 		delete message;
 	}
-} END_TEST;
+} TEST_END;
 
 TEST_from(GetTextTest, WithFullDB) {
 	void test() {
@@ -53,8 +53,8 @@ TEST_from(GetTextTest, WithFullDB) {
 				
 		delete message;
 	}
-} END_TEST;
-*/
+} TEST_END;
+
 
 #endif
 

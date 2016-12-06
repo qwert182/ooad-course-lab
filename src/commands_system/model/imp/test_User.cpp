@@ -15,7 +15,7 @@ TEST_from(CanCreateUserFromDatabase, WithFullDB) {
 		assertEquals("denwolf", user->getPassword());
 		delete user;
 	}
-} END_TEST;
+} TEST_END;
 
 
 

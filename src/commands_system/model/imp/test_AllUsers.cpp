@@ -21,7 +21,7 @@ TEST_from(GetAllUsersTest, WithFullDB) {
 		
 		delete allUsers;
 	}
-} END_TEST;
+} TEST_END;
 
 
 
