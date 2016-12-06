@@ -164,6 +164,9 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Attachment.cpp">
       <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Notes.cpp">
+      <Filter>src\model\imp\test_%2a</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">

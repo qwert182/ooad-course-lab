@@ -3,15 +3,16 @@
 #include <vector>
 #include "../INote.h"
 
-class Note: public INote
-{
-private: int id;
+class Note: public INote {
+private: 
+	int id;
 
-public: Note(int id);
-		Note( IUser const &writer, std::string const &text);
-		void add(IAttachment const &attachment);
-		
-		virtual class IUser *getWriter() const;
-		virtual std::string getText() const;
-		virtual std::vector<class IAttachment *> getAttachments() const;
+public:
+	Note(int id);
+	Note(const IUser &writer, const std::string &text);
+
+	virtual class IUser * getWriter() const;
+	virtual void add(const class IAttachment &attachment);	
+	virtual std::string getText() const;
+	virtual std::vector<class IAttachment *> getAttachments() const;
 };
