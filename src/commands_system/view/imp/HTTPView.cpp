@@ -8,6 +8,9 @@
 #include <map>
 #include <fstream>
 
+#include <sstream>
+#include <vector>
+#include <algorithm>
 
 #include <signal.h>
 
@@ -57,6 +60,10 @@ using std::string;
 using std::map;
 using std::make_pair;
 using std::ifstream;
+using std::istringstream;
+using std::vector;
+using std::find;
+using std::search;
 
 
 
@@ -136,84 +143,62 @@ HTTPView::~HTTPView() {
 
 
 
-/*
-struct Header {
-	string
-		type,
-		path,
-		version;
-	map<string, string>
-		content;
-};
-
-
 static
-Header parseHeader(const string &header) {
-  size_t r = header.find_first_of('\r');
-  size_t f = header.find_first_of(' ');
-  size_t l = header.find_last_of(' ', r);
-  Header h;
-	if (header.find("GET") != 0) {
-		throw WrongFormatException("parseHeader supports only GET");
-	}
-	h.type = "GET";
-	h.path = header.substr(f + 1, l - f - 1);
-	h.version = header.substr(l + 1, header.find_first_of('\r') - l - 1);
-
-
-	while ((f=r+2, r=header.find_first_of('\r',f), l=r-1, f < l)) {
-	  size_t col = header.find_first_of(':', f);
-	  string key = header.substr(f, col-f);
-		//if (header.at(col+1) == ' ') ++col;
-		col = header.find_first_not_of(" \t", col+1);
-	  string value = header.substr(col, l-col+1);
-		h.content.insert(make_pair(key, value));
-	}
-	return h;
-}
-*/
-
-/*static
-string getHeaderType(const string &header) {
-  size_t i = header.find(' ');
-	if (i == header.npos)
-		throw WrongFormatException("header type");
-	return header.substr(0, i);
-}
-
-static
-string getHeaderPath(const string &header) {
-  string t = getHeaderType(header);
-	if (htype == "GET") {
-		string path = header.substr();
-	} else {
-		throw WrongFormatException("getHeaderPath supports only GET");
-	}
-}*/
-
-
-
-
-
-
-static
-string recvToString(SOCKET a) {
+void recvToVector(SOCKET a, vector<char> &data) {
   int size;
   char buf[4];
 	
-	if ((size = recv(a, buf, sizeof buf - 1, 0)) < 0)
+	if ((size = recv(a, buf, sizeof buf, 0)) < 0)
 		throw SocketException("in recv");
 	if (size == 0)
 		throw SocketException("recv received 0 bytes");
 
-	buf[size] = '\0';
-
-	if (strlen(buf) != (size_t)size)
-		throw BadRequestException("recvToString");
-
-	return buf;
+	data.insert(data.end(), buf, &buf[size]);
 }
 
+
+
+
+
+string moveNewDataToString(const vector<char> &data, size_t last_size, const char *barrier) {
+  vector<char>::const_iterator
+	start = data.begin() + last_size,
+	start_search;
+  size_t barrier_len = strlen(barrier);
+  const char *barrier_end = barrier + barrier_len;
+
+	if (barrier_len + (data.size() - last_size) >= data.size())
+		start_search = data.begin();
+	else
+		start_search = data.end() - barrier_len - (data.size() - last_size);
+
+  vector<char>::const_iterator found_barrier = search(start_search, data.end(), barrier, barrier_end);
+  vector<char>::const_iterator found_nullchar = find(start_search, data.end(), '\0');
+
+	if (found_nullchar != data.end() && (found_barrier == data.end() || found_nullchar < found_barrier))
+		throw BadRequestException("HTTP header is not a string (contains '\\0')");
+
+	if (found_barrier != data.end())
+		found_barrier += barrier_len;
+
+	return string(start, found_barrier);
+}
+
+string recvToString(SOCKET a, vector<char> &data) {
+  size_t last_size = data.size();
+	recvToVector(a, data);
+	return moveNewDataToString(data, last_size, "\r\n\r\n");
+}
+
+
+void trim(string &s) {
+	static const char spaces[] = " \t";
+	size_t start = s.find_first_not_of(spaces);
+	s.erase(0, start);
+	size_t end = s.find_last_not_of(spaces);
+	if (end != string::npos)
+		s.erase(end + 1);
+}
 
 
 struct Request {
@@ -222,6 +207,41 @@ struct Request {
 		path,
 		version,
 		all;
+
+	map<string, string>
+		headers;
+
+	vector<char>
+		content;
+
+	void set_headers(const string &all) {
+	  size_t end_pos = all.find("\r\n\r\n");
+		if (end_pos == all.npos) return;
+
+	  size_t cur_pos;
+	  size_t next_pos = all.find("\r\n");
+
+		while (next_pos != end_pos) {
+			cur_pos = next_pos + 2;
+			next_pos = all.find("\r\n", cur_pos);
+			if (all[next_pos + 2] == ' ')
+				throw BadRequestException("LWS is not supported yet");
+
+		  string field_line = all.substr(cur_pos, next_pos - cur_pos);
+		  size_t col_pos = field_line.find(':');
+
+			if (col_pos == string::npos)
+				throw BadRequestException("message geader must contain \":\"");
+
+		  string field_name = field_line.substr(0, col_pos);
+			trim(field_name);
+
+		  string field_value = field_line.substr(col_pos + 1);
+			trim(field_value);
+
+			headers.insert(make_pair(field_name, field_value));
+		}
+	}
 
 	void correct_path() {
 	  size_t ss;
@@ -243,10 +263,11 @@ struct Request {
 		correct_path();
 	}
 
-	void set_10(const string &line, size_t sp_first, size_t sp_last) {
-		version = line.substr(sp_last + 1, line.find('\r') - sp_last - 1);
-		path = line.substr(sp_first + 1, sp_last - sp_first - 1);
+	void set_10(const string &all, size_t sp_first, size_t sp_last) {
+		version = all.substr(sp_last + 1, all.find('\r') - sp_last - 1);
+		path = all.substr(sp_first + 1, sp_last - sp_first - 1);
 		correct_path();
+		set_headers(all);
 	}
 
 	// HTTP 0.9
@@ -256,30 +277,30 @@ struct Request {
 		if (version == 9  &&  type != "GET")
 			throw BadRequestException("HTTP/0.9 request must be GET");
 
-		if (version == 10  &&  type != "GET")
-			throw NotImplementedException("supported only GET");
+		if (version == 10  &&  type != "GET"  &&  type != "POST")
+			throw NotImplementedException("supported only GET and POST");
 
 		if (version == 9) set_09(line, sp_first);
 		else if (version == 10) set_10(line, sp_first, sp_last);
+		this->all = line;
 
 		if (path.find('/') != 0)
 			throw BadRequestException("HTTP request must contain absolute path");
-		all = line;
 	}
 };
 
 
 static
 Request receiveRequest(SOCKET a) {
-  string s, all;
+  string all;
   size_t sp_first, sp_last;
+  vector<char> data;
 
 	for (;;) {
-		s = recvToString(a);
-		all += s;
+		all += recvToString(a, data);
 
 	  size_t r = all.find("\r\n");
-		if (r != s.npos) {
+		if (r != string::npos) {
 		  string line = all.substr(0, r);
 			sp_first = line.find_first_of(' ') ;
 			sp_last = line.find_last_of(' ');
@@ -294,34 +315,38 @@ Request receiveRequest(SOCKET a) {
 	}
 
   size_t end;
-	while ((end = all.find("\r\n\r\n")) == all.npos)
-		all += recvToString(a);
+	while ((end = all.find("\r\n\r\n")) == all.npos) {
+		all += recvToString(a, data);
+	}
 
-	if (end != all.length() - 4)
-		throw BadRequestException("receiveHTTPRequest");
+  Request request = Request(all, 10, sp_first, sp_last);
 
-	return Request(all, 10, sp_first, sp_last);
+	if (request.type == "GET") {
+		if (end != all.length() - 4)
+			throw BadRequestException("receiveHTTPRequest");
+	} else if (request.type == "POST") {
+	  auto _content_length = request.headers.find("Content-Length");
+		if (_content_length == request.headers.end()) throw BadRequestException("Content-Length not found");
+	  istringstream convert(_content_length->second);
+	  size_t content_length;
+		convert >> content_length;
+		if (convert.bad() || !convert.eof()) throw BadRequestException("bad Content-Length");
+
+
+	  vector<char> content(data.begin() + end + strlen("\r\n\r\n"), data.end());
+		while (content.size() < content_length) {
+			recvToVector(a, content);
+		}
+		if (content.size() != content_length)
+			throw BadRequestException("actual content length != Content-Length");
+
+		request.content = content;
+	} else {
+		throw NotImplementedException(request.type.c_str());
+	}
+
+	return request;
 }
-
-
-
-
-/*
-static
-Request receiveRequest(SOCKET a) {
-  Request r;
-  string request = receiveHTTPRequest(a);			// "GET / HTTP..."  ("GET /")
-  size_t sp = request.find_first_of(' ');			// sp = 3
-	if (sp == request.npos)
-		throw WrongFormatException("header");
-  size_t end = request.find_first_of(' ', sp+1);	// end = 5  (end = npos)
-	if (end != request.npos)
-		request.erase(end);							// "GET /"
-	r.path = request.substr(sp + 1);				// "/"
-	r.type = request.substr(0, sp);					// "GET"
-	return r;
-}
-*/
 
 
 
@@ -359,7 +384,7 @@ using std::endl;
 
 
 void HTTPView::server() {
-  SOCKET a;
+  SOCKET a = INVALID_SOCKET;
   union {sockaddr a; sockaddr_in i;} addr;
   int addr_len;
 
@@ -402,7 +427,7 @@ void HTTPView::server() {
 			}
 		} catch (const SocketException &e) {
 			if (has_control_c_pressed) { // global variable
-				closesocket(a);
+				closesocket(a); a = INVALID_SOCKET;
 				break;
 			}
 			cout << "\t" "SocketException: " << e.what() << endl;
@@ -416,8 +441,12 @@ void HTTPView::server() {
 		}
 
 		cout << "close\n";
-		if (closesocket(a))
-			throw SocketException("in closesocket");
+		{
+			int res = closesocket(a);
+			a = INVALID_SOCKET;
+			if (res)
+				throw SocketException("in closesocket");
+		}
 	}
 }
 
