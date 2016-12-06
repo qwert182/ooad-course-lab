@@ -38,6 +38,7 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_AllUsers.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Message.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_User.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_UserType.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\UserType.cpp" />
