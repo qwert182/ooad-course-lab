@@ -26,6 +26,8 @@ public:
 	virtual class IAllProjects * getProjects() const;
 
 	virtual void logOut();
+	int getId() const;
+	
 
 	User(int id);
 	User(const std::string &n, const std::string &l, const std::string &p);

@@ -85,3 +85,7 @@ void User::logOut() {
 
 }
 
+int User::getId() const {
+	return this->id;
+}
+

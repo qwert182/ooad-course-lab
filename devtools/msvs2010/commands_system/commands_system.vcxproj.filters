@@ -158,6 +158,9 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_UserType.cpp">
       <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Mail.cpp">
+      <Filter>src\model\imp\test_%2a</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">

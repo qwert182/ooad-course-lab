@@ -2,18 +2,19 @@
 
 #include "../IMail.h"
 #include "../IUser.h"
+#include "User.h"
 #include <vector>
 
 class Mail : public IMail {	
 private:
-	IUser *user;
+	User *user;
 
 public:
 	virtual void send(const class IMessage &message) const;
 	virtual std::vector<class IMessage *> getInBox() const;
 	virtual std::vector<class IMessage *> getOutBox() const;
 
-	Mail(IUser *user);
+	Mail(User *user);
 	virtual ~Mail() {}
 };
 
