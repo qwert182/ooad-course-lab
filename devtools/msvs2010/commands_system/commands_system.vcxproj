@@ -40,6 +40,7 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Mail.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Message.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Notes.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Project.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Task.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_User.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_UserType.cpp" />

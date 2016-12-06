@@ -1,14 +1,17 @@
 #pragma once
+
 #include "../IAllProjects.h"
-#include <vector>
 #include "../IUser.h"
+#include "User.h"
 
+#include <vector>
 
-class AllProjects : public IAllProjects
-{
-private: IUser *user;
+class AllProjects : public IAllProjects {
+private: 
+	IUser *user;
 
-public: AllProjects(const IUser &user);
-		virtual std::vector<class IProject *> getProjects() const;
-		virtual void add(const class IProject &project);
+public: 
+	AllProjects(User *user);
+	virtual std::vector<class IProject *> getProjects() const;
+	virtual void add(const class IProject &project);
 };
