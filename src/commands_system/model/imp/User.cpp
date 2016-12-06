@@ -3,6 +3,7 @@
 #include "User.h"
 #include "Mail.h"
 #include "UserType.h"
+#include "AllProjects.h"
 
 #include "../IMail.h"
 #include "../IAllProjects.h"
