@@ -35,6 +35,7 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_AllUsers.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_User.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp" />

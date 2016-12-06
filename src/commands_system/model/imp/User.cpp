@@ -37,7 +37,7 @@ string User::getName() const {
 }
 
 void User::setName(const string &name) {
-
+	
 }
 
 string User::getLogin() const {
@@ -84,3 +84,4 @@ IAllProjects * User::getProjects() const {
 void User::logOut() {
 
 }
+
