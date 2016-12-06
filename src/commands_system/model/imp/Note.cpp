@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Note.h"
-#include "dataBase.h"
 #include "User.h"
+#include "Attachment.h"
+#include "dataBase.h"
 
 using namespace std;
 
@@ -33,10 +34,34 @@ IUser * Note::getWriter() const {
 
 string Note::getText() const {
 	string text;
+
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("text").from("notes").where("id", this->id)
+	);
+
+	text = t->get(0, 0);
+
 	return text;
 }
 
 vector<IAttachment*> Note::getAttachments() const {
 	vector<IAttachment *> result;
+
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("attachments").where("note_id", this->id)
+	);
+
+	int numOfAttach = t->getRowCount();
+	int idAttach;
+	IAttachment *attach;
+
+	result.reserve(numOfAttach);
+
+	for(int i = 0; i < numOfAttach; i++) {
+		idAttach = t->get(i, 0);
+		attach = new Attachment(idAttach);
+		result.push_back(attach);
+	}
+
 	return result;
 }
