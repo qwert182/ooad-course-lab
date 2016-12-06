@@ -8,7 +8,7 @@
 
 class AllProjects : public IAllProjects {
 private: 
-	IUser *user;
+	User *user;
 
 public: 
 	AllProjects(User *user);

@@ -122,9 +122,6 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp">
       <Filter>src\model\imp\%2a.cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\commands_system\model\imp\CompileCheck.cpp">
-      <Filter>src\model\imp\%2a.cpp</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Mail.cpp">
       <Filter>src\model\imp\%2a.cpp</Filter>
     </ClCompile>
@@ -171,6 +168,9 @@
       <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Project.cpp">
+      <Filter>src\model\imp\test_%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_AllProjects.cpp">
       <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
   </ItemGroup>

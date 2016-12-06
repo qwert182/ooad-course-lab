@@ -29,12 +29,12 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\AllUsers.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Attachment.cpp" />
-    <ClCompile Include="..\..\..\src\commands_system\model\imp\CompileCheck.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Mail.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Message.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Note.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Project.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\Task.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\model\imp\test_AllProjects.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_AllUsers.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Attachment.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_Mail.cpp" />

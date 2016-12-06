@@ -26,7 +26,7 @@ class IUser * Message::getSender() const {
 }
 
 class IUser * Message::getReceiver() const {
-	IUser * result;
+	IUser *result;
 
 	ptrTable t = dataBase->perform(
 		SELECT_ONLY("receiver_id").from("messages").where("id", this->id)
