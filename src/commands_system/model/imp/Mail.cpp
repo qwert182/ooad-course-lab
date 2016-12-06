@@ -4,7 +4,7 @@
 #include "Message.h"
 #include "dataBase.h"
 
-Mail::Mail(User *user) {
+Mail::Mail(const User *user) {
 	this->user = user;
 }
 

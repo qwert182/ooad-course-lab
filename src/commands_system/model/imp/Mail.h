@@ -7,14 +7,14 @@
 
 class Mail : public IMail {	
 private:
-	User *user;
+	const User *user;
 
 public:
 	virtual void send(const class IMessage &message) const;
 	virtual std::vector<class IMessage *> getInBox() const;
 	virtual std::vector<class IMessage *> getOutBox() const;
 
-	Mail(User *user);
+	Mail(const User *user);
 	virtual ~Mail() {}
 };
 
