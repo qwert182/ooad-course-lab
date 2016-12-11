@@ -10,6 +10,7 @@
 
 #include "view/imp/HTTPView.h"
 #include <iostream>
+#include "utils/Exception.h"
 
 using std::cout;
 using std::endl;

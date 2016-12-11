@@ -16,7 +16,11 @@
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\formatTypeidName.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\trim.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\HTTPView.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\recv.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\request.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\send.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\test_HTTPView.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -27,7 +31,17 @@
     <ClInclude Include="..\..\..\src\commands_system\utils\InvalidParameterException.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\strnew.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h" />
+    <ClInclude Include="..\..\..\src\commands_system\utils\trim.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\BadRequestException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPView.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\NotFoundException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\NotImplementedException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\recv.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\request.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\send.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\SocketException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\StatusHTTPException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\IView.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

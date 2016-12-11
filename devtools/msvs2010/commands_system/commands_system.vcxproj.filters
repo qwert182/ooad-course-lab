@@ -34,6 +34,9 @@
     <Filter Include="src\view\imp">
       <UniqueIdentifier>{69c3fad2-1db3-4bd3-b835-980840d3fb7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\view\imp\%2aException.h">
+      <UniqueIdentifier>{5c69d4bf-53f0-432d-bdb0-9713831efe7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\commands_system\main.cpp">
@@ -56,6 +59,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\formatTypeidName.cpp">
       <Filter>src\utils\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\request.cpp">
+      <Filter>src\view\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\utils\imp\trim.cpp">
+      <Filter>src\utils\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\recv.cpp">
+      <Filter>src\view\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\send.cpp">
+      <Filter>src\view\imp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +100,36 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\utils\formatTypeidName.h">
       <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\request.h">
+      <Filter>src\view\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\BadRequestException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\NotFoundException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\NotImplementedException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\StatusHTTPException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\SocketException.h">
+      <Filter>src\view\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\utils\trim.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\recv.h">
+      <Filter>src\view\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\send.h">
+      <Filter>src\view\imp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

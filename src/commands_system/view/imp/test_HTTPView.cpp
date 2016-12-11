@@ -3,6 +3,7 @@
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
 
+#include "HTTPException.h"
 
 
 
