@@ -3,6 +3,7 @@
 #include "../Select.h"
 #include "../Insert.h"
 #include "../Delete.h"
+#include "../Update.h"
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
 #include "DataBase.h"
@@ -207,6 +208,44 @@ TEST_exception_from(CannotInsertPartial, DataBaseException, WithDB) {
 		Insert insert = Insert().into("test", columns).values(values);
 
 		assertEquals((const ITable *)nullptr, db->perform(insert));
+	}
+} TEST_END;
+
+
+
+
+typedef pair<string, Element> SET_TO;
+
+TEST_from(CanUpdate, WithDB) {
+	void test() {
+	  const SET_TO set_to[] = {
+		  SET_TO("login", "new login"),
+		  SET_TO("password", "12345"),
+		  SET_TO("type_id", 2)
+	  };
+	  const vector<SET_TO> a(set_to, set_to + 3);
+	  Update update = Update("test").set(a).where("id", 1);
+
+		assertEquals((const ITable *)nullptr, db->perform(update));
+
+
+
+	  static const char * const _cols[5] = {"id", "name", "login", "password", "type_id"};
+	  vector <string> all_columns(_cols, _cols + 5);
+	  Select select = Select(all_columns).from("test").where("id", 1);
+
+	  const ITable *t = db->perform(select);
+
+		assertEquals(1, t->getRowCount());
+		assertEquals(5, t->getColCount());
+
+		assertEquals(1, (int)t->get(0,0));
+		assertEquals("—оловьев ƒмитрий", (string)t->get(0,1));
+		assertEquals("new login", (string)t->get(0,2));
+		assertEquals("12345", (string)t->get(0,3));
+		assertEquals(2, (int)t->get(0,4));
+
+		delete t;
 	}
 } TEST_END;
 

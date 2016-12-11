@@ -157,7 +157,10 @@ void DataBase::close() {
 
 
 fstream & DataBase::getTableFile(const string &name_of_table) {
-	return *files.at(name_of_table);
+	auto found = files.find(name_of_table);
+	if (found == files.end())
+		throw DataBaseException("table \"" + name_of_table + "\" not found");
+	return *found->second;
 }
 
 

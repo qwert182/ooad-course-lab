@@ -4,7 +4,6 @@
 #include "writer.h"
 #include "../DataBaseException.h"
 #include <algorithm>
-#include <stdlib.h>
 
 using namespace std;
 

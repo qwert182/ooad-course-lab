@@ -149,6 +149,9 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp">
       <Filter>src\model\imp\test_%2a</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Update.cpp">
+      <Filter>src\db\imp\%2a.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -290,6 +293,9 @@
       <Filter>src\model\imp\test_%2a</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\instance.h">
+      <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\db\Update.h">
       <Filter>src\db</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,6 +3,7 @@
 #include "../Select.h"
 #include "../Insert.h"
 #include "../Delete.h"
+#include "../Update.h"
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
 
@@ -32,6 +33,15 @@ TEST(CanCreateDelete) {
 		assertTrue(q.filled());
 	}
 }TEST_END;
+
+
+TEST(CanCreateUpdate) {
+	void test() {
+	  vector<pair<string, Element> > a;
+	  Update q = Update("table").set(a).where("id", 123);
+		assertTrue(q.filled());
+	}
+} TEST_END;
 
 
 #endif

@@ -24,6 +24,7 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_queries.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_parser.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\test_Table.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\db\imp\Update.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\db\imp\writer.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\main.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\AllProjects.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="..\..\..\src\commands_system\db\IQuery.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\ITable.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Select.h" />
+    <ClInclude Include="..\..\..\src\commands_system\db\Update.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\WrongTypeException.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IAllProjects.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IAllUsers.h" />
