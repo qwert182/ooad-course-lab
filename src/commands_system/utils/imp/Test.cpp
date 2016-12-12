@@ -67,11 +67,11 @@ static void check_at_end(size_t tests_ok) {
 
 	if (tests_ok != size) {
 		std::cerr << tests_ok << "/" << size << " tests ok\n";
+		_CrtSetDbgFlag((_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF)  &  ~_CRTDBG_LEAK_CHECK_DF);
 		{
 		  string line;
 			std::getline(std::cin, line);
 		}
-		_CrtSetDbgFlag((_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF)  &  ~_CRTDBG_LEAK_CHECK_DF);
 		exit(1);
 	}
 

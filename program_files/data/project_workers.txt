@@ -1,0 +1,6 @@
+int		int
+user_id		project_id
+users.txt	projects.txt
+2		1
+4		1
+3		1

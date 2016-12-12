@@ -1,0 +1,5 @@
+int	int		string		string		string
+id	project_id	name		theme		description
+key	projects.txt	-		-		-
+1	1		DB		task		create\x20database
+2	1		methodology	seminar	choose\x20architecture

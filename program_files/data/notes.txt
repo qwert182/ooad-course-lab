@@ -1,0 +1,6 @@
+int	int		int		string
+id	task_id		writer_id	text
+key	tasks.txt	users.txt	-
+1	1		1		unknown\x20exception
+2	1		2		need\x20more\x20info
+3	1		2		ATTACHMENT

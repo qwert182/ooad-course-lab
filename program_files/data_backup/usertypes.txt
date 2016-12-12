@@ -1,0 +1,6 @@
+int	string		int
+id	name		type
+key	-			-
+1	admin		0
+2	user		2
+3	manager		1
