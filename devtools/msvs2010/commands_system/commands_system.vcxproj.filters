@@ -152,6 +152,12 @@
     <ClCompile Include="..\..\..\src\commands_system\db\imp\Update.cpp">
       <Filter>src\db\imp\%2a.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AllSessions.cpp">
+      <Filter>src\presenter\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\Session.cpp">
+      <Filter>src\presenter\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -297,6 +303,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\db\Update.h">
       <Filter>src\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\IAllSessions.h">
+      <Filter>src\presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AllSessions.h">
+      <Filter>src\presenter\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\Session.h">
+      <Filter>src\presenter\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\ISession.h">
+      <Filter>src\presenter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

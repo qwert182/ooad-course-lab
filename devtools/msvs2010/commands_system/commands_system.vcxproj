@@ -40,6 +40,8 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\test_WithFullDB.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\User.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\model\imp\UserType.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AllSessions.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\Session.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Exception.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\strnew.c" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
@@ -87,6 +89,10 @@
     <ClInclude Include="..\..\..\src\commands_system\model\IUser.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IUserType.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\RegForm.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\IAllSessions.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AllSessions.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\Session.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\ISession.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\AssertionFailedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Assertions.h" />
     <ClInclude Include="..\..\..\src\commands_system\utils\Exception.h" />
