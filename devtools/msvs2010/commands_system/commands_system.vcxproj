@@ -18,9 +18,12 @@
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\Test.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\utils\imp\trim.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\HTTPView.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\IResource.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\LoginActionResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\recv.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\request.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\send.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\StaticFileResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\view\imp\test_HTTPView.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -35,12 +38,15 @@
     <ClInclude Include="..\..\..\src\commands_system\view\imp\BadRequestException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\HTTPView.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\IResource.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\LoginActionResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\NotFoundException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\NotImplementedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\recv.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\request.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\send.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\SocketException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\StaticFileResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\imp\StatusHTTPException.h" />
     <ClInclude Include="..\..\..\src\commands_system\view\IView.h" />
   </ItemGroup>

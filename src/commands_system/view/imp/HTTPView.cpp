@@ -3,7 +3,6 @@
 
 #include <signal.h>
 
-
 #include "HTTPException.h"
 #include "SocketException.h"
 #include "StatusHTTPException.h"
@@ -17,21 +16,15 @@
 
 
 
-
-//using std::string;
-
+#include "IResource.h"
 
 
 
-/*static
-map<string, string> init_from_array() {
-  map<string, string> m;
-	m.insert(make_pair("/", "html/index.htm"));
-	m.insert(make_pair("/main.css", "html/main.css"));
-	return m;
-}*/
+#include <iostream>
 
 
+using std::cout;
+using std::endl;
 
 
 
@@ -52,9 +45,7 @@ void on_control_c_pressed(int) { // shortly double hit ctrl^c causes abort() mes
 
 
 
-
-
-HTTPView::HTTPView() /*: path_to_file(init_from_array())*/ {
+HTTPView::HTTPView() {
   WSADATA wd;
   struct servent const *http;
   union {sockaddr a; sockaddr_in i;} addr;
@@ -80,6 +71,8 @@ HTTPView::HTTPView() /*: path_to_file(init_from_array())*/ {
 
 	if (bind(s, &addr.a, sizeof addr.a))
 		throw SocketException("in bind");
+
+	IResource::init();
 }
 
 
@@ -94,34 +87,13 @@ HTTPView::~HTTPView() {
 
 	if (WSACleanup())
 		throw SocketException("in WSACleanup");
+
+	IResource::dispose();
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#include <iostream>
-
-using std::cout;
-using std::endl;
 
 
 void HTTPView::server() {
@@ -154,24 +126,9 @@ void HTTPView::server() {
 			cout << request.all;
 			cout << '}' << endl;
 
-			/*if (request.type == "GET") {
-				auto found = path_to_file.find(request.path);
-				if (found != path_to_file.end()) {
-					send_response(a, 200);
-					send_file(a, found->second);
-					cout << "sended\n";
-					cout << "\t\"" << found->second << '\"' << endl;
-				} else {
-					send_response(a, 404);
-					cout << "\t" "resource not found" << endl;
-				}
-			} else if (request.type == "POST") {
-				if (request.path == "/login") {
 
-				} else
-					throw NotFoundException("unknown request path");
-			} else
-				throw NotImplementedException("unknown request type");*/
+			IResource::perform(request, a);
+
 		} catch (const SocketException &e) {
 			if (has_control_c_pressed) { // global variable
 				closesocket(a); a = INVALID_SOCKET;
@@ -184,7 +141,6 @@ void HTTPView::server() {
 			cout << "\t" "what: " << e.what() << endl;
 
 			send_response(a, e.getStatus());
-			cout << "sended response" << endl;
 		}
 
 		cout << "close\n";
@@ -196,8 +152,4 @@ void HTTPView::server() {
 		}
 	}
 }
-
-
-
-
 

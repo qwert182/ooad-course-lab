@@ -37,6 +37,9 @@
     <Filter Include="src\view\imp\%2aException.h">
       <UniqueIdentifier>{5c69d4bf-53f0-432d-bdb0-9713831efe7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\view\imp\%2aResource.%2a">
+      <UniqueIdentifier>{52de8150-cb43-481d-98ec-1a9e0456e082}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\commands_system\main.cpp">
@@ -71,6 +74,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\commands_system\view\imp\send.cpp">
       <Filter>src\view\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\StaticFileResource.cpp">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\IResource.cpp">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\view\imp\LoginActionResource.cpp">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\view\imp\send.h">
       <Filter>src\view\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\IResource.h">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\StaticFileResource.h">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\view\imp\LoginActionResource.h">
+      <Filter>src\view\imp\%2aResource.%2a</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
