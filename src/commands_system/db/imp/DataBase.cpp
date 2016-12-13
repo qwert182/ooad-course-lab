@@ -166,6 +166,9 @@ fstream & DataBase::getTableFile(const string &name_of_table) {
 
 
 const ITable * DataBase::perform(const IQuery &query) {
+	if (!opened)
+		throw DataBaseException("is not opened");
+
 	if (!query.filled())
 		throw DataBaseException("query is not filled");
 

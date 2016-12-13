@@ -1,4 +1,4 @@
-#include "HTTPView.h"
+#include "HTTPServer.h"
 
 
 #include <signal.h>
@@ -7,8 +7,8 @@
 #include "SocketException.h"
 #include "StatusHTTPException.h"
 
-#include "request.h"
-#include "send.h"
+#include "utils/request.h"
+#include "utils/send.h"
 
 
 #include <type_traits>
@@ -17,7 +17,6 @@
 
 
 #include "IResource.h"
-
 
 
 #include <iostream>
@@ -45,7 +44,7 @@ void on_control_c_pressed(int) { // shortly double hit ctrl^c causes abort() mes
 
 
 
-HTTPView::HTTPView() {
+HTTPServer::HTTPServer() {
   WSADATA wd;
   struct servent const *http;
   union {sockaddr a; sockaddr_in i;} addr;
@@ -78,8 +77,10 @@ HTTPView::HTTPView() {
 
 
 
-HTTPView::~HTTPView() {
+HTTPServer::~HTTPServer() {
 	signal(SIGINT, SIG_DFL);
+
+	IResource::dispose();
 
 	if (closesocket(s))
 		if (!has_control_c_pressed)
@@ -87,16 +88,19 @@ HTTPView::~HTTPView() {
 
 	if (WSACleanup())
 		throw SocketException("in WSACleanup");
-
-	IResource::dispose();
 }
 
 
 
 
 
+void HTTPServer::present() {
+	server();
+}
 
-void HTTPView::server() {
+
+
+void HTTPServer::server() {
   SOCKET a = INVALID_SOCKET;
   union {sockaddr a; sockaddr_in i;} addr;
   int addr_len;
@@ -127,7 +131,7 @@ void HTTPView::server() {
 			cout << '}' << endl;
 
 
-			IResource::perform(request, a);
+			send_data(a, IResource::perform(request));
 
 		} catch (const SocketException &e) {
 			if (has_control_c_pressed) { // global variable
@@ -140,7 +144,7 @@ void HTTPView::server() {
 			cout << "\t" "status: " << e.getStatus() << '\n';
 			cout << "\t" "what: " << e.what() << endl;
 
-			send_response(a, e.getStatus());
+			send_status(a, e.getStatus());
 		}
 
 		cout << "close\n";

@@ -2,7 +2,8 @@
 
 #include "StaticFileResource.h"
 #include "LoginActionResource.h"
-#include "request.h"
+#include "StaticHeaderResource.h"
+#include "utils/request.h"
 
 #include <string>
 #include <unordered_map>
@@ -10,25 +11,31 @@
 #include "NotFoundException.h"
 #include "NotImplementedException.h"
 
+
+
+
 using std::string;
 using std::unordered_map;
 using std::make_pair;
+using std::vector;
+
+
+
+
 
 typedef unordered_map<string, IResource*> r_map;
 static r_map *resources;
 
 
-void IResource::notImplemented() {
-	throw NotImplementedException("IResource::notImplemented()");
-}
-
-
 void IResource::init() {
 	r_map *all = resources = new r_map();
-	all->insert(make_pair("/", new StaticFileResource("html/login.htm")));
-	all->insert(make_pair("/main.css", new StaticFileResource("html/main.css")));
+	all->insert(make_pair("/", new StaticHeaderResource(302, "Location: /login\r\n")));
 	all->insert(make_pair("/login", new LoginActionResource()));
+	all->insert(make_pair("/login.css", new StaticFileResource("html/login.css")));
+	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));
 }
+
+
 
 
 void IResource::dispose() {
@@ -44,7 +51,23 @@ void IResource::dispose() {
 
 
 
-void IResource::perform(const Request &request, SOCKET a) {
+vector<char> IResource::notImplemented() {
+	throw NotImplementedException("IResource::notImplemented()");
+}
+
+
+
+//static
+//ISession * getSessionBy(const Request &request) {
+	//auto &h = request.headers;
+	//h.find("");
+//	return allSessions->createSession();
+//}
+
+
+
+
+std::vector<char> IResource::perform(const Request &request) {
   r_map *all = resources;
   r_map::const_iterator found = all->find(request.path);
 
@@ -52,13 +75,13 @@ void IResource::perform(const Request &request, SOCKET a) {
 		throw NotFoundException(request.path);
 
   IResource *res = found->second;
+  //ISession *session = getSessionBy(request);
 
 	if (request.type == "GET")
-		res->get(a);
+		return res->get();
 	else if (request.type == "POST")
-		res->post(a, request.content);
+		return res->post(request.content);
 	else
 		throw NotImplementedException("unknown request type");
-
 }
 

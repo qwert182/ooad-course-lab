@@ -4,13 +4,17 @@
 #include <windows.h>
 #include <type_traits>
 
+#include <iostream>
 
 #include "utils/Test.h"
 #include "utils/formatTypeidName.h"
-
-#include "view/imp/HTTPView.h"
-#include <iostream>
 #include "utils/Exception.h"
+
+#include "presenter/imp/HTTPServer.h"
+
+#include "db/imp/DataBase.h"
+#include "db/instance.h"
+
 
 using std::cout;
 using std::endl;
@@ -27,19 +31,31 @@ int main() {
 	#endif
 
 
+
+	DataBase::CreateInstance();
+	dataBase->open();
+
+
+
 	cout << "ctrl+c to stop" << endl;
 	{
-	  HTTPView* view = nullptr;
+	  IPresenter* presenter = nullptr;
 		try {
-			view = new HTTPView();
-			view->server();
+			presenter = new HTTPServer();
+			presenter->present();
 		} catch (const Exception &e) {
 			cout << "Exception: " << formatTypeidName(typeid(e).name()) << '\n';
 			cout << '\t' << e.what() << '\n';
 		}
-		delete view;
+		delete presenter;
 	}
 	cout << "stopped" << endl;
+
+
+
+	delete dataBase;
+
+
 
 	return 0;
 }

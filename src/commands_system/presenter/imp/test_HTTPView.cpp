@@ -1,4 +1,4 @@
-#include "HTTPView.h"
+#include "HTTPServer.h"
 
 #include "../../utils/Test.h"
 #include "../../utils/Assertions.h"
@@ -9,26 +9,26 @@
 
 TEST(CanCreate) {
 	void test() {
-		HTTPView();
+		HTTPServer();
 	}
 } TEST_END;
 
-TEST(CanCreateAsIView) {
+TEST(CanCreateAsIPresenter) {
 	void test() {
-		IView *view = new HTTPView();
-		delete view;
+		IPresenter *p = new HTTPServer();
+		delete p;
 	}
 } TEST_END;
 
 TEST_exception(CannotCreateTwice, HTTPException) {
-  IView *first_view;
+  IPresenter *first;
 	void before() {
-		first_view = new HTTPView();
+		first = new HTTPServer();
 	}
 	void after() {
-		delete first_view;
+		delete first;
 	}
 	void test() {
-		new HTTPView();
+		new HTTPServer();
 	}
 } TEST_END;

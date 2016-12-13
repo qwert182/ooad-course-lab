@@ -12,6 +12,7 @@ void WithFullDB::before() {
 
 void WithFullDB::after() {
 	delete dataBase;
+	dataBase = nullptr;
 }
 
 #endif

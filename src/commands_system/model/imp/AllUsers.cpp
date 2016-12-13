@@ -3,6 +3,10 @@
 #include "AllUsers.h"
 #include "dataBase.h"
 #include "User.h"
+#include "../AccessDeniedException.h"
+#include <string>
+
+using std::string;
 
 AllUsers::AllUsers() {
 
@@ -39,8 +43,18 @@ void AllUsers::remove(const class IUser &user) {
 }
 
 class IUser * AllUsers::logIn(const std::string &login, const std::string &password) {
-	IUser *result;
-	return result;
+	static const char * const id_password[] = {"id", "password"};
+	ptrTable t = dataBase->perform(
+		SELECT(id_password).from("users").where("login", login)
+	);
+	if (t->getRowCount() != 1)
+		throw AccessDeniedException("such user/login not found");
+	int id = t->get(0, 0);
+	string db_password = t->get(0, 1);
+	if (password != db_password)
+		throw AccessDeniedException("wrong password");
+
+	return new User(id);
 }
 
 class IUser * AllUsers::signUp(const class RegForm &regForm) {

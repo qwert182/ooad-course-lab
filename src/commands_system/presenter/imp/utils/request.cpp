@@ -2,9 +2,9 @@
 
 #include <sstream>
 
-#include "BadRequestException.h"
-#include "NotImplementedException.h"
-#include "../../utils/trim.h"
+#include "../BadRequestException.h"
+#include "../NotImplementedException.h"
+#include "../../../utils/trim.h"
 #include "recv.h"
 
 

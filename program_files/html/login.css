@@ -31,3 +31,19 @@ input[type="submit"] {
 	left: 50%;
 }
 
+.hidden_errmsg {
+	visibility: hidden;
+}
+
+.errmsg {
+	color: red;
+}
+
+.hidden_sub_errmsg {
+	display: none;
+}
+
+.sub_errmsg {
+
+}
+
