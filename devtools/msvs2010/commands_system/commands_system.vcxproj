@@ -74,6 +74,7 @@
     <ClInclude Include="..\..\..\src\commands_system\db\Select.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\Update.h" />
     <ClInclude Include="..\..\..\src\commands_system\db\WrongTypeException.h" />
+    <ClInclude Include="..\..\..\src\commands_system\model\AccessDeniedException.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IAllProjects.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IAllUsers.h" />
     <ClInclude Include="..\..\..\src\commands_system\model\IAttachment.h" />

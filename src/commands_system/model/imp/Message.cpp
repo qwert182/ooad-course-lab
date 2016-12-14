@@ -8,8 +8,18 @@ Message::Message(const int id) {
 	this->id = id;
 }
 
-Message::Message(const class IUser & sender, const std::string &s, const std::string &t) {
+Message::Message(const class IUser * sender, const class IUser * receiver, const std::string &s, const std::string &t) {
+	int senderId = ((User *)sender)->getId();
+	int receiverId = ((User *)receiver)->getId();
 
+	static const char * const cols[] = {"sender_id", "receiver_id", "subject", "text"};
+	const Element vals[] = {senderId, receiverId, s, t};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("messages", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 class IUser * Message::getSender() const {

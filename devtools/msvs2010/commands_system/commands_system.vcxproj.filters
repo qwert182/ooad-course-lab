@@ -340,5 +340,8 @@
     <ClInclude Include="..\..\..\src\commands_system\presenter\ISession.h">
       <Filter>src\presenter</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\model\AccessDeniedException.h">
+      <Filter>src\model</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
