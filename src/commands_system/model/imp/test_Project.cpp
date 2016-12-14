@@ -86,5 +86,28 @@ TEST_from(GetTasks_IsEmpty, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(SetNameTest, WithFullDB) {
+	void test() {
+		
+		IProject *project = new Project(1);
+		project->setName("Lab");
+		
+		assertEquals("Lab", project->getName());
+				
+		delete project;
+	}
+} TEST_END;
+
+TEST_from(SetDescriptionTest, WithFullDB) {
+	void test() {		
+		IProject *project = new Project(1);
+		project->setDescription("Making Lab");
+
+		assertEquals("Making Lab", project->getDescription());
+				
+		delete project;
+	}
+} TEST_END;
+
 #endif
 

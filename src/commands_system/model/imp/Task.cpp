@@ -27,7 +27,9 @@ string Task::getName() const {
 }
 
 void Task::setName(const std::string &name) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 string Task::getTheme() const {
@@ -43,7 +45,9 @@ string Task::getTheme() const {
 }
 
 void Task::setTheme(const std::string &theme) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("theme", theme).where("id", id)
+	);
 }
 
 string Task::getDescription() const {
@@ -59,7 +63,9 @@ string Task::getDescription() const {
 }
 
 void Task::setDescription(const std::string &description) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("description", description).where("id", id)
+	);
 }
 
 vector<class INote *> Task::getNotes() const {

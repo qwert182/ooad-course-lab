@@ -13,6 +13,8 @@ public:
 	virtual bool isManager() const;
 	virtual bool isAdmin() const;
 
+	int getId() const;
+
 	UserType(int id);
 	UserType(const std::string &name, int type);
 	virtual ~UserType() {}

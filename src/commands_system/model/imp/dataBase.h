@@ -39,6 +39,9 @@ public:
 #define SELECT(columns) (Select(std::vector<std::string>((columns), &(columns)[sizeof(columns)/sizeof(*(columns))])))
 #define SELECT_ONLY(one_column) (Select(std::vector<std::string>(1, one_column)))
 
+#include "../../db/Update.h"
+#define SET_ONLY(column, value) set(std::vector<std::pair<std::string, Element> >(1, std::pair<std::string, Element>((column), (value))))
+
 
 
 

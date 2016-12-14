@@ -52,6 +52,54 @@ TEST_from(GetUserTypeTest_2, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(SetUserNameTest, WithFullDB) {
+	void test() {
+		IUser *user = new User(1);
+		user->setName("DD");
+		
+		assertEquals("DD", user->getName());
+		
+		delete user;
+	}
+} TEST_END;
+
+TEST_from(SetUserLoginTest, WithFullDB) {
+	void test() {
+		IUser *user = new User(1);
+		user->setLogin("dd");
+		
+		assertEquals("dd", user->getLogin());
+		
+		delete user;
+	}
+} TEST_END;
+
+TEST_from(SetUserPasswordTest, WithFullDB) {
+	void test() {
+		IUser *user = new User(1);
+		user->setPassword("111");
+		
+		assertEquals("111", user->getPassword());
+		
+		delete user;
+	}
+} TEST_END;
+
+TEST_from(SetUserTypeTest, WithFullDB) {
+	void test() {
+		IUser *user = new User(1);
+		IUserType *type = new UserType(1);
+		user->setType(*type);
+		IUserType *resType = user->getType();
+		
+		assertEquals("admin", resType->getName());
+		
+		delete resType;
+		delete type;
+		delete user;
+	}
+} TEST_END;
+
 
 #endif
 

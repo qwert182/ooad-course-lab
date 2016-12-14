@@ -28,7 +28,9 @@ string Project::getName() const {
 }
 
 void Project::setName(const std::string &name){
-
+	dataBase->perform(
+		Update("projects").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 string Project::getDescription() const {
@@ -44,7 +46,9 @@ string Project::getDescription() const {
 }
 
 void Project::setDescription(const std::string &description) {
-
+	dataBase->perform(
+		Update("projects").SET_ONLY("description", description).where("id", id)
+	);
 }
 
 vector<class IUser *> Project::getWorkers() const {

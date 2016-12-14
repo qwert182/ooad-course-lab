@@ -128,5 +128,38 @@ TEST_from(GetAttachmentsTest_IsEmpty, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(SetNameTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setName("Pass Exam");
+		
+		assertEquals("Pass Exam", task->getName());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(SetThemeTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setTheme("We Must Pass Exam");
+		
+		assertEquals("We Must Pass Exam", task->getTheme());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(SetDescriptionTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setDescription("We Must Pass Exam on the next week");
+		
+		assertEquals("We Must Pass Exam on the next week", task->getDescription());
+				
+		delete task;
+	}
+} TEST_END;
+
 #endif
 

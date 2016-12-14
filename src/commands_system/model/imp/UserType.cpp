@@ -24,7 +24,9 @@ std::string UserType::getName() const {
 }
 
 void UserType::setName(const std::string &name) {
-
+	dataBase->perform(
+		Update("usertypes").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 bool UserType::isManager() const {
@@ -55,5 +57,9 @@ bool UserType::isAdmin() const {
 	}	
 
 	return result;
+}
+
+int UserType::getId() const {
+	return this->id;
 }
 
