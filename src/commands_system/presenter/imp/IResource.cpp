@@ -12,6 +12,9 @@
 #include "NotImplementedException.h"
 
 
+#include "Session.h"
+#include "SessionException.h"
+
 
 
 using std::string;
@@ -76,6 +79,14 @@ std::vector<char> IResource::perform(const Request &request) {
 
   IResource *res = found->second;
   //ISession *session = getSessionBy(request);
+
+  auto cookie_found = request.headers.find("Cookie");
+	if (cookie_found != request.headers.end()) {
+	  Session *session;
+		try {
+			session = Session::GetExisting(cookie_found->second);
+		} catch (const SessionException
+	}
 
 	if (request.type == "GET")
 		return res->get();

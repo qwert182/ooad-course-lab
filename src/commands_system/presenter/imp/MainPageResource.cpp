@@ -12,7 +12,7 @@ MainPageResource::MainPageResource() {
 
 vector<char> MainPageResource::get() const {
   vector<char> result = getStatusBy(302);
-	append(result, "Location: /login/!!!!\r\n");
+	append(result, "Location: /login\r\n");
 	appendCRLF(result);
 	return result;
 }

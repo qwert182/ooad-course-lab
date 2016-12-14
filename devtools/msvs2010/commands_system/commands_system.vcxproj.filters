@@ -236,6 +236,9 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\MainPageResource.cpp">
       <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\Session.cpp">
+      <Filter>src\presenter\imp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -456,6 +459,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\MainPageResource.h">
       <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\Session.h">
+      <Filter>src\presenter\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\utils\parse_cookie.h">
+      <Filter>src\presenter\imp\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\SessionException.h">
+      <Filter>src\presenter\imp\%2aException.h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
