@@ -109,5 +109,44 @@ TEST_from(SetDescriptionTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(ProjectConstructor, WithFullDB) {
+	void test() {		
+		IProject *project = new Project("Making Lab", "You must make lab");		
+		
+		assertEquals("Making Lab", project->getName());
+		assertEquals("You must make lab", project->getDescription());
+				
+		delete project;
+	}
+} TEST_END;
+
+TEST_from(AddWorkerToProject, WithFullDB) {
+	void test() {		
+		IProject *project = new Project(1);		
+		IUser *user = new User(1);
+
+		project->add(*user);
+
+		std::vector<class IUser *> workers = project->getWorkers();
+		IUser *curUser;
+		int len = workers.size();
+		bool haveUser = false;
+
+		for(int i = 0; i < len; i++) {
+			curUser = workers[i];
+
+			if(curUser->getLogin() == curUser->getLogin()) {
+				haveUser = true;
+			} 
+			delete curUser;
+		}
+
+		assertTrue(haveUser);
+		
+		delete user;
+		delete project;
+	}
+} TEST_END;
+
 #endif
 

@@ -11,7 +11,8 @@ Task::Task(int id) {
 }
 
 Task::Task(string name, string description, string theme) {
-
+	// создаем таск, в project_id пишем 0 (или -1)
+	// project_id вписать обновлением при создании задачи в проекте
 }
 
 string Task::getName() const {

@@ -34,5 +34,5 @@ vector<class IProject *> AllProjects::getProjects() const {
 }
 
 void AllProjects::add(const class IProject &project) {
-
+	// Dont need that
 }

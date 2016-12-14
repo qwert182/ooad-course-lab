@@ -12,7 +12,14 @@ Project::Project(int id) {
 }
 
 Project::Project(string name, string description) {
+	static const char * const cols[] = {"name", "description"};
+	const Element vals[] = {name, description};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("projects", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string Project::getName() const {
@@ -73,8 +80,15 @@ vector<class IUser *> Project::getWorkers() const {
 	return result;
 }
 
-void Project::add(const class IUser &worker) {
+#define UID(u) ((User &)u).getId()
 
+void Project::add(const class IUser &worker) {
+	static const char * const cols[] = {"user_id", "project_id"};
+	const Element vals[] = {((User &)worker).getId(), this->id};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("project_workers", cols).VALUES(vals)
+	);	
 }
 
 vector<class ITask *> Project::getTasks() const {
