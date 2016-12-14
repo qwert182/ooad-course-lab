@@ -7,6 +7,10 @@
 #include "utils/append.h"
 #include "utils/read_file.h"
 
+#include "allUsersInstance.h"
+#include "../../model/IUser.h"
+#include "../../model/AccessDeniedException.h"
+
 using std::vector;
 using std::string;
 using std::unordered_map;
@@ -73,17 +77,29 @@ vector<char> LoginActionResource::post(const vector<char> &content) const {
 		return result;
 	}
 
-	if (true) { // bad login password
-	  vector<char> result = getStatusBy(200);
+  IUser *user = nullptr;
+	try {
+		user = allUsers->logIn(login, password);
+	} catch (const AccessDeniedException &) {
+	  vector<char> result = getStatusBy(403);
 		appendCRLF(result);
-		append(result, "bad");
+		append(result, "access denied");
+		return result;
+	} catch (const Exception &e) {
+	  vector<char> result = getStatusBy(500);
+		appendCRLF(result);
+		append(result, e.what());
 		return result;
 	}
-	//IUser *user = allUsers.logIn(login, password)
 
-  vector<char> result = getStatusBy(303);
-	append(result, "Location: /\r\n");
-	append(result, "Set: /\r\n");
+  string sid = "123";
+
+  vector<char> result = getStatusBy(200);
+	appendCRLF(result);
+
+	append(result, sid);
+	appendCRLF(result);
+	append(result, "/");
 	appendCRLF(result);
 	return result;
 }

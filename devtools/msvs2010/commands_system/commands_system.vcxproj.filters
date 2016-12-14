@@ -230,6 +230,12 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\utils\append.cpp">
       <Filter>src\presenter\imp\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\allUsersInstance.cpp">
+      <Filter>src\presenter\imp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\MainPageResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -444,6 +450,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\utils\append.h">
       <Filter>src\presenter\imp\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\allUsersInstance.h">
+      <Filter>src\presenter\imp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\MainPageResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,6 +18,7 @@ static
 const stat_t statuses[] = {
 	{200, "OK"},
 	{302, "Moved Temporarily"},
+	{303, "See Other"},
 	{400, "Bad Request"},
 	{403, "Forbidden"},
 	{404, "Not Found"},

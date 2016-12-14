@@ -11,6 +11,7 @@
 #include "utils/Exception.h"
 
 #include "presenter/imp/HTTPServer.h"
+#include "presenter/imp/allUsersInstance.h"
 
 #include "db/imp/DataBase.h"
 #include "db/instance.h"
@@ -35,6 +36,7 @@ int main() {
 	DataBase::CreateInstance();
 	dataBase->open();
 
+	allUsers_Create();
 
 
 	cout << "ctrl+c to stop" << endl;
@@ -52,7 +54,7 @@ int main() {
 	cout << "stopped" << endl;
 
 
-
+	delete allUsers;
 	delete dataBase;
 
 

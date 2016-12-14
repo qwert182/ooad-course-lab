@@ -2,7 +2,7 @@
 
 #include "StaticFileResource.h"
 #include "LoginActionResource.h"
-#include "StaticHeaderResource.h"
+#include "MainPageResource.h"
 #include "utils/request.h"
 
 #include <string>
@@ -29,7 +29,7 @@ static r_map *resources;
 
 void IResource::init() {
 	r_map *all = resources = new r_map();
-	all->insert(make_pair("/", new StaticHeaderResource(302, "Location: /login\r\n")));
+	all->insert(make_pair("/", new MainPageResource()));
 	all->insert(make_pair("/login", new LoginActionResource()));
 	all->insert(make_pair("/login.css", new StaticFileResource("html/login.css")));
 	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));

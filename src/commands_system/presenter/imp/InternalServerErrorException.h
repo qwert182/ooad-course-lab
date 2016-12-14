@@ -3,6 +3,6 @@
 
 class InternalServerErrorException : public StatusHTTPException {
 public:
-	InternalServerErrorException(const char *what) : StatusHTTPException(what, 400) {}
+	InternalServerErrorException(const char *what) : StatusHTTPException(what, 500) {}
 };
 

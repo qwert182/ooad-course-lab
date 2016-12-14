@@ -21,10 +21,27 @@ function logIn_showLoginPasswordErrorMessage() {
 }
 
 
+
+function logIn_successfully(response) {
+  var arr = response.split("\r\n");
+	if (arr.length == 2  ||  arr.length == 3 && arr[2] === "") {
+	  var sid = arr[0];
+	  var location = arr[1];
+		document.cookie = "sid=" + sid;
+		window.location.replace(location);
+	} else {
+		logIn_showServerErrorMessage();
+	}
+}
+
+
+
 function logIn_response() {
 	if (this.readyState == 4) {
 		logIn_submit_button.disabled = false;
 		if (this.status == 200) {
+			logIn_successfully(this.responseText);
+		} else if (this.status == 403) {
 			logIn_showLoginPasswordErrorMessage();
 		} else {
 			logIn_showServerErrorMessage();
