@@ -89,5 +89,17 @@ TEST_from(SetNameTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(UserTypeConstructorTest, WithFullDB) {
+	void test() {		
+		IUserType *userType = new UserType("quest", 3);		
+			
+		assertEquals("quest", userType->getName());
+		assertFalse(userType->isAdmin());
+		assertFalse(userType->isManager());
+				
+		delete userType;
+	}
+} TEST_END;
+
 #endif
 

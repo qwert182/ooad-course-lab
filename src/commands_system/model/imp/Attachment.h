@@ -8,9 +8,11 @@ private:
 
 public: 
 	Attachment(int id);
-	Attachment(std::string const &file, IUser const &desc);
+	Attachment(const std::string &fileName, const std::string &description, const IUser &owner);
 
 	virtual std::string getFileName() const;
 	virtual std::string getDescription() const;
 	virtual class IUser * getOwner() const;
+
+	int getId() const;
 };

@@ -100,6 +100,36 @@ TEST_from(SetUserTypeTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(UserConstructorWithOutTypeTest, WithFullDB) {
+	void test() {
+		IUser *user = new User("Max", "max", "123");		
+				
+		assertEquals("Max", user->getName());
+		assertEquals("max", user->getLogin());
+		assertEquals("123", user->getPassword());
+
+		delete user;
+	}
+} TEST_END;
+
+TEST_from(UserConstructorWithTypeTest, WithFullDB) {
+	void test() {
+		IUserType *type = new UserType(2);
+		IUser *user = new User("Mike", "mike", "555", *type);		
+				
+		IUserType *curType = user->getType();
+		
+		assertEquals("Mike", user->getName());
+		assertEquals("mike", user->getLogin());
+		assertEquals("555", user->getPassword());
+		assertEquals(type->getName(), curType->getName());
+
+		delete curType;
+		delete user;
+		delete type;
+	}
+} TEST_END;
+
 
 #endif
 

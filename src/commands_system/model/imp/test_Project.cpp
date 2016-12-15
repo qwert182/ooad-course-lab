@@ -135,9 +135,10 @@ TEST_from(AddWorkerToProject, WithFullDB) {
 		for(int i = 0; i < len; i++) {
 			curUser = workers[i];
 
-			if(curUser->getLogin() == curUser->getLogin()) {
+			if(curUser->getLogin() == user->getLogin()) {
 				haveUser = true;
 			} 
+
 			delete curUser;
 		}
 
@@ -147,6 +148,36 @@ TEST_from(AddWorkerToProject, WithFullDB) {
 		delete project;
 	}
 } TEST_END;
+
+TEST_from(AddTaskTest, WithFullDB) {
+	void test() {		
+		IProject *project = new Project(1);
+		ITask *task = new Task("Testing", "Test Project", "Testing project add task"); 		
+
+		project->add(*task);
+
+		std::vector<class ITask *> result = project->getTasks();
+		ITask *curTask;
+		int len = result.size();
+		bool haveTask = false;
+
+		for(int i = 0; i < len; i++) {
+			curTask = result[i];
+
+			if(task->getName() == curTask->getName()) {
+				haveTask = true;
+			}
+			
+			delete curTask;
+		}
+		
+		assertTrue(haveTask);
+		
+		delete task;
+		delete project;
+	}
+} TEST_END;
+
 
 #endif
 

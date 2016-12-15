@@ -79,5 +79,52 @@ TEST_from(GetAttachmentsTest_IsEmpty, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(NoteConstructorTest, WithFullDB) {
+	void test() {	
+		IUser *user = new User(1);
+		INote *note = new Note(*user, "Text Note");
+		
+		IUser *curUser = note->getWriter();
+
+		assertEquals("Text Note", note->getText());
+		assertEquals(user->getName(), curUser->getName());
+				
+		delete curUser;
+		delete user;
+		delete note;
+	}
+} TEST_END;
+
+TEST_from(AddAttachmentTest, WithFullDB) {
+	void test() {	
+		INote *note = new Note(1);
+		IUser *user = new User(2);
+		IAttachment *attach = new Attachment("document.txt", "descript", *user); 		
+
+		note->add(*attach);
+
+		std::vector<class IAttachment *> result = note->getAttachments();
+		IAttachment *curAttach;
+		int len = result.size();
+		bool haveAttach = false;
+
+		for(int i = 0; i < len; i++) {
+			curAttach = result[i];
+			
+			if(attach->getFileName() == curAttach->getFileName()) {
+				haveAttach = true;
+			}
+			
+			delete curAttach;
+		}
+		
+		assertTrue(haveAttach);
+		
+		delete note;
+		delete user;
+		delete attach;
+	}
+} TEST_END;
+
 #endif
 

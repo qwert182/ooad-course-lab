@@ -20,11 +20,27 @@ User::User(int id) {
 }
 
 User::User(const string &n, const string &l, const string &p) {
+	static const char * const cols[] = {"name", "login", "password", "type_id"};
+	const Element vals[] = {n, l, p, -1};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("users", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 User::User(const string &n, const string &l, const string &p, const IUserType &type) {
+	int typeId = ((UserType &)type).getId();
 	
+	static const char * const cols[] = {"name", "login", "password", "type_id"};
+	const Element vals[] = {n, l, p, typeId};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("users", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string User::getName() const {

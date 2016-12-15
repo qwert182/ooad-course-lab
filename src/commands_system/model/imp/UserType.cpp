@@ -8,7 +8,14 @@ UserType::UserType(int id) {
 }
 
 UserType::UserType(const std::string &name, int type) {
+	static const char * const cols[] = {"name", "type"};
+	const Element vals[] = {name, type};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("usertypes", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 std::string UserType::getName() const {

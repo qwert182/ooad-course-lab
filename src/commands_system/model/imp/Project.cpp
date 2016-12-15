@@ -80,8 +80,6 @@ vector<class IUser *> Project::getWorkers() const {
 	return result;
 }
 
-#define UID(u) ((User &)u).getId()
-
 void Project::add(const class IUser &worker) {
 	static const char * const cols[] = {"user_id", "project_id"};
 	const Element vals[] = {((User &)worker).getId(), this->id};
@@ -114,6 +112,14 @@ vector<class ITask *> Project::getTasks() const {
 }
 
 void Project::add(const class ITask &task) {
+	// подразумевается, что раз передается параметр Task
+	// значит этот task уже записан в таблице tasks
+	// следовательно, нужно только определить, к какому проекту она относится
 
+	int taskId = ((Task &)task).getId();
+
+	dataBase->perform(
+		Update("tasks").SET_ONLY("project_id", this->id).where("id", taskId)
+	);
 }
 
