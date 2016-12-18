@@ -9,8 +9,18 @@ using namespace std;
 Attachment::Attachment(int id) {
 	this->id = id;
 }
-Attachment::Attachment(string const &file, IUser const &desc) {
 
+Attachment::Attachment(const string &fileName, const std::string &description, const IUser &owner) {
+	int ownerId = ((User &)owner).getId();
+
+	static const char * const cols[] = {"note_id", "name", "description", "owner_id"};
+	const Element vals[] = {-1, fileName, description, ownerId};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("attachments", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string Attachment::getFileName() const {
@@ -24,6 +34,7 @@ string Attachment::getFileName() const {
 
 	return result;
 }
+
 string Attachment::getDescription() const {
 	string result;
 
@@ -35,6 +46,7 @@ string Attachment::getDescription() const {
 
 	return result;
 }
+
 IUser*  Attachment::getOwner() const {
 	IUser *owner;
 
@@ -46,4 +58,8 @@ IUser*  Attachment::getOwner() const {
 	owner = new User(userId);
 
 	return owner;
+}
+
+int Attachment::getId() const {
+	return this->id;
 }

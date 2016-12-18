@@ -9,7 +9,7 @@
 TEST_from(GetProjectsTest_IsNotEmpty_1, WithFullDB) {
 	void test() {
 		User *user = new User(2);
-		IAllProjects *allProjects = new AllProjects(user);
+		IAllProjects *allProjects = user->getProjects();
 		std::vector<class IProject *> result = allProjects->getProjects();
 		
 		assertEquals("OOAD", result[0]->getName());
@@ -27,7 +27,7 @@ TEST_from(GetProjectsTest_IsNotEmpty_1, WithFullDB) {
 TEST_from(GetProjectsTest_IsNotEmpty_2, WithFullDB) {
 	void test() {
 		User *user = new User(3);
-		IAllProjects *allProjects = new AllProjects(user);
+		IAllProjects *allProjects = user->getProjects();
 		std::vector<class IProject *> result = allProjects->getProjects();
 		
 		assertEquals("OOAD", result[0]->getName());
@@ -46,7 +46,7 @@ TEST_from(GetProjectsTest_IsNotEmpty_2, WithFullDB) {
 TEST_from(GetProjectsTest_IsEmpty, WithFullDB) {
 	void test() {
 		User *user = new User(1);
-		IAllProjects *allProjects = new AllProjects(user);
+		IAllProjects *allProjects = user->getProjects();
 		std::vector<class IProject *> result = allProjects->getProjects();
 		
 		assertEquals(true, result.empty());

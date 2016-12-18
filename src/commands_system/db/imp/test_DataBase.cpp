@@ -194,7 +194,8 @@ TEST_from(CanInsert, WithDB) {
 	  vector<Element> values(_vals, _vals + sizeof _vals/sizeof*_vals);
 		Insert insert = Insert().into("test", columns).values(values);
 
-		assertEquals((const ITable *)nullptr, db->perform(insert));
+		const ITable * table = db->perform(insert);
+		delete table;
 	}
 } TEST_END;
 

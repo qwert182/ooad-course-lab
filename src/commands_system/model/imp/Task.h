@@ -9,7 +9,7 @@ private: int id;
 
 public:
 	Task(int id);
-	Task(std::string name, std::string description, std::string theme);
+	Task(std::string name, std::string theme, std::string description);
 
 	virtual std::string getName() const;
 	virtual void setName(const std::string &name);
@@ -25,4 +25,6 @@ public:
 
 	virtual std::vector<class IAttachment *> getAttachments() const;
 	virtual void add(const class IAttachment &attachments);
+
+	int getId() const;
 };

@@ -3,6 +3,7 @@
 
 #include "Task.h"
 #include "Note.h"
+#include "User.h"
 #include "Attachment.h"
 
 
@@ -127,6 +128,83 @@ TEST_from(GetAttachmentsTest_IsEmpty, WithFullDB) {
 		delete task;
 	}
 } TEST_END;
+
+TEST_from(SetNameTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setName("Pass Exam");
+		
+		assertEquals("Pass Exam", task->getName());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(SetThemeTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setTheme("We Must Pass Exam");
+		
+		assertEquals("We Must Pass Exam", task->getTheme());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(SetDescriptionTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		task->setDescription("We Must Pass Exam on the next week");
+		
+		assertEquals("We Must Pass Exam on the next week", task->getDescription());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(TaskConstructorTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task("Testing", "Test Task", "Testing task constructor");
+		
+		assertEquals("Testing", task->getName());
+		assertEquals("Test Task", task->getTheme());
+		assertEquals("Testing task constructor", task->getDescription());
+				
+		delete task;
+	}
+} TEST_END;
+
+TEST_from(AddNoteTest, WithFullDB) {
+	void test() {		
+		ITask *task = new Task(1);
+		IUser *user = new User(2);
+		INote *note = new Note(*user, "Testing note add task"); 		
+
+		task->add(*note);
+
+		std::vector<class INote *> result = task->getNotes();
+		INote *curNote;
+		int len = result.size();
+		bool haveNote = false;
+
+		for(int i = 0; i < len; i++) {
+			curNote = result[i];
+
+			if(note->getText() == curNote->getText()) {
+				haveNote = true;
+			}
+			
+			delete curNote;
+		}
+		
+		assertTrue(haveNote);
+		
+		delete task;
+		delete user;
+		delete note;
+	}
+} TEST_END;
+
 
 #endif
 

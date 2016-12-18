@@ -8,7 +8,14 @@ UserType::UserType(int id) {
 }
 
 UserType::UserType(const std::string &name, int type) {
+	static const char * const cols[] = {"name", "type"};
+	const Element vals[] = {name, type};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("usertypes", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 std::string UserType::getName() const {
@@ -24,7 +31,9 @@ std::string UserType::getName() const {
 }
 
 void UserType::setName(const std::string &name) {
-
+	dataBase->perform(
+		Update("usertypes").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 bool UserType::isManager() const {
@@ -55,5 +64,9 @@ bool UserType::isAdmin() const {
 	}	
 
 	return result;
+}
+
+int UserType::getId() const {
+	return this->id;
 }
 

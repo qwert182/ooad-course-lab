@@ -2,6 +2,7 @@
 #include "DataBase.h"
 #include "parser.h"
 #include "writer.h"
+#include "Table.h"
 #include "../DataBaseException.h"
 #include <algorithm>
 
@@ -61,7 +62,7 @@ ITable * Insert::perform(DataBase &db) const {
 	db.clearTableFile(this->table);
 	write(t, file);
 
-	return nullptr;
+	return new Table(vector<vector<Element> > (1, corrected_line));
 }
 
 bool Insert::filled() const {

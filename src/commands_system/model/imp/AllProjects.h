@@ -8,10 +8,10 @@
 
 class AllProjects : public IAllProjects {
 private: 
-	User *user;
+	const User *user;
 
 public: 
-	AllProjects(User *user);
+	AllProjects(const User *user);
 	virtual std::vector<class IProject *> getProjects() const;
 	virtual void add(const class IProject &project);
 };

@@ -20,11 +20,27 @@ User::User(int id) {
 }
 
 User::User(const string &n, const string &l, const string &p) {
+	static const char * const cols[] = {"name", "login", "password", "type_id"};
+	const Element vals[] = {n, l, p, -1};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("users", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 User::User(const string &n, const string &l, const string &p, const IUserType &type) {
+	int typeId = ((UserType &)type).getId();
+	
+	static const char * const cols[] = {"name", "login", "password", "type_id"};
+	const Element vals[] = {n, l, p, typeId};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("users", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string User::getName() const {
@@ -35,7 +51,9 @@ string User::getName() const {
 }
 
 void User::setName(const string &name) {
-	
+	dataBase->perform(
+		Update("users").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 string User::getLogin() const {
@@ -46,7 +64,9 @@ string User::getLogin() const {
 }
 
 void User::setLogin(const string &login) {
-
+	dataBase->perform(
+		Update("users").SET_ONLY("login", login).where("id", id)
+	);
 }
 
 string User::getPassword() const {
@@ -57,7 +77,9 @@ string User::getPassword() const {
 }
 
 void User::setPassword(const string &password) {
-
+	dataBase->perform(
+		Update("users").SET_ONLY("password", password).where("id", id)
+	);
 }
 
 IUserType * User::getType() const {
@@ -74,7 +96,11 @@ IUserType * User::getType() const {
 }
 
 void User::setType(const IUserType &userType) {
+	int userTypeId = ((UserType &)userType).getId();
 
+	dataBase->perform(
+		Update("users").SET_ONLY("type_id", userTypeId).where("id", id)
+	);
 }
 
 IMail * User::getMail() const {
@@ -83,8 +109,7 @@ IMail * User::getMail() const {
 }
 
 IAllProjects * User::getProjects() const {
-	IAllProjects *result;
-	return result;
+	return new AllProjects(this);
 }
 
 void User::logOut() {

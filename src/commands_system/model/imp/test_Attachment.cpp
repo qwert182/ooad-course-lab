@@ -39,5 +39,23 @@ TEST_from(GetOwnerTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(AttachmentConstructorTest, WithFullDB) {
+	void test() {		
+		IUser *user = new User(1);
+
+		IAttachment *attachment = new Attachment("doc.txt", "desc doc.txt", *user);		
+		
+		IUser *curUser = attachment->getOwner();
+
+		assertEquals("doc.txt", attachment->getFileName());
+		assertEquals("desc doc.txt", attachment->getDescription());
+		assertEquals(user->getName(), curUser->getName());
+				
+		delete attachment;
+		delete user;
+		delete curUser;
+	}
+} TEST_END;
+
 #endif
 

@@ -12,7 +12,14 @@ Project::Project(int id) {
 }
 
 Project::Project(string name, string description) {
+	static const char * const cols[] = {"name", "description"};
+	const Element vals[] = {name, description};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("projects", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string Project::getName() const {
@@ -28,7 +35,9 @@ string Project::getName() const {
 }
 
 void Project::setName(const std::string &name){
-
+	dataBase->perform(
+		Update("projects").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 string Project::getDescription() const {
@@ -44,7 +53,9 @@ string Project::getDescription() const {
 }
 
 void Project::setDescription(const std::string &description) {
-
+	dataBase->perform(
+		Update("projects").SET_ONLY("description", description).where("id", id)
+	);
 }
 
 vector<class IUser *> Project::getWorkers() const {
@@ -70,7 +81,12 @@ vector<class IUser *> Project::getWorkers() const {
 }
 
 void Project::add(const class IUser &worker) {
+	static const char * const cols[] = {"user_id", "project_id"};
+	const Element vals[] = {((User &)worker).getId(), this->id};
 
+	ptrTable table = dataBase->perform(
+		Insert().INTO("project_workers", cols).VALUES(vals)
+	);	
 }
 
 vector<class ITask *> Project::getTasks() const {
@@ -96,6 +112,14 @@ vector<class ITask *> Project::getTasks() const {
 }
 
 void Project::add(const class ITask &task) {
+	// подразумевается, что раз передается параметр Task
+	// значит этот task уже записан в таблице tasks
+	// следовательно, нужно только определить, к какому проекту она относится
 
+	int taskId = ((Task &)task).getId();
+
+	dataBase->perform(
+		Update("tasks").SET_ONLY("project_id", this->id).where("id", taskId)
+	);
 }
 

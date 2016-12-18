@@ -15,4 +15,6 @@ public:
 	virtual void add(const class IAttachment &attachment);	
 	virtual std::string getText() const;
 	virtual std::vector<class IAttachment *> getAttachments() const;
+
+	int getId() const;
 };

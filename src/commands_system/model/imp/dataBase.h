@@ -39,7 +39,12 @@ public:
 #define SELECT(columns) (Select(std::vector<std::string>((columns), &(columns)[sizeof(columns)/sizeof(*(columns))])))
 #define SELECT_ONLY(one_column) (Select(std::vector<std::string>(1, one_column)))
 
+#include "../../db/Update.h"
+#define SET_ONLY(column, value) set(std::vector<std::pair<std::string, Element> >(1, std::pair<std::string, Element>((column), (value))))
 
+#include "../../db/Insert.h"
+#define INTO(table, columns) into((table), std::vector<std::string> ((columns), (columns) + sizeof (columns)/sizeof*(columns)))
+#define VALUES(vals) values(std::vector<Element> ((vals), (vals) + sizeof (vals)/sizeof*(vals)))
 
 
 

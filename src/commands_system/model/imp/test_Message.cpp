@@ -55,6 +55,29 @@ TEST_from(GetTextTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(MessageConstructor, WithFullDB) {
+	void test() {
+		IUser *sender = new User(1);
+		IUser *receiver = new User(2);
+		
+		IMessage *message = new Message(sender, receiver, "Subject", "Text");
+		std::string result = message->getText();
+
+		IUser *sendM = message->getSender();
+		IUser *recM = message->getReceiver();
+				
+		assertEquals(sender->getLogin(), sendM->getLogin());
+		assertEquals(receiver->getLogin(), recM->getLogin());
+		assertEquals("Subject", message->getSubject());
+		assertEquals("Text", message->getText());
+				
+		delete sender;
+		delete receiver;
+		delete message;
+		delete sendM;
+		delete recM;
+	}
+} TEST_END;
 
 #endif
 

@@ -14,7 +14,7 @@ public:
 	virtual std::string getText() const;
 
 	Message(const int id);
-	Message(const class IUser & sender, const std::string &s, const std::string &t);
+	Message(const class IUser * sender, const class IUser * receiver, const std::string &s, const std::string &t);
 	virtual ~Message() {}
 };
 

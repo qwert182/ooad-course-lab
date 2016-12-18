@@ -10,8 +10,18 @@ Task::Task(int id) {
 	this->id = id;
 }
 
-Task::Task(string name, string description, string theme) {
+Task::Task(string name, string theme, string description) {
+	// создаем таск, в project_id пишем 0 (или -1)
+	// project_id вписать обновлением при создании задачи в проекте
 
+	static const char * const cols[] = {"project_id", "name", "theme", "description"};
+	const Element vals[] = {-1, name, theme, description};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("tasks", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 string Task::getName() const {
@@ -27,7 +37,9 @@ string Task::getName() const {
 }
 
 void Task::setName(const std::string &name) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("name", name).where("id", id)
+	);
 }
 
 string Task::getTheme() const {
@@ -43,7 +55,9 @@ string Task::getTheme() const {
 }
 
 void Task::setTheme(const std::string &theme) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("theme", theme).where("id", id)
+	);
 }
 
 string Task::getDescription() const {
@@ -59,7 +73,9 @@ string Task::getDescription() const {
 }
 
 void Task::setDescription(const std::string &description) {
-
+	dataBase->perform(
+		Update("tasks").SET_ONLY("description", description).where("id", id)
+	);
 }
 
 vector<class INote *> Task::getNotes() const {
@@ -85,7 +101,11 @@ vector<class INote *> Task::getNotes() const {
 }
 
 void Task::add(const class INote &note) {
+	int noteId = ((Note &)note).getId();
 
+	dataBase->perform(
+		Update("notes").SET_ONLY("task_id", this->id).where("id", noteId)
+	);
 }
 
 vector<class IAttachment *> Task::getAttachments() const {
@@ -104,5 +124,9 @@ vector<class IAttachment *> Task::getAttachments() const {
 }
 
 void Task::add(const class IAttachment &attachments) {
+	
+}
 
+int Task::getId() const {
+	return this->id;
 }

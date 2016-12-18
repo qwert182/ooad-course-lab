@@ -7,7 +7,7 @@
 
 using namespace std;
 
-AllProjects::AllProjects(User *user) {
+AllProjects::AllProjects(const User *user) {
 	this->user = user;
 }
 
@@ -34,5 +34,5 @@ vector<class IProject *> AllProjects::getProjects() const {
 }
 
 void AllProjects::add(const class IProject &project) {
-
+	// Dont need that
 }

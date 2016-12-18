@@ -12,11 +12,24 @@ Note::Note(int id) {
 }
 
 Note::Note(const IUser &writer, const string &text) {
+	int writerId = ((User &)writer).getId();
 
+	static const char * const cols[] = {"task_id", "writer_id", "text"};
+	const Element vals[] = {-1, writerId, text};
+
+	ptrTable table = dataBase->perform(
+		Insert().INTO("notes", cols).VALUES(vals)
+	);
+
+	this->id = table->get(0, 0);
 }
 
 void Note::add(const IAttachment &attachment) {
+	int attachId = ((Attachment &)attachment).getId();
 
+	dataBase->perform(
+		Update("attachments").SET_ONLY("note_id", this->id).where("id", attachId)
+	); 
 }
 
 IUser * Note::getWriter() const {
@@ -65,3 +78,8 @@ vector<IAttachment*> Note::getAttachments() const {
 
 	return result;
 }
+
+int Note::getId() const {
+	return this->id;
+}
+
