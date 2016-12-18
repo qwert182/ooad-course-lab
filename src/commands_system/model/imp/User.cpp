@@ -29,7 +29,7 @@ User::User(const string &n, const string &l, const string &p) {
 	int isUnique = t->getRowCount();
 	if(isUnique == 0) {
 		static const char * const cols[] = {"name", "login", "password", "type_id"};
-		const Element vals[] = {n, l, p, -1};
+		const Element vals[] = {n, l, p, 2};
 
 		ptrTable table = dataBase->perform(
 			Insert().INTO("users", cols).VALUES(vals)
@@ -38,21 +38,32 @@ User::User(const string &n, const string &l, const string &p) {
 		this->id = table->get(0, 0);
 	}
 	else {
-		throw AccessDeniedException("this login already exists! Please, set another login.");
+		throw AccessDeniedException("This login already exists! Please, set another login.");
 	}
 }
 
 User::User(const string &n, const string &l, const string &p, const IUserType &type) {
-	int typeId = ((UserType &)type).getId();
-	
-	static const char * const cols[] = {"name", "login", "password", "type_id"};
-	const Element vals[] = {n, l, p, typeId};
-
-	ptrTable table = dataBase->perform(
-		Insert().INTO("users", cols).VALUES(vals)
+	// проверка на уникальность логина
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("users").where("login", l)
 	);
 
-	this->id = table->get(0, 0);
+	int isUnique = t->getRowCount();
+	if(isUnique == 0) {
+		int typeId = ((UserType &)type).getId();
+	
+		static const char * const cols[] = {"name", "login", "password", "type_id"};
+		const Element vals[] = {n, l, p, typeId};
+
+		ptrTable table = dataBase->perform(
+			Insert().INTO("users", cols).VALUES(vals)
+		);
+
+		this->id = table->get(0, 0);
+	}
+	else {
+		throw AccessDeniedException("This login already exists! Please, set another login.");
+	}
 }
 
 string User::getName() const {
