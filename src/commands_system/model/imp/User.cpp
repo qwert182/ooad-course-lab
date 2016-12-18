@@ -109,8 +109,7 @@ IMail * User::getMail() const {
 }
 
 IAllProjects * User::getProjects() const {
-	IAllProjects *result;
-	return result;
+	return new AllProjects(this);
 }
 
 void User::logOut() {

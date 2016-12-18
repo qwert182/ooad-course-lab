@@ -7,7 +7,7 @@
 
 using namespace std;
 
-AllProjects::AllProjects(User *user) {
+AllProjects::AllProjects(const User *user) {
 	this->user = user;
 }
 
