@@ -239,6 +239,12 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\Session.cpp">
       <Filter>src\presenter\imp</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\ProjectsResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\utils\response.cpp">
+      <Filter>src\presenter\imp\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -468,6 +474,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\SessionException.h">
       <Filter>src\presenter\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\ProjectsResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\utils\response.h">
+      <Filter>src\presenter\imp\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

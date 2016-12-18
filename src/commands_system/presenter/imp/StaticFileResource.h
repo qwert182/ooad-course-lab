@@ -8,7 +8,7 @@ class StaticFileResource : public IResource {
 	StaticFileResource(const StaticFileResource &);
 public:
 	StaticFileResource(const char *path_to_file);
-	virtual std::vector<char> get() const;
+	virtual std::vector<char> get(Session *) const;
 	virtual ~StaticFileResource() {}
 };
 

@@ -20,31 +20,17 @@ using std::make_pair;
 LoginActionResource::LoginActionResource() {}
 
 
-/*#include <algorithm>
-using std::search;
-
-void replace(vector<char> &data, const string &what, const string &to) {
-  vector<char>::iterator start = data.begin();
-  vector<char>::iterator found = search(start, data.end(), what.begin(), what.end());
-	data.erase(found, found + what.size());
-	data.insert(found, to.begin(), to.end());
-}*/
 
 
-vector<char> LoginActionResource::get() const {
-  /*vector<char> result = getStatusBy(200);
-	appendCRLF(result);
-  vector<char> file = read_file("html/login.htm");
-	replace(file, "[TEMPLATE_CLASS_ERRMSG]", "hidden_errmsg");*/
-  
-	//search(file.begin(), file.end(), );
-	//send_response(a, 200);
-	//send_file(a, "html/login.htm");
+vector<char> LoginActionResource::get(Session *) const {
   vector<char> result = getStatusBy(200);
 	appendCRLF(result);
 	append(result, read_file("html/login.htm"));
 	return result;
 }
+
+
+
 
 
 static
@@ -55,16 +41,10 @@ const string & getValueByKey(const unordered_map<string, string> &map, const str
 	return found->second;
 }
 
-static
-bool isFlagSet(const unordered_map<string, string> &map, const string &flag) {
-  auto found = map.find(flag);
-	if (found == map.end())
-		return false;
-  const string &value = found->second;
-	return value.length() == 0;
-}
 
-vector<char> LoginActionResource::post(const vector<char> &content) const {
+
+
+vector<char> LoginActionResource::post(const vector<char> &content, Session *session) const {
   unordered_map<string, string> login_and_password = parse_post(string(content.begin(), content.end()));
   const string
 	  &login = getValueByKey(login_and_password, "login"),
@@ -76,6 +56,14 @@ vector<char> LoginActionResource::post(const vector<char> &content) const {
 		append(result, "only active login page supported (please enable javascript)");
 		return result;
 	}
+
+	if (session != nullptr) {
+	  vector<char> result = getStatusBy(400);
+		appendCRLF(result);
+		append(result, "you are already logged in");
+		return result;
+	}
+
 
   IUser *user = nullptr;
 	try {
@@ -92,7 +80,10 @@ vector<char> LoginActionResource::post(const vector<char> &content) const {
 		return result;
 	}
 
-  string sid = "123";
+
+  Session *new_session = new Session(user);
+  string sid = new_session->getId();
+
 
   vector<char> result = getStatusBy(200);
 	appendCRLF(result);

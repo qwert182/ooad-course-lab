@@ -17,6 +17,7 @@
 
 
 #include "IResource.h"
+#include "Session.h"
 
 
 #include <iostream>
@@ -71,7 +72,8 @@ HTTPServer::HTTPServer() {
 	if (bind(s, &addr.a, sizeof addr.a))
 		throw SocketException("in bind");
 
-	IResource::init();
+	IResource::Init();
+	Session::InitAll();
 }
 
 
@@ -80,7 +82,8 @@ HTTPServer::HTTPServer() {
 HTTPServer::~HTTPServer() {
 	signal(SIGINT, SIG_DFL);
 
-	IResource::dispose();
+	Session::DisposeAll();
+	IResource::Dispose();
 
 	if (closesocket(s))
 		if (!has_control_c_pressed)

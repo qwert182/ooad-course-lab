@@ -1,8 +1,7 @@
 #include "MainPageResource.h"
 
 
-#include "utils/status.h"
-#include "utils/append.h"
+#include "utils/response.h"
 
 using std::vector;
 
@@ -10,10 +9,8 @@ using std::vector;
 MainPageResource::MainPageResource() {
 }
 
-vector<char> MainPageResource::get() const {
-  vector<char> result = getStatusBy(302);
-	append(result, "Location: /login\r\n");
-	appendCRLF(result);
-	return result;
+
+vector<char> MainPageResource::get(Session *session) const {
+	return file_response_must_be_authorized("html/index.htm", session);
 }
 

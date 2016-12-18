@@ -14,7 +14,7 @@ StaticFileResource::StaticFileResource(const char *path_to_file) {
 	this->path_to_file = path_to_file;
 }
 
-vector<char> StaticFileResource::get() const {
+vector<char> StaticFileResource::get(Session *) const {
   vector<char> result = getStatusBy(200);
 	appendCRLF(result);
 	append(result, read_file(this->path_to_file));

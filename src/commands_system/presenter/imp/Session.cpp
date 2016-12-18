@@ -9,20 +9,28 @@ using std::string;
 using std::unordered_map;
 using std::make_pair;
 using std::istringstream;
+using std::ostringstream;
 
 
 IUser * Session::getUser() const {
 	return this->user;
 }
 
+string Session::getId() const {
+  ostringstream oss;
+	oss << this->id;
+	return oss.str();
+}
+
+
 
 Session::Session(IUser *user) {
 	do {
 		this->id = rand();
-	} while (all.find(this->id) != all.end());
+	} while (all->find(this->id) != all->end());
 
 	this->user = user;
-	all.insert(make_pair(this->id, this));
+	all->insert(make_pair(this->id, this));
 }
 
 
@@ -35,15 +43,30 @@ Session * Session::GetExisting(const std::string &cookie) {
   istringstream id_s(found_sid->second);
   int id;
 	id_s >> id;
-	if (!id_s.good() || !id_s.eof())
+	if (id_s.bad() || !id_s.eof())
 		throw SessionException("can't get existing session: bad sid cookie");
 
-  auto found = all.find(id);
-	if (found == all.end())
+  auto found = all->find(id);
+	if (found == all->end())
 		throw SessionException("can't get existing session: session with such sid doesn't exist");
 
 	return found->second;
 }
 
-std::unordered_map<int, Session *> Session::all;
+
+
+unordered_map<int, Session *> *Session::all;
+
+
+void Session::InitAll() {
+	all = new unordered_map<int, Session *>();
+}
+
+
+void Session::DisposeAll() {
+	for (auto it = all->begin(), end = all->end(); it != end; ++it) {
+		delete it->second;
+	}
+	delete all;
+}
 

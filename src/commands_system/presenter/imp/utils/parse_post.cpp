@@ -34,3 +34,12 @@ unordered_map<string, string> parse_post(const string &str) {
 	return res;
 }
 
+
+bool isFlagSet(const unordered_map<string, string> &map, const string &flag) {
+  auto found = map.find(flag);
+	if (found == map.end())
+		return false;
+  const string &value = found->second;
+	return value.length() == 0;
+}
+

@@ -9,7 +9,7 @@ class StaticHeaderResource : public IResource {
 	StaticHeaderResource(const StaticHeaderResource &);
 public:
 	StaticHeaderResource(int status, const char *header);
-	virtual std::vector<char> get() const;
+	virtual std::vector<char> get(Session *) const;
 	virtual ~StaticHeaderResource() {}
 };
 

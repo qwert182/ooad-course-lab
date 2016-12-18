@@ -12,7 +12,7 @@ StaticHeaderResource::StaticHeaderResource(int status, const char *header) {
 	this->status = status;
 }
 
-vector<char> StaticHeaderResource::get() const {
+vector<char> StaticHeaderResource::get(Session *) const {
   vector<char> result = getStatusBy(status);
 	append(result, header);
 	appendCRLF(result);
