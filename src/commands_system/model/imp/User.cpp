@@ -7,6 +7,7 @@
 
 #include "../IMail.h"
 #include "../IAllProjects.h"
+#include "../AccessDeniedException.h"
 
 #include "dataBase.h"
 
@@ -20,14 +21,25 @@ User::User(int id) {
 }
 
 User::User(const string &n, const string &l, const string &p) {
-	static const char * const cols[] = {"name", "login", "password", "type_id"};
-	const Element vals[] = {n, l, p, -1};
-
-	ptrTable table = dataBase->perform(
-		Insert().INTO("users", cols).VALUES(vals)
+	// проверка на уникальность логина
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("users").where("login", l)
 	);
 
-	this->id = table->get(0, 0);
+	int isUnique = t->getRowCount();
+	if(isUnique == 0) {
+		static const char * const cols[] = {"name", "login", "password", "type_id"};
+		const Element vals[] = {n, l, p, -1};
+
+		ptrTable table = dataBase->perform(
+			Insert().INTO("users", cols).VALUES(vals)
+		);
+
+		this->id = table->get(0, 0);
+	}
+	else {
+		throw AccessDeniedException("this login already exists! Please, set another login.");
+	}
 }
 
 User::User(const string &n, const string &l, const string &p, const IUserType &type) {
