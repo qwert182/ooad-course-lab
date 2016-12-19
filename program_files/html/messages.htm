@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<meta charset="windows-1251">
+		<title>Система взаимодействия команд</title>
+		<script src="/messages.js"></script>
+	</head>
+	<body>
+		<h1>Сообщения</h1>
+		<h2>Входящие</h2>
+		<ol></ol>
+		<h2>Написать</h2>
+		<form action="/send" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+			<label>
+				кому:<select name="receiver" required></select>
+			</label>
+			<label>
+				тема:<input type="text" name="subject" required>
+			</label>
+			<label>
+				текст:<input type="text" name="text" required>
+			</label>
+			<input type="submit" value="отправить">
+		</form>
+	</body>
+</html>

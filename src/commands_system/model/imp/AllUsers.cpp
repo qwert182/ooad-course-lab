@@ -14,7 +14,7 @@ AllUsers::AllUsers() {
 
 }
 
-vector<class IUser *> AllUsers::getUsers() const {
+vector<IUser *> AllUsers::getUsers() const {
 	vector<class IUser *> result;
 
 	ptrTable t = dataBase->perform(
@@ -34,6 +34,14 @@ vector<class IUser *> AllUsers::getUsers() const {
 	}
 
 	return result;
+}
+
+IUser * AllUsers::getUserByLogin(const string &login) const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("users").where("login", login)
+	);
+	int id = t->get(0, 0);
+	return new User(id);
 }
 
 void AllUsers::add(const class IUser &user) {

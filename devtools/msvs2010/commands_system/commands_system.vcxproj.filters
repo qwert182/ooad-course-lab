@@ -245,6 +245,21 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\utils\response.cpp">
       <Filter>src\presenter\imp\utils</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\MessagesResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\UsersResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\SendResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\OneProjectResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\OneTaskResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -480,6 +495,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\utils\response.h">
       <Filter>src\presenter\imp\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\MessagesResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\UsersResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\ForbiddenException.h">
+      <Filter>src\presenter\imp\%2aException.h</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\SendResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\OneProjectResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\OneTaskResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

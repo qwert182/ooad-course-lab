@@ -3,6 +3,8 @@
 
 #include <sstream>
 
+#include "../BadRequestException.h"
+
 
 using std::string;
 using std::unordered_map;
@@ -41,5 +43,14 @@ bool isFlagSet(const unordered_map<string, string> &map, const string &flag) {
 		return false;
   const string &value = found->second;
 	return value.length() == 0;
+}
+
+
+
+const string & getValueByKey(const unordered_map<string, string> &map, const string &key) {
+  auto found = map.find(key);
+	if (found == map.end())
+		throw BadRequestException("in getValueByKey in LoginActionResource");
+	return found->second;
 }
 

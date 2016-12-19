@@ -16,7 +16,7 @@ std::vector<class IMessage *> Mail::getInBox() const {
 	std::vector<class IMessage *> result;
 
 	ptrTable t = dataBase->perform(
-		SELECT_ONLY("id").from("messages").where("sender_id", this->user->getId())
+		SELECT_ONLY("id").from("messages").where("receiver_id", this->user->getId())
 	);
 
 	int numOfMessages = t->getRowCount();
@@ -38,7 +38,7 @@ std::vector<class IMessage *> Mail::getOutBox() const {
 	std::vector<class IMessage *> result;
 
 	ptrTable t = dataBase->perform(
-		SELECT_ONLY("id").from("messages").where("receiver_id", this->user->getId())
+		SELECT_ONLY("id").from("messages").where("sender_id", this->user->getId())
 	);
 
 	int numOfMessages = t->getRowCount();

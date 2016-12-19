@@ -4,8 +4,14 @@
 #include "LoginActionResource.h"
 #include "MainPageResource.h"
 #include "ProjectsResource.h"
+#include "MessagesResource.h"
+#include "UsersResource.h"
+#include "SendResource.h"
+#include "OneProjectResource.h"
+#include "OneTaskResource.h"
 
 #include "utils/request.h"
+#include "utils/append.h"
 
 #include <string>
 #include <unordered_map>
@@ -37,6 +43,13 @@ void IResource::Init() {
 	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));
 	all->insert(make_pair("/projects", new ProjectsResource()));
 	all->insert(make_pair("/projects.js", new StaticFileResource("html/projects.js")));
+	all->insert(make_pair("/messages", new MessagesResource()));
+	all->insert(make_pair("/messages.js", new StaticFileResource("html/messages.js")));
+	all->insert(make_pair("/users", new UsersResource()));
+	all->insert(make_pair("/send", new SendResource()));
+	all->insert(make_pair("/projects/", new OneProjectResource()));
+	all->insert(make_pair("/project.js", new StaticFileResource("html/project.js")));
+	all->insert(make_pair("/projects/*/task/", new OneTaskResource()));
 }
 
 
@@ -61,19 +74,46 @@ vector<char> IResource::notImplemented() {
 
 
 
-//static
-//ISession * getSessionBy(const Request &request) {
-	//auto &h = request.headers;
-	//h.find("");
-//	return allSessions->createSession();
-//}
-
-
 
 
 std::vector<char> IResource::perform(const Request &request) {
   r_map *all = resources;
-  r_map::const_iterator found = all->find(request.path);
+  r_map::const_iterator found;
+  const vector<char> *post_content = nullptr;
+  vector<char> projects_content;
+
+  const string prjs = "/projects/";
+	if (request.path.substr(0, prjs.length()) == prjs) {
+	  string prj = request.path.substr(prjs.length());
+	  size_t found_task = prj.find('/');
+		if (found_task != string::npos) {
+		  const string task = prj.substr(found_task + 1);
+			prj.erase(found_task);
+			if (request.type == "POST") {
+				append(projects_content, "task=" + task);
+				appendCRLF(projects_content);
+				append(projects_content, "project=" + prj);
+				appendCRLF(projects_content);
+				append(projects_content, "content=");
+				append(projects_content, request.content);
+				post_content = &projects_content;
+			}
+			found = all->find("/projects/*/task/");
+		} else {
+			if (request.type == "POST") {
+				append(projects_content, "project=" + prj);
+				appendCRLF(projects_content);
+				append(projects_content, "content=");
+				append(projects_content, request.content);
+				post_content = &projects_content;
+			}
+			found = all->find(prjs);
+		}
+	} else {
+		found = all->find(request.path);
+		post_content = &request.content;
+	}
+
 
 	if (found == all->end())
 		throw NotFoundException(request.path);
@@ -93,7 +133,7 @@ std::vector<char> IResource::perform(const Request &request) {
 	if (request.type == "GET")
 		return res->get(session);
 	else if (request.type == "POST")
-		return res->post(request.content, session);
+		return res->post(*post_content, session);
 	else
 		throw NotImplementedException("unknown request type");
 }

@@ -34,6 +34,12 @@ Session::Session(IUser *user) {
 }
 
 
+Session::~Session() {
+	delete this->user;
+}
+
+
+
 Session * Session::GetExisting(const std::string &cookie) {
   unordered_map<string, string> map = parse_cookie(cookie);
   auto found_sid = map.find("sid");

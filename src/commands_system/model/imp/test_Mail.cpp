@@ -10,7 +10,7 @@ TEST_from(GetInBoxTest_IsNotEmpty, WithFullDB) {
 	void test() {
 		User *user = new User(4);
 		IMail *mailInBox = new Mail(user);
-		std::vector<class IMessage *> result = mailInBox->getInBox();
+		std::vector<class IMessage *> result = mailInBox->getOutBox();
 		
 		IUser *u = result[0]->getSender();
 
@@ -31,7 +31,7 @@ TEST_from(GetInBoxTest_IsEmpty, WithFullDB) {
 	void test() {
 		User *user = new User(1);
 		IMail *mailInBox = new Mail(user);
-		std::vector<class IMessage *> result = mailInBox->getInBox();		
+		std::vector<class IMessage *> result = mailInBox->getOutBox();		
 		
 		assertEquals(true, result.empty());
 		
@@ -44,7 +44,7 @@ TEST_from(GetOutBoxTest_IsNotEmpty, WithFullDB) {
 	void test() {
 		User *user = new User(1);
 		IMail *mailOutBox = new Mail(user);
-		std::vector<class IMessage *> result = mailOutBox->getOutBox();
+		std::vector<class IMessage *> result = mailOutBox->getInBox();
 		
 		IUser *u = result[0]->getReceiver();
 
@@ -65,7 +65,7 @@ TEST_from(GetOutBoxTest_IsEmpty, WithFullDB) {
 	void test() {
 		User *user = new User(2);
 		IMail *mailOutBox = new Mail(user);
-		std::vector<class IMessage *> result = mailOutBox->getOutBox();
+		std::vector<class IMessage *> result = mailOutBox->getInBox();
 
 		assertEquals(true, result.empty());
 		

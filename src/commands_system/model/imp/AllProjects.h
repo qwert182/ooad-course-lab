@@ -13,5 +13,6 @@ private:
 public: 
 	AllProjects(const User *user);
 	virtual std::vector<class IProject *> getProjects() const;
+	virtual class IProject * getProjectByName(const std::string &name) const;
 	virtual void add(const class IProject &project);
 };

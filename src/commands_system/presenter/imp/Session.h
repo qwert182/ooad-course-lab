@@ -13,6 +13,8 @@ private:
 	Session(const Session &);
 	void operator =(const Session &);
 
+	~Session();
+
 	static std::unordered_map<int, Session *> *all;
 public:
 	std::string getId() const;

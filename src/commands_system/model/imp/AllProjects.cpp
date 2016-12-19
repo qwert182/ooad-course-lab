@@ -11,6 +11,16 @@ AllProjects::AllProjects(const User *user) {
 	this->user = user;
 }
 
+IProject * AllProjects::getProjectByName(const std::string &name) const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("projects").where("name", name)
+	);
+
+	int id = t->get(0, 0);
+	return new Project(id);
+}
+
+
 vector<class IProject *> AllProjects::getProjects() const {
 	vector<class IProject *> result;
 

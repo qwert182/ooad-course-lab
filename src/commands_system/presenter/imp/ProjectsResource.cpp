@@ -24,6 +24,8 @@ vector<char> ProjectsResource::get(Session *session) const {
 
 
 vector<char> ProjectsResource::post(const vector<char> &content, Session *session) const {
+	must_be_authorized(session);
+
   string active(content.begin(), content.end());
 	if (active != "active") {
 		throw BadRequestException("non active /projects");
@@ -40,8 +42,13 @@ vector<char> ProjectsResource::post(const vector<char> &content, Session *sessio
 
 	for (i = 0; i < count; ++i) {
 	  IProject *project = projects[i];
-		append(result, project->getName());
-		appendCRLF(result);
+		append(result, "<li>");
+		append(result, "<a href=\"");
+		append(result, "/projects/" + project->getName());
+		append(result, "\">");
+		append(result, project->getDescription());
+		append(result, "</a>");
+		append(result, "</li>");
 		delete project;
 	}
 

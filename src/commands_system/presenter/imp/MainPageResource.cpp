@@ -11,6 +11,6 @@ MainPageResource::MainPageResource() {
 
 
 vector<char> MainPageResource::get(Session *session) const {
-	return file_response_must_be_authorized("html/index.htm", session);
+	return file_response_must_be_authorized("html/home.htm", session);
 }
 

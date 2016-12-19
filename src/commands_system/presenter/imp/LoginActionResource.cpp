@@ -33,13 +33,7 @@ vector<char> LoginActionResource::get(Session *) const {
 
 
 
-static
-const string & getValueByKey(const unordered_map<string, string> &map, const string &key) {
-  auto found = map.find(key);
-	if (found == map.end())
-		throw BadRequestException("in getValueByKey in LoginActionResource");
-	return found->second;
-}
+
 
 
 
