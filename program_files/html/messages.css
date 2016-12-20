@@ -1,3 +1,7 @@
 .send-message-form {
 	width: 350px;	
 }
+
+ol {
+	font-style: italic;
+}

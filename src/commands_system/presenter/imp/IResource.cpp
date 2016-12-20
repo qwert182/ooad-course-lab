@@ -38,18 +38,27 @@ static r_map *resources;
 void IResource::Init() {
 	r_map *all = resources = new r_map();
 	all->insert(make_pair("/", new MainPageResource()));
+	all->insert(make_pair("/forall.css", new StaticFileResource("html/forall.css")));
+	
 	all->insert(make_pair("/login", new LoginActionResource()));
 	all->insert(make_pair("/login.css", new StaticFileResource("html/login.css")));
 	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));
+	
 	all->insert(make_pair("/projects", new ProjectsResource()));
 	all->insert(make_pair("/projects.js", new StaticFileResource("html/projects.js")));
+	
 	all->insert(make_pair("/messages", new MessagesResource()));
+	all->insert(make_pair("/messages.css", new StaticFileResource("html/messages.css")));
 	all->insert(make_pair("/messages.js", new StaticFileResource("html/messages.js")));
+	
 	all->insert(make_pair("/users", new UsersResource()));
 	all->insert(make_pair("/send", new SendResource()));
+	
 	all->insert(make_pair("/projects/", new OneProjectResource()));
 	all->insert(make_pair("/project.js", new StaticFileResource("html/project.js")));
+	
 	all->insert(make_pair("/projects/*/task/", new OneTaskResource()));
+	
 	all->insert(make_pair("/task.js", new StaticFileResource("html/task.js")));
 }
 
