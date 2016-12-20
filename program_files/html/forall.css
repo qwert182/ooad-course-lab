@@ -17,8 +17,11 @@
 }
 
 .form-row input[type=text]:hover {
-    float: right;
     background: rgba(23, 65, 145, 0.1);
+}
+
+.form-row input[type=text]:focus {   
+    background: rgba(23, 65, 145, 0.22);
 }
 
 .form-row input[type=password] {
@@ -26,13 +29,20 @@
 }
 
 .form-row input[type=password]:hover {
-    float: right;
     background: rgba(23, 65, 145, 0.1);
+}
+
+.form-row input[type=password]:focus {   
+    background: rgba(23, 65, 145, 0.22);
+}
+
+.form-row select:hover {
+	background: rgba(23, 65, 145, 0.1);
 }
 
 .form-row input[type=submit] {    
 	padding: 5px;
-	height: 25px;
+	height: 27px;
 	width: 150px;
 	line-height: 10px;
 	background: #174191;
@@ -63,3 +73,27 @@ a:hover {
     color: #174191;
     text-decoration: underline;
 }
+
+a.menu {
+    padding: 5px 0;	
+    height: 14px;
+	width: 140px;	
+	background: #174191;
+	color: white;    
+    font-weight: bold;
+    
+    display: block;
+    margin-left: 0;
+	margin-top: 50px;
+        
+    text-align: center;
+    border: 2px solid #174191;
+}
+
+a.menu:hover {
+    background:#ffffff;    
+    color: #174191;
+    border: 2px solid #174191;
+    text-decoration: none;
+}
+

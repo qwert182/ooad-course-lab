@@ -44,6 +44,8 @@ void IResource::Init() {
 	all->insert(make_pair("/login.css", new StaticFileResource("html/login.css")));
 	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));
 	
+	all->insert(make_pair("/regform/", new OneProjectResource()));
+
 	all->insert(make_pair("/projects", new ProjectsResource()));
 	all->insert(make_pair("/projects.js", new StaticFileResource("html/projects.js")));
 	
