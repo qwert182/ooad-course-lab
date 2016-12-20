@@ -22,9 +22,21 @@ static bool is_needed_key(const vector<string> &columnNames, const TableWithHead
 }
 
 
-int create_id() {
-	//Ќайти макс. id и +1 (проверить, что такого id нет)
-	return rand() + 5;
+int create_id(TableWithHeader &t, int idIndex) {
+	int num = t.content.size();
+	int max = t.content[0][idIndex];
+	int cur;
+
+	for(int j = 1; j < num; j++) {
+		cur = t.content[j][idIndex];
+
+		if(max < cur) {
+			max = cur;
+		}
+	}
+
+	max++;
+	return max;
 }
 
 
@@ -33,17 +45,13 @@ ITable * Insert::perform(DataBase &db) const {
 	int new_id = -1;
 	fstream &file = db.getTableFile(this->table);
 	TableWithHeader t = parse(file);
-
-	if (is_needed_key(this->columnNames, t)) {
-		new_id = create_id();
-	}
-
+	is_needed_key(this->columnNames, t);
+	
 	vector<Element> corrected_line;
 	
-
 	for (i = 0; i < t.hat.size(); ++i) {
 		if (t.links[i] == "key") {
-			if (new_id == -1) throw DataBaseException("something went wrong with id key (it is -1)");
+			new_id = create_id(t, i);						
 			corrected_line.push_back(new_id);
 		} else {
 			auto found = find(this->columnNames.begin(), this->columnNames.end(), t.hat[i]);

@@ -3,7 +3,7 @@
 
 #include "User.h"
 #include "AllUsers.h"
-
+#include "../RegForm.h"
 
 TEST_from(GetAllUsersTest, WithFullDB) {
 	void test() {
@@ -23,7 +23,26 @@ TEST_from(GetAllUsersTest, WithFullDB) {
 	}
 } TEST_END;
 
+TEST_from(SignUpTest, WithFullDB) {
+	void test() {		
+		IAllUsers *allUsers = new AllUsers();
+		
+		RegForm regForm;
+		regForm.name = "userName";
+		regForm.login = "userLogin";
+		regForm.password = "userPass";
 
+		IUser* user;
+		user = allUsers->signUp(regForm);
+				
+		assertEquals("userName", user->getName());
+		assertEquals("userLogin", user->getLogin());
+		assertEquals("userPass", user->getPassword());
+		
+		delete user;
+		delete allUsers;
+	}
+} TEST_END;
 
 
 #endif

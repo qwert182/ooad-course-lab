@@ -3,6 +3,7 @@
 #include "AllUsers.h"
 #include "dataBase.h"
 #include "User.h"
+#include "../RegForm.h"
 #include "../AccessDeniedException.h"
 
 
@@ -71,8 +72,8 @@ class IUser * AllUsers::logIn(const string &login, const string &password) {
 	return new User(id);
 }
 
-class IUser * AllUsers::signUp(const class RegForm &regForm) {
-	IUser *result;
+class IUser * AllUsers::signUp(const class RegForm &regForm) {	
+	IUser *result = new User(regForm.name, regForm.login, regForm.password);
 	return result;
 }
 
