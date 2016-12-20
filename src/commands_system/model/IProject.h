@@ -17,4 +17,5 @@ public: virtual std::string getName() const = 0;
 		
 		virtual std::vector<class ITask *> getTasks() const = 0;
 		virtual void add(const class ITask &task) = 0;
+		virtual class ITask * getTaskByName(const std::string &) const = 0;
 };

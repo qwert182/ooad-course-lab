@@ -123,3 +123,11 @@ void Project::add(const class ITask &task) {
 	);
 }
 
+
+ITask * Project::getTaskByName(const string &name) const {
+	ptrTable t = dataBase->perform(
+		SELECT_ONLY("id").from("tasks").where("name", name)
+	);
+	return new Task(t->get(0, 0));
+}
+

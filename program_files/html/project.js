@@ -44,7 +44,7 @@ function getProjects(response, what) {
 function main() {
   var projectName = document.getElementById("project_name");
   var arr = document.URL.split("/");
-	projectName.innerHTML = arr[arr.length - 1];
+	projectName.innerHTML = "\"" + arr[arr.length - 1] + "\"";
 
 	projectDescription = document.getElementById("project_description");
 	taskList = document.getElementById("task_list");

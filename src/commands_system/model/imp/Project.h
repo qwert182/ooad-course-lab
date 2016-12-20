@@ -23,5 +23,6 @@ public:
 	
 	virtual std::vector<class ITask *> getTasks() const;
 	virtual void add(const class ITask &task);
+	virtual class ITask * getTaskByName(const std::string &) const;
 };
 

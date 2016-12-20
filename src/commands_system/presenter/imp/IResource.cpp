@@ -50,6 +50,7 @@ void IResource::Init() {
 	all->insert(make_pair("/projects/", new OneProjectResource()));
 	all->insert(make_pair("/project.js", new StaticFileResource("html/project.js")));
 	all->insert(make_pair("/projects/*/task/", new OneTaskResource()));
+	all->insert(make_pair("/task.js", new StaticFileResource("html/task.js")));
 }
 
 
