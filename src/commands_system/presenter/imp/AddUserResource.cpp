@@ -26,12 +26,6 @@ AddUserResource::AddUserResource() {}
 
 
 
-vector<char> AddUserResource::get(Session *session) const {
-
-	return file_response_must_be_authorized("html/adduser.htm", session);
-}
-
-
 
 
 
@@ -55,8 +49,6 @@ vector<char> AddUserResource::post(const vector<char> &content, Session *session
 		return result;
 	}
 
-  //IUser *user = session->getUser();
-
 	try {
 	  unique_ptr<IUser> user ( allUsers->getUserByLogin(user_login) );
 	  unique_ptr<IAllProjects> allprjs ( user->getProjects() );
@@ -78,7 +70,7 @@ vector<char> AddUserResource::post(const vector<char> &content, Session *session
 
   vector<char> result = getStatusBy(200);
 	appendCRLF(result);
-	append(result, "/projects");
 	return result;
 }
 
+	

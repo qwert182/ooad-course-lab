@@ -74,7 +74,7 @@ void IResource::Init() {
 
 	all->insert(make_pair("/addproject", new AddProjectResource()));
 	all->insert(make_pair("/adduser", new AddUserResource()));
-	all->insert(make_pair("/addtest", new AddTaskResource()));
+	all->insert(make_pair("/addtask", new AddTaskResource()));
 	all->insert(make_pair("/add.js", new StaticFileResource("html/add.js")));
 }
 
