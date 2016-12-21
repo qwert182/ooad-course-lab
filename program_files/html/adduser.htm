@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Добавить работника</title>
+		<link rel="stylesheet" href="forall.css">
+		<link rel="stylesheet" href="login.css">
+		<script src="login.js"></script>
+	</head>
+	<body>
+		<h1>Добавить работника</h1>
+		<div class="form-container">
+			<div id="errmsg" class="hidden_errmsg">
+				<span id="errmsg_server">Произошла ошибка на сервере.</span>
+				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Ошибка ввода данных.</span>
+			</div>
+			
+			<form class="reg-form" action="/adduser" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+				<p>Выберите работника из списка :</p>
+				
+				<div class="form-row">
+					<label>Работник:</label>
+					<select name="receiver" required></select>
+				</div>
+				
+				<div class="form-row">
+					<input type="submit" value="Добавить">
+				</div>
+			</form>	
+			
+		</div>
+	</body>
+</html>
