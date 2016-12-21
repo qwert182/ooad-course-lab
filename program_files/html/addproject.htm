@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Добавить проект</title>
+		<link rel="stylesheet" href="forall.css">
+		<link rel="stylesheet" href="login.css">
+		<script src="login.js"></script>
+	</head>
+	<body>
+		<h1>Добавить проект</h1>
+		<div class="form-container">
+			<div id="errmsg" class="hidden_errmsg">
+				<span id="errmsg_server">Произошла ошибка на сервере.</span>
+				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Ошибка ввода данных.</span>
+			</div>
+			
+			<form class="reg-form" action="/regform" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+				<p>Введите Ваши данные для добавления проекта :</p>
+				
+				<div class="form-row">
+					<label for="name">Название :</label>
+					<input type="text" name="name" required>
+				</div>				
+				<div class="form-row">
+					<label for="description">Описание :</label>
+					<input type="text" name="description" required>
+				</div>
+								
+                <div class="form-row">
+				    <input type="submit" value="Добавить">
+				</div>
+				
+				<a href="/projects" class="menu">Назад</a>
+			</form>	
+			
+		</div>
+	</body>
+</html>
