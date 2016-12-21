@@ -269,6 +269,9 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\RegformResource.cpp">
       <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AddProjectResource.cpp">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\commands_system\utils\Test.h">
@@ -530,6 +533,9 @@
       <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\RegformResource.h">
+      <Filter>src\presenter\imp\%2aResource.%2a</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AddProjectResource.h">
       <Filter>src\presenter\imp\%2aResource.%2a</Filter>
     </ClInclude>
   </ItemGroup>
