@@ -2,6 +2,8 @@
 	<head>
 		<meta charset="windows-1251">
 		<title>Система взаимодействия команд</title>
+		<link rel="stylesheet" href="forall.css">	
+		<link rel="stylesheet" href="messages.css">		
 		<script src="/messages.js"></script>
 	</head>
 	<body>
@@ -9,17 +11,25 @@
 		<h2>Входящие</h2>
 		<ol></ol>
 		<h2>Написать</h2>
-		<form action="/send" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
-			<label>
-				кому:<select name="receiver" required></select>
-			</label>
-			<label>
-				тема:<input type="text" name="subject" required>
-			</label>
-			<label>
-				текст:<input type="text" name="text" required>
-			</label>
-			<input type="submit" value="отправить">
+		
+		<form class="send-message-form" action="/send" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+			<div class="form-row">
+				<label>кому:</label>
+				<select name="receiver" required></select>
+			</div>
+			<div class="form-row">
+				<label>	тема:</label>
+				<input type="text" name="subject" required>				
+			</div>
+			<div class="form-row">
+				<label>	текст:</label>
+				<input type="text" name="text" required>
+			</div>
+			<div class="form-row">
+				<input type="submit" value="Отправить">
+			</div>
 		</form>
+		
+		<a href="/" class="menu">Назад</a>
 	</body>
 </html>

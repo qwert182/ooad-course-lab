@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Регистрация</title>
+		<link rel="stylesheet" href="forall.css">
+		<link rel="stylesheet" href="login.css">
+		<script src="login.js"></script>
+	</head>
+	<body>
+		<h1>Регистрация</h1>
+		<div class="form-container">
+			<div id="errmsg" class="hidden_errmsg">
+				<span id="errmsg_server">Произошла ошибка на сервере.</span>
+				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Ошибка ввода данных.</span>
+			</div>
+			
+			<form class="reg-form" action="/regform" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+				<p>Введите Ваши данные для регистрации :</p>
+				
+				<div class="form-row">
+					<label for="name">Имя :</label>
+					<input type="text" name="name" required>
+				</div>				
+				<div class="form-row">
+					<label for="login">Логин :</label>
+					<input type="text" name="login" required>
+				</div>
+				<div class="form-row">
+					<label for="password">Пароль :</label>
+					<input type="password" name="password" required>
+				</div>
+				
+                <div class="form-row">
+				    <input type="submit" value="Зарегистрироваться">
+				</div>
+				
+				<a href="/login" class="menu">Назад</a>
+			</form>	
+			
+		</div>
+	</body>
+</html>

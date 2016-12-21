@@ -1,29 +1,36 @@
 <html>
 	<head>
-		<meta charset="windows-1251">
-		<title>Система взаимодействия команд</title>
-		<link rel="stylesheet" href="/login.css">
-		<script src="/login.js"></script>
+		<meta charset="UTF-8">
+		<title>РЎРёСЃС‚РµРјР° РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ РєРѕРјР°РЅРґ</title>
+		<link rel="stylesheet" href="forall.css">
+		<link rel="stylesheet" href="login.css">
+		<script src="login.js"></script>
 	</head>
 	<body>
-		<h1>Главная страница</h1>
+		<h1>Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°</h1>
 		<div class="form-container">
 			<div id="errmsg" class="hidden_errmsg">
-				<span id="errmsg_server">Произошла ошибка на сервере.</span>
-				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Логин или пароль не верны.</span>
+				<span id="errmsg_server">РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РЅР° СЃРµСЂРІРµСЂРµ.</span>
+				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Р›РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ РЅРµ РІРµСЂРЅС‹.</span>
 			</div>
-			<form action="/login" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
-				<label>
-					логин:<input type="text" name="login" required>
-				</label>
-				<label>
-					пароль:<input type="password" name="password" required>
-				</label>
-				<input type="submit" value="войти">
+			
+			<form class="reg-form" action="/login" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+				<div class="form-row">
+					<label for="login">Р›РѕРіРёРЅ :</label>
+					<input type="text" name="login" required>
+				</div>
+				<div class="form-row">
+					<label for="password">РџР°СЂРѕР»СЊ :</label>
+					<input type="password" name="password" required>
+				</div>
+				<div class="form-row">
+				    <input type="submit" value="Р’РѕР№С‚Рё">
+				</div>
 			</form>
-			<div>
-				Первый раз здесь?
-				<a href="/regform">Зарегистрироваться</a>.
+			
+			<div class="under_reg_text">
+				РџРµСЂРІС‹Р№ СЂР°Р· Р·РґРµСЃСЊ?
+				<a href="/regform">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</a>.
 			</div>
 		</div>
 	</body>

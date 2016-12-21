@@ -56,6 +56,7 @@
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\OneProjectResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\OneTaskResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\ProjectsResource.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\RegformResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\SendResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\Session.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\StaticHeaderResource.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\OneProjectResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\OneTaskResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\ProjectsResource.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\RegformResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\SendResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\Session.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\SessionException.h" />

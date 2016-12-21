@@ -11,6 +11,8 @@
 #include "OneTaskResource.h"
 #include "OneFileResource.h"
 #include "AddNoteResource.h"
+#include "RegformResource.h"
+
 
 #include "utils/request.h"
 #include "utils/append.h"
@@ -55,6 +57,11 @@ void IResource::Init() {
 	all->insert(make_pair("/task.js", new StaticFileResource("html/task.js")));
 
 	all->insert(make_pair("/note", new AddNoteResource()));
+	all->insert(make_pair("/forall.css", new StaticFileResource("html/forall.css")));
+	all->insert(make_pair("/messages.css", new StaticFileResource("html/messages.css")));
+
+	all->insert(make_pair("/regform", new RegformResource()));
+	all->insert(make_pair("/regform.js", new StaticFileResource("html/login.js")));
 }
 
 
