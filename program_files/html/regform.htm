@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<meta charset="windows-1251">
+		<title>Система взаимодействия команд</title>
+		<link rel="stylesheet" href="/login.css">
+		<script src="/regform.js"></script>
+	</head>
+	<body>
+		<h1>Регистрация</h1>
+		<div class="form-container">
+			<div id="errmsg" class="hidden_errmsg">
+				<span id="errmsg_server">Произошла ошибка на сервере.</span>
+				<span id="errmsg_loginpassword" class="hidden_sub_errmsg">Логин занят.</span>
+			</div>
+			<form action="/regform" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+				<label>
+					имя:<input type="text" name="name" required>
+				</label>
+				<label>
+					логин:<input type="text" name="login" required>
+				</label>
+				<label>
+					пароль:<input type="password" name="password" required>
+				</label>
+				<input type="submit" value="зарегистрироваться">
+			</form>
+		</div>
+	</body>
+</html>

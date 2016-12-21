@@ -9,6 +9,7 @@
 #include "SendResource.h"
 #include "OneProjectResource.h"
 #include "OneTaskResource.h"
+#include "RegformResource.h"
 
 #include "utils/request.h"
 #include "utils/append.h"
@@ -41,16 +42,27 @@ void IResource::Init() {
 	all->insert(make_pair("/login", new LoginActionResource()));
 	all->insert(make_pair("/login.css", new StaticFileResource("html/login.css")));
 	all->insert(make_pair("/login.js", new StaticFileResource("html/login.js")));
+
 	all->insert(make_pair("/projects", new ProjectsResource()));
 	all->insert(make_pair("/projects.js", new StaticFileResource("html/projects.js")));
+	
 	all->insert(make_pair("/messages", new MessagesResource()));
 	all->insert(make_pair("/messages.js", new StaticFileResource("html/messages.js")));
+	all->insert(make_pair("/messages.css", new StaticFileResource("html/messages.css")));
+	
 	all->insert(make_pair("/users", new UsersResource()));
 	all->insert(make_pair("/send", new SendResource()));
+	
 	all->insert(make_pair("/projects/", new OneProjectResource()));
 	all->insert(make_pair("/project.js", new StaticFileResource("html/project.js")));
+	
 	all->insert(make_pair("/projects/*/task/", new OneTaskResource()));
 	all->insert(make_pair("/task.js", new StaticFileResource("html/task.js")));
+	all->insert(make_pair("/regform", new RegformResource()));
+	all->insert(make_pair("/regform.js", new StaticFileResource("html/login.js")));
+
+
+	all->insert(make_pair("/forall.css", new StaticFileResource("html/forall.css")));
 }
 
 
