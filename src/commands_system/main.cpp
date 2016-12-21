@@ -5,6 +5,7 @@
 #include <type_traits>
 
 #include <iostream>
+#include <string>
 
 #include "utils/Test.h"
 #include "utils/formatTypeidName.h"
@@ -16,6 +17,7 @@
 #include "db/imp/DataBase.h"
 #include "db/instance.h"
 
+extern std::string *last_filename;
 
 using std::cout;
 using std::endl;
@@ -31,7 +33,7 @@ int main() {
 	Test::All();
 	#endif
 
-
+	last_filename = new std::string();
 
 	DataBase::CreateInstance();
 	dataBase->open();
@@ -56,6 +58,7 @@ int main() {
 
 	delete allUsers;
 	delete dataBase;
+	delete last_filename;
 
 
 

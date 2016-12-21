@@ -118,6 +118,7 @@ vector<class IAttachment *> Task::getAttachments() const {
 		
 		vector<class IAttachment *> attach = notes[i]->getAttachments();
 		result.insert(result.end(), attach.begin(), attach.end());
+		delete notes[i];
 	}
 
 	return result;

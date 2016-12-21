@@ -10,7 +10,18 @@
 		<div id="task_theme"></div>
 		<h2>Описание</h2>
 		<div id="task_description"></div>
+		<h2>Файлы</h2>
+		<ol id="task_attachments"></ol>
 		<h2>Замечания</h2>
 		<ol id="task_notes"></ol>
+
+		<form action="/note" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+			<label>
+				текст:<input type="text" name="text" required>
+			</label>
+			<input type="hidden" name="MAX_FILE_SIZE" value="10240">
+			<input type="file" name="file">
+			<input type="submit" value="оставить замечание">
+		</form>
 	</body>
 </html>

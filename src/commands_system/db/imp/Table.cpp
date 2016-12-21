@@ -1,7 +1,7 @@
 #include "Table.h"
 #include <sstream>
 #include <string>
-
+#include "../DataBaseException.h"
 
 using std::vector;
 
@@ -18,8 +18,10 @@ int Table::getColCount() const {
 
 
 const Element & Table::get(int row, int col) const {
-	//if (!(0<=row && row<=content.size()))
-	//	throw
+	if (!(0<=row && (size_t)row<content.size()))
+		throw DataBaseException("row index is out of bounds");
+	if (!(0<=col && (size_t)col<content[0].size()))
+		throw DataBaseException("column index is out of bounds");
 	return content[row][col];
 }
 

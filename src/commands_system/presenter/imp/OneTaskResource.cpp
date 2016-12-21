@@ -4,6 +4,7 @@
 #include "../../model/IProject.h"
 #include "../../model/ITask.h"
 #include "../../model/INote.h"
+#include "../../model/IAttachment.h"
 
 #include "utils/response.h"
 #include "utils/status.h"
@@ -59,7 +60,7 @@ vector<char> OneTaskResource::post(const vector<char> &content, Session *session
 	  vector<INote *> notes = task->getNotes();
 		for (size_t i = 0; i < notes.size(); ++i) {
 		  INote *note = notes[i];
-		  unique_ptr<const IUser> user(  note->getWriter()  );
+		  IUser *user = note->getWriter();
 			append(result, "<li>");
 			append(result, "от: ");
 			append(result, user->getName());
@@ -67,17 +68,23 @@ vector<char> OneTaskResource::post(const vector<char> &content, Session *session
 			append(result, note->getText());
 			append(result, "\"");
 			append(result, "</li>");
+			delete user;
 			delete note;
 		}
-	/*} else if (what == ) {
-	  vector<IUser *> workers = project->getWorkers();
-		for (size_t i = 0; i < workers.size(); ++i) {
-		  IUser *worker = workers[i];
+	} else if (what == "task_attachments") {
+	  vector<IAttachment *> attachments = task->getAttachments();
+		for (size_t i = 0; i < attachments.size(); ++i) {
+		  IAttachment *attachment = attachments[i];
 			append(result, "<li>");
-			append(result, worker->getName());
+			append(result, "<a href=\"");
+			append(result, "/files/" + attachment->getFileName());
+			append(result, "\">");
+			append(result, attachment->getFileName());
+			append(result, "</a>");
+			append(result, " описание: " + attachment->getDescription());
 			append(result, "</li>");
-			delete worker;
-		}*/
+			delete attachment;
+		}
 	} else {
 		throw BadRequestException("non active /projects");
 	}

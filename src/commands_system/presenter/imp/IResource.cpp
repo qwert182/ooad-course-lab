@@ -9,6 +9,8 @@
 #include "SendResource.h"
 #include "OneProjectResource.h"
 #include "OneTaskResource.h"
+#include "OneFileResource.h"
+#include "AddNoteResource.h"
 
 #include "utils/request.h"
 #include "utils/append.h"
@@ -51,6 +53,8 @@ void IResource::Init() {
 	all->insert(make_pair("/project.js", new StaticFileResource("html/project.js")));
 	all->insert(make_pair("/projects/*/task/", new OneTaskResource()));
 	all->insert(make_pair("/task.js", new StaticFileResource("html/task.js")));
+
+	all->insert(make_pair("/note", new AddNoteResource()));
 }
 
 
@@ -82,8 +86,11 @@ std::vector<char> IResource::perform(const Request &request) {
   r_map::const_iterator found;
   const vector<char> *post_content = nullptr;
   vector<char> projects_content;
+  IResource *res;
+  std::unique_ptr<const IResource> res_deleter;
 
   const string prjs = "/projects/";
+  const string files = "/files/";
 	if (request.path.substr(0, prjs.length()) == prjs) {
 	  string prj = request.path.substr(prjs.length());
 	  size_t found_task = prj.find('/');
@@ -110,16 +117,24 @@ std::vector<char> IResource::perform(const Request &request) {
 			}
 			found = all->find(prjs);
 		}
+		res = found->second;
+	} else if (request.path.substr(0, files.length()) == files) {
+	  string file = request.path.substr(files.find_last_of('/') + 1);
+
+		res = new OneFileResource("attachments/" + file);
+		res_deleter.reset(res);
+		post_content = &request.content;
 	} else {
 		found = all->find(request.path);
+		if (found == all->end())
+			throw NotFoundException(request.path);
+
+		res = found->second;
 		post_content = &request.content;
 	}
 
 
-	if (found == all->end())
-		throw NotFoundException(request.path);
 
-  IResource *res = found->second;
 
   auto cookie_found = request.headers.find("Cookie");
   Session *session = nullptr;
