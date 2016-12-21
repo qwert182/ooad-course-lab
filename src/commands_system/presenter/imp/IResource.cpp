@@ -13,7 +13,8 @@
 #include "AddNoteResource.h"
 #include "RegformResource.h"
 #include "AddProjectResource.h"
-
+#include "AddUserResource.h"
+#include "AddTaskResource.h"
 
 #include "utils/request.h"
 #include "utils/append.h"
@@ -72,6 +73,8 @@ void IResource::Init() {
 	all->insert(make_pair("/regform.js", new StaticFileResource("html/login.js")));
 
 	all->insert(make_pair("/addproject", new AddProjectResource()));
+	all->insert(make_pair("/adduser", new AddUserResource()));
+	all->insert(make_pair("/addtest", new AddTaskResource()));
 	all->insert(make_pair("/add.js", new StaticFileResource("html/add.js")));
 }
 

@@ -50,6 +50,8 @@
     <ClCompile Include="..\..\..\src\commands_system\model\imp\UserType.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AddNoteResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AddProjectResource.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AddTaskResource.cpp" />
+    <ClCompile Include="..\..\..\src\commands_system\presenter\imp\AddUserResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\allUsersInstance.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\MainPageResource.cpp" />
     <ClCompile Include="..\..\..\src\commands_system\presenter\imp\MessagesResource.cpp" />
@@ -129,6 +131,8 @@
     <ClInclude Include="..\..\..\src\commands_system\model\RegForm.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AddNoteResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AddProjectResource.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AddTaskResource.h" />
+    <ClInclude Include="..\..\..\src\commands_system\presenter\imp\AddUserResource.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\allUsersInstance.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\ForbiddenException.h" />
     <ClInclude Include="..\..\..\src\commands_system\presenter\imp\InternalServerErrorException.h" />
