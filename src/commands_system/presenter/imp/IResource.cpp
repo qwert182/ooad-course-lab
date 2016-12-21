@@ -72,6 +72,7 @@ void IResource::Init() {
 	all->insert(make_pair("/regform.js", new StaticFileResource("html/login.js")));
 
 	all->insert(make_pair("/addproject", new AddProjectResource()));
+	all->insert(make_pair("/add.js", new StaticFileResource("html/add.js")));
 }
 
 

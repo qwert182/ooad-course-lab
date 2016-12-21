@@ -25,11 +25,9 @@ AddProjectResource::AddProjectResource() {}
 
 
 
-vector<char> AddProjectResource::get(Session *) const {
-  vector<char> result = getStatusBy(200);
-	appendCRLF(result);
-	append(result, read_file("html/addproject.htm"));
-	return result;
+vector<char> AddProjectResource::get(Session *session) const {
+
+	return file_response_must_be_authorized("html/addproject.htm", session);
 }
 
 
@@ -75,6 +73,7 @@ vector<char> AddProjectResource::post(const vector<char> &content, Session *sess
 
   vector<char> result = getStatusBy(200);
 	appendCRLF(result);
+	append(result, "/projects");
 	return result;
 }
 
