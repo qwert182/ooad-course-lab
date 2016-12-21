@@ -15,6 +15,42 @@
 		<h2>Список участников</h2>
 		<ol id="workers_list"></ol>
 		
-		<a href="/adduser" class="menu" style="width: 220px">Добавить работника</a>
+		<form class="reg-form" action="/adduser" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+			<p>Выберите работника из списка :</p>
+				
+			<div class="form-row">
+				<label>Работник:</label>
+				<select name="receiver" required></select>
+			</div>
+				
+			<div class="form-row">
+				<input type="submit" value="Добавить">
+			</div>
+		</form>	
+		
+		<form class="reg-form" action="/addtask" method="POST" enctype="text/plain" accept-charset="windows-1251" autocomplete="off">
+			<p>Введите данные для добавления задачи :</p>
+				
+			<div class="form-row">
+				<label for="name">Название :</label>
+				<input type="text" name="name" required>
+			</div>	
+				
+			<div class="form-row">
+				<label for="theme">Тема :</label>
+				<input type="text" name="theme" required>
+			</div>	
+			
+			<div class="form-row">
+				<label for="description">Описание :</label>
+				<input type="text" name="description" required>
+			</div>	
+			
+			<div class="form-row">
+				<input type="submit" value="Добавить">
+			</div>
+		</form>	
+		
+		
 	</body>
 </html>
