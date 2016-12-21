@@ -16,19 +16,13 @@ body {
 
 form > label {
 	clear: both;
-	float: right;
+	display: block;
 }
 
 input[type="text"], input[type="password"] {
 	margin: 2mm;
 	margin-right: 0;
 	width: 6cm;
-}
-
-input[type="submit"] {
-	display: block;
-	position: relative;
-	left: 50%;
 }
 
 .hidden_errmsg {
